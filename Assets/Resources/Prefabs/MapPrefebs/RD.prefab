@@ -216,6 +216,7 @@ GameObject:
   - component: {fileID: 8003168427599230372}
   - component: {fileID: 1162914126151505362}
   - component: {fileID: 929874494242615213}
+  - component: {fileID: 7903071267400567320}
   m_Layer: 0
   m_Name: Spawn Point (1)
   m_TagString: SpawnPoint
@@ -310,6 +311,18 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &7903071267400567320
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1206380381048179207}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f4f3d0a08d8b447db374442eaf96c24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2458398380541941117
 GameObject:
   m_ObjectHideFlags: 0
@@ -321,6 +334,7 @@ GameObject:
   - component: {fileID: 1245065474224454988}
   - component: {fileID: 7881931522520171236}
   - component: {fileID: 5763979855066587960}
+  - component: {fileID: 2714426930658227329}
   m_Layer: 0
   m_Name: Spawn Point (2)
   m_TagString: SpawnPoint
@@ -415,6 +429,18 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &2714426930658227329
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2458398380541941117}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f4f3d0a08d8b447db374442eaf96c24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3281534729406571872
 GameObject:
   m_ObjectHideFlags: 0
@@ -626,7 +652,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6869689557542183216}
   m_Layer: 0
-  m_Name: RB
+  m_Name: RD
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -647,7 +673,7 @@ Transform:
   - {fileID: 4911428661719952728}
   - {fileID: 4237140122135375211}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -180}
 --- !u!1 &7620635283445939552
 GameObject:

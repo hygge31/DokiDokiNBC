@@ -300,6 +300,7 @@ GameObject:
   - component: {fileID: 2078303446470640190}
   - component: {fileID: 1420952127827083325}
   - component: {fileID: 1109166502202728148}
+  - component: {fileID: 7396971934197547327}
   m_Layer: 0
   m_Name: Spawn Point (2)
   m_TagString: SpawnPoint
@@ -394,6 +395,18 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &7396971934197547327
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3245684289789828922}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f4f3d0a08d8b447db374442eaf96c24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3729334005420202547
 GameObject:
   m_ObjectHideFlags: 0
@@ -425,7 +438,7 @@ Transform:
   - {fileID: 7475317240943421235}
   - {fileID: 2254579217380317633}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3876039476899577294
 GameObject:
@@ -639,6 +652,7 @@ GameObject:
   - component: {fileID: 3105332938119657081}
   - component: {fileID: 2793912818477382570}
   - component: {fileID: 1418818727502851200}
+  - component: {fileID: 3899130568694975409}
   m_Layer: 0
   m_Name: Spawn Point (1)
   m_TagString: SpawnPoint
@@ -733,6 +747,18 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &3899130568694975409
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7525078747359838163}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f4f3d0a08d8b447db374442eaf96c24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8650635285562934637
 GameObject:
   m_ObjectHideFlags: 0
