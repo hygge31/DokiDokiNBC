@@ -65,7 +65,7 @@ public class DungoenGenerator : MonoBehaviour
     Vector2Int GetCreatePoint(RoomData roomData)
     {
         Vector2Int ranDir = dir[Random.Range(0, dir.Count)];
-        ranDir *= 35;
+        ranDir *= new Vector2Int(roomData.width+10,roomData.height+10);
 
         return ranDir;
 

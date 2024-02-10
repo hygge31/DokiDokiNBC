@@ -8,18 +8,25 @@ public class TileDraw : MonoBehaviour
 {
     [SerializeField] private Tilemap floorTilemap;
     [SerializeField] private Tilemap wallTilemap;
+    [SerializeField] private Tilemap frontTilemap;
 
+
+    [Header("TileBase")]
     [SerializeField] private List<TileBase> floorTileList = new List<TileBase>(); 
 
-    [SerializeField] private TileBase wallTop;
-    [SerializeField] private TileBase wallBottom;
+    [SerializeField] private TileBase wallTop1;
+    [SerializeField] private TileBase wallTop2;
+    [SerializeField] private TileBase wallBottom1;
+    [SerializeField] private TileBase wallBottom2;
     [SerializeField] private TileBase wallLeft;
     [SerializeField] private TileBase wallRight;
+    
 
     [SerializeField] private TileBase wallTRCurve;
     [SerializeField] private TileBase wallTLCurve;
-    [SerializeField] private TileBase wallDRCurve;
-    [SerializeField] private TileBase wallDLCurve;
+    [SerializeField] private TileBase wallBRCurve;
+    [SerializeField] private TileBase wallBLCurve;
+    
 
 
 
@@ -50,7 +57,7 @@ public class TileDraw : MonoBehaviour
         foreach (BoundsInt bound in bounds)
         {
             for (int x = 0; x < bound.size.x; x++)
-            {
+            { 
                 for (int y = 0; y < bound.size.y; y++)
                 {
                     Vector2Int newPot = (Vector2Int)bound.min + new Vector2Int(x, y);
@@ -67,7 +74,6 @@ public class TileDraw : MonoBehaviour
 
     public void DrawWallTile()
     {
-        Queue<Vector2Int> drawWallList = new Queue<Vector2Int>();
         List<BoundsInt> bounds = DunGoenManager.Instance.dungoenRoomDataList.Select(c => c.bounds).ToList();
         foreach (BoundsInt bound in bounds)
         {
@@ -76,32 +82,38 @@ public class TileDraw : MonoBehaviour
 
             for (int x = 0; x < bound.size.x; x++) //Bottom
             {
-                Vector2Int newPot = (Vector2Int)bound.min + new Vector2Int(x, -1);
-                drawWallList.Enqueue(newPot);
+                Vector2Int newPot = (Vector2Int)bound.min + new Vector2Int(x, 0);
+                Vector2Int newPot1 = (Vector2Int)bound.min + new Vector2Int(x, -1);
+                DrawTile(frontTilemap, newPot, wallBottom1);
+                DrawTile(wallTilemap, newPot1, wallBottom2);
             }
-            while(drawWallList.Count != 0) { DrawTile(wallTilemap, drawWallList.Dequeue(), wallBottom); }
-
+            
             for (int x = 0; x < bound.size.x; x++) //Top
             {
                 Vector2Int newPot = (Vector2Int)bound.min + new Vector2Int(x, bound.size.y);
-                drawWallList.Enqueue(newPot);
+                Vector2Int newPot1 = (Vector2Int)bound.min + new Vector2Int(x, bound.size.y-1);
+                DrawTile(wallTilemap, newPot, wallTop1);
+                DrawTile(wallTilemap, newPot1, wallTop2);
             }
-            while (drawWallList.Count != 0) { DrawTile(wallTilemap, drawWallList.Dequeue(), wallTop); }
-
+            
             for (int y = 0; y < bound.size.y; y++) //Left
             {
                 Vector2Int newPot = (Vector2Int)bound.min + new Vector2Int(-1, y);
-                drawWallList.Enqueue(newPot);
+                DrawTile(wallTilemap, newPot, wallLeft);
             }
-            while (drawWallList.Count != 0) { DrawTile(wallTilemap, drawWallList.Dequeue(), wallLeft); }
-
+            
             for (int y = 0; y < bound.size.y; y++) //Right
             {
                 Vector2Int newPot = (Vector2Int)bound.min + new Vector2Int(bound.size.x, y);
-                drawWallList.Enqueue(newPot);
+                DrawTile(wallTilemap, newPot, wallRight);
             }
-            while (drawWallList.Count != 0) { DrawTile(wallTilemap, drawWallList.Dequeue(), wallRight); }
-
+            
+            DrawTile(wallTilemap,(Vector2Int)bound.min+new Vector2Int(-1,0),wallBLCurve);
+            DrawTile(wallTilemap, (Vector2Int)bound.min+new Vector2Int(-1,-1), wallBottom2);
+            DrawTile(wallTilemap, (Vector2Int)bound.min + new Vector2Int(bound.size.x, 0), wallBRCurve);
+            DrawTile(wallTilemap, (Vector2Int)bound.min + new Vector2Int(bound.size.x, -1), wallBottom2);
+            DrawTile(wallTilemap, (Vector2Int)bound.min + new Vector2Int(-1, bound.size.y), wallTLCurve);
+            DrawTile(wallTilemap, (Vector2Int)bound.min + new Vector2Int(bound.size.x, bound.size.y), wallTRCurve);
         }
 
 

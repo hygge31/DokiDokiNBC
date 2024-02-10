@@ -8,20 +8,28 @@ public class RoomData
 {
     //Room SO
     public int roomNumber;
-    public int width = 30; //todo
-    public int height = 30; //todo
+    public int width = 15; //todo
+    public int height = 15; //todo
 
     public Vector2Int center;
     public BoundsInt bounds;
+
+
+    [Header("Door")]
 
     public Vector2Int leftDoorPoint;
     public Vector2Int rightDoorPoint;
     public Vector2Int upDoorPoint;
     public Vector2Int downDoorPoint;
 
+
+
     public GameObject minimapSprite;//todo 
 
-   
+
+
+
+
     public void SetRoomData(Vector2Int createPoint,int roomNumber)
     {
         center = createPoint;
