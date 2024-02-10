@@ -25,6 +25,7 @@ public class DungoenGenerator : MonoBehaviour
     {
         RandomCreateRoomPosition(Vector2Int.zero, maxRoomCount); //todo fix player position,
         DunGoenManager.Instance.tileDrawer.DrawFloorTiles();
+        DunGoenManager.Instance.tileDrawer.DrawWallTile();
 
     }
 

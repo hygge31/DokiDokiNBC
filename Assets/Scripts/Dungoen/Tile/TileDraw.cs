@@ -67,14 +67,43 @@ public class TileDraw : MonoBehaviour
 
     public void DrawWallTile()
     {
+        Queue<Vector2Int> drawWallList = new Queue<Vector2Int>();
         List<BoundsInt> bounds = DunGoenManager.Instance.dungoenRoomDataList.Select(c => c.bounds).ToList();
-        foreach(BoundsInt bound in bounds)
+        foreach (BoundsInt bound in bounds)
         {
             Vector2Int min = (Vector2Int)bound.min;
             Vector2Int max = (Vector2Int)bound.max;
 
+            for (int x = 0; x < bound.size.x; x++) //Bottom
+            {
+                Vector2Int newPot = (Vector2Int)bound.min + new Vector2Int(x, -1);
+                drawWallList.Enqueue(newPot);
+            }
+            while(drawWallList.Count != 0) { DrawTile(wallTilemap, drawWallList.Dequeue(), wallBottom); }
+
+            for (int x = 0; x < bound.size.x; x++) //Top
+            {
+                Vector2Int newPot = (Vector2Int)bound.min + new Vector2Int(x, bound.size.y);
+                drawWallList.Enqueue(newPot);
+            }
+            while (drawWallList.Count != 0) { DrawTile(wallTilemap, drawWallList.Dequeue(), wallTop); }
+
+            for (int y = 0; y < bound.size.y; y++) //Left
+            {
+                Vector2Int newPot = (Vector2Int)bound.min + new Vector2Int(-1, y);
+                drawWallList.Enqueue(newPot);
+            }
+            while (drawWallList.Count != 0) { DrawTile(wallTilemap, drawWallList.Dequeue(), wallLeft); }
+
+            for (int y = 0; y < bound.size.y; y++) //Right
+            {
+                Vector2Int newPot = (Vector2Int)bound.min + new Vector2Int(bound.size.x, y);
+                drawWallList.Enqueue(newPot);
+            }
+            while (drawWallList.Count != 0) { DrawTile(wallTilemap, drawWallList.Dequeue(), wallRight); }
 
         }
+
 
     }
 
@@ -85,8 +114,10 @@ public class TileDraw : MonoBehaviour
         tilemap.SetTile(position, tile);
     }
 
-
     
+
+
+
 
 
 
