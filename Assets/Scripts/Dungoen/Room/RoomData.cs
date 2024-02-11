@@ -4,29 +4,44 @@ using System.Drawing;
 using UnityEngine;
 
 [System.Serializable]
-public class RoomData
+public class RoomData :MonoBehaviour
 {
     //Room SO
+
+    public RoomDataSO roomData;
+
     public int roomNumber;
-    public int width = 15; //todo
-    public int height = 15; //todo
+    public int width; //todo
+    public int height; //todo
 
     public Vector2Int center;
     public BoundsInt bounds;
 
 
     [Header("Door")]
-
     public Vector2Int leftDoorPoint;
     public Vector2Int rightDoorPoint;
-    public Vector2Int upDoorPoint;
-    public Vector2Int downDoorPoint;
+    public Vector2Int topDoorPoint;
+    public Vector2Int bottomDoorPoint;
+
+    public GameObject leftDoorObj;
+    public GameObject rightDoorObj;
+    public GameObject topDoorObj;
+    public GameObject bottomDoorObj;
+
+    [Header("Room State")]
+    public bool clear;
+    public List<GameObject> doors = new List<GameObject>();
 
 
 
-    public GameObject minimapSprite;//todo 
+    public RoomData(RoomDataSO roomDataSO)
+    {
+        roomData = roomDataSO;
+        width = roomData.width;
+        height = roomData.height;
 
-
+    }
 
 
 
@@ -38,7 +53,65 @@ public class RoomData
 
         leftDoorPoint = new Vector2Int(center.x - (width / 2), center.y);
         rightDoorPoint = new Vector2Int(center.x + (width / 2), center.y);
-        upDoorPoint = new Vector2Int(center.x, center.y + (height / 2));
-        downDoorPoint = new Vector2Int(center.x, center.y - (height / 2));
+        topDoorPoint = new Vector2Int(center.x, center.y + (height / 2));
+        bottomDoorPoint = new Vector2Int(center.x, center.y - (height / 2));
     }
+
+
+    public void CreateDoor(RoomData nextRoom, int num) //
+    {
+        Transform container;
+
+        if(!DunGoenManager.Instance.container.Find($"Room {roomNumber}"))
+        {
+             container = new GameObject($"Room {roomNumber}").transform;
+        }
+        else
+        {
+            container = DunGoenManager.Instance.container.Find($"Room {roomNumber}");
+        }
+
+
+        container.transform.SetParent(DunGoenManager.Instance.container);
+        switch (num)
+        {
+            case 0: //R
+                rightDoorObj = Instantiate(roomData.rightDoorObj, (Vector2)rightDoorPoint, Quaternion.identity);
+                rightDoorObj.GetComponent<Door>().SetData(nextRoom, num);
+                rightDoorObj.transform.SetParent(container.transform);
+                doors.Add(rightDoorObj);
+                break;
+            case 1: //T
+                topDoorObj = Instantiate(roomData.topDoorObj, (Vector2)topDoorPoint , Quaternion.identity);
+                topDoorObj.GetComponent<Door>().SetData(nextRoom, num);
+                topDoorObj.transform.SetParent(container.transform);
+                doors.Add(topDoorObj);
+                break;
+            case 2: //L
+                leftDoorObj = Instantiate(roomData.leftDoorObj, (Vector2)leftDoorPoint, Quaternion.identity);
+                leftDoorObj.GetComponent<Door>().SetData(nextRoom, num);
+                leftDoorObj.transform.SetParent(container.transform);
+                doors.Add(leftDoorObj) ;
+                break;
+            case 3: //B
+                bottomDoorObj = Instantiate(roomData.bottomDoorObj, (Vector2)bottomDoorPoint, Quaternion.identity);
+                bottomDoorObj.GetComponent<Door>().SetData(nextRoom, num);
+                bottomDoorObj.transform.SetParent(container.transform);
+                doors.Add(bottomDoorObj);
+                break;
+        }
+    }
+
+
+
+    public void SpawnMonster()
+    {
+        if (!clear)
+        {
+            Debug.Log("spawn monster");
+        }
+
+    }
+
+
 }
