@@ -5,17 +5,24 @@ using UnityEngine;
 public class Door : MonoBehaviour
 {
 
-    public RoomData nextRoomData;
+    public int nextRoomNumber;
+    public Vector3 originPosition;
     public Vector2Int outPoint;
 
+    public SpriteRenderer spriteRenderer;
+    
 
+    private void Awake()
+    {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+    }
 
 
 
     public void SetData(RoomData room, int num)
     {
-        nextRoomData = room;
-
+        nextRoomNumber = room.roomNumber;
+        originPosition = gameObject.transform.position;
         switch (num) //RTLB
         {
             case 0:
@@ -35,11 +42,44 @@ public class Door : MonoBehaviour
         
     }
 
+
+
+    //public void AppearanceDoor()
+    //{
+        
+    //    gameObject.transform.position += Vector3.up * 20;
+    //    StartCoroutine(AppearanceDoorCo());
+
+
+    //}
+
+    //IEnumerator AppearanceDoorCo()
+    //{
+    //    float percent = 0;
+       
+    //    while (percent < 1)
+    //    {
+    //        percent += Time.deltaTime * 0.01f;
+    //        gameObject.transform.position = Vector3.Lerp(gameObject.transform.position, originPosition, percent);
+
+    //        yield return null;
+    //    }
+    //}
+
+
+    public void ExitDoor()
+    {
+
+    }
+
+
+
+
     void TransformPlayer(GameObject player)
     {
         player.transform.position = (Vector2)outPoint;
-        DunGoenManager.Instance.curDungoenRoomNumber = nextRoomData.roomNumber;
-        nextRoomData.SpawnMonster();
+        DunGoenManager.Instance.curDungoenRoomNumber = nextRoomNumber;
+        DunGoenManager.Instance.dungoenRoomDataList[nextRoomNumber].SpawnMonster();
     }
 
 
@@ -48,7 +88,7 @@ public class Door : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            Debug.Log("player");
+            TransformPlayer(collision.gameObject);
         }
     }
 }

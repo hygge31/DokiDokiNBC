@@ -102,13 +102,33 @@ public class RoomData :MonoBehaviour
         }
     }
 
+    public void ToggleDoor()
+    {
+        foreach(GameObject door in doors)
+        {
+            if (door.activeSelf)
+            {
+                //퇴장 애니메이션
+                door.SetActive(false);
+            }
+            else
+            {
+                //등장 애니메이션
+                door.SetActive(true);
+                //door.GetComponent<Door>().AppearanceDoor();
+            }
+
+        }
+    }
+
+  
 
 
     public void SpawnMonster()
     {
         if (!clear)
         {
-            Debug.Log("spawn monster");
+            Debug.Log("spawn monster, on Stage Change Message");
         }
 
     }

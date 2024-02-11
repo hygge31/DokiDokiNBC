@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6b9db9fc202c4a3fae6cfa9228629f2, type: 3}
   m_Name: Normal_Room
   m_EditorClassIdentifier: 
-  width: 0
-  Height: 0
-  leftDoorObj: {fileID: 0}
-  rightDoorObj: {fileID: 0}
-  topDoorObj: {fileID: 0}
-  bottomDoorObj: {fileID: 0}
+  width: 30
+  height: 20
+  leftDoorObj: {fileID: 3245197823838952657, guid: cea3922e42d644e80ba7f1c82ca6a6d1, type: 3}
+  rightDoorObj: {fileID: 8850036719270798335, guid: c89b2b906f75741a582e8efd02169d62, type: 3}
+  topDoorObj: {fileID: 5431153881281828739, guid: d9698c60bee904debb8501c5f21e7ccb, type: 3}
+  bottomDoorObj: {fileID: 4136170357258491956, guid: 39823512b2e294809a34bc153d3ead0c, type: 3}

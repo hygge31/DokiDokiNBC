@@ -36,4 +36,7 @@ public class DunGoenManager : MonoBehaviour
 
         dungoenGenerator.ProcedurealDungoenGenerator();
     }
+
+
+
 }

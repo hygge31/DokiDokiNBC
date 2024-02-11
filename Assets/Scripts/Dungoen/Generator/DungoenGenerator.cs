@@ -96,6 +96,7 @@ public class DungoenGenerator : MonoBehaviour
                     roomData.CreateDoor(nextRoomData, i);
                 }
             }
+            //roomData.ToggleDoor();
         }
     }
 

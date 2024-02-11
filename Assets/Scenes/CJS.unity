@@ -1316,6 +1316,37 @@ Transform:
   m_Father: {fileID: 2053829494}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &783171935
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 783171936}
+  m_Layer: 0
+  m_Name: Containter
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &783171936
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 783171935}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2053829494}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1576798793
 GameObject:
   m_ObjectHideFlags: 0
@@ -1514,7 +1545,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxRoomCount: 12
-  list: []
+  dungoenlayer:
+    serializedVersion: 2
+    m_Bits: 64
+  roomDataSOs:
+  - {fileID: 11400000, guid: c1226328eff3340d7b6cd3686966b937, type: 2}
+  path: []
 --- !u!114 &2053829493
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1527,9 +1563,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec819202a8709411686a4446902c2c50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  container: {fileID: 783171936}
   dungoenGenerator: {fileID: 0}
   dungoenRoomDataList: []
+  colliderList: []
   tileDrawer: {fileID: 682161435}
+  curDungoenRoomNumber: 0
+  panel: {fileID: 0}
 --- !u!4 &2053829494
 Transform:
   m_ObjectHideFlags: 0
@@ -1543,6 +1583,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 682161436}
+  - {fileID: 783171936}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
