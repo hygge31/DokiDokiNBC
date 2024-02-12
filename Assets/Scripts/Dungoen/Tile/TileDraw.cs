@@ -29,18 +29,24 @@ public class TileDraw : MonoBehaviour
     
 
 
+    public void DrawAllTile()
+    {
+        Clear();
+        DrawFloorTiles();
+        DrawWallTile();
+    }
 
 
-
-    public void Clear()
+    void Clear()
     {
         floorTilemap.ClearAllTiles();
         wallTilemap.ClearAllTiles();
+        frontTilemap.ClearAllTiles();
     }
 
 
 
-    public void DrawFloorTiles()
+    void DrawFloorTiles()
     {
         List<Vector2Int> drawPoint = GetDrawFloorPoint();
         foreach (Vector2Int point in drawPoint)
@@ -72,7 +78,7 @@ public class TileDraw : MonoBehaviour
 
 
 
-    public void DrawWallTile()
+    void DrawWallTile()
     {
         List<BoundsInt> bounds = DunGoenManager.Instance.dungoenRoomDataList.Select(c => c.bounds).ToList();
         foreach (BoundsInt bound in bounds)
@@ -120,7 +126,7 @@ public class TileDraw : MonoBehaviour
     }
 
 
-    public void DrawTile(Tilemap tilemap,Vector2Int drawPoint,TileBase tile)
+    void DrawTile(Tilemap tilemap,Vector2Int drawPoint,TileBase tile)
     {
         Vector3Int position = tilemap.WorldToCell((Vector3Int)drawPoint);
         tilemap.SetTile(position, tile);

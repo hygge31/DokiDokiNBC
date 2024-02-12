@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Door : MonoBehaviour
 {
-
+    public int curRoomNumber;
     public int nextRoomNumber;
     public Vector3 originPosition;
     public Vector2Int outPoint;
@@ -19,9 +19,10 @@ public class Door : MonoBehaviour
 
 
 
-    public void SetData(RoomData room, int num)
+    public void SetData(RoomData room, int num, int curRoomNumber)
     {
         nextRoomNumber = room.roomNumber;
+        this.curRoomNumber = curRoomNumber;
         originPosition = gameObject.transform.position;
         switch (num) //RTLB
         {
@@ -65,7 +66,7 @@ public class Door : MonoBehaviour
     //        yield return null;
     //    }
     //}
-
+    
 
     public void ExitDoor()
     {
@@ -78,8 +79,10 @@ public class Door : MonoBehaviour
     void TransformPlayer(GameObject player)
     {
         player.transform.position = (Vector2)outPoint;
+        //todo
         DunGoenManager.Instance.curDungoenRoomNumber = nextRoomNumber;
         DunGoenManager.Instance.dungoenRoomDataList[nextRoomNumber].SpawnMonster();
+        //todo
     }
 
 

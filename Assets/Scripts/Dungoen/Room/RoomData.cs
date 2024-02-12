@@ -62,40 +62,40 @@ public class RoomData :MonoBehaviour
     {
         Transform container;
 
-        if(!DunGoenManager.Instance.container.Find($"Room {roomNumber}"))
+        if(!DunGoenManager.Instance.container.transform.Find($"Room {roomNumber}"))
         {
              container = new GameObject($"Room {roomNumber}").transform;
         }
         else
         {
-            container = DunGoenManager.Instance.container.Find($"Room {roomNumber}");
+            container = DunGoenManager.Instance.container.transform.Find($"Room {roomNumber}");
         }
 
 
-        container.transform.SetParent(DunGoenManager.Instance.container);
+        container.transform.SetParent(DunGoenManager.Instance.container.transform);
         switch (num)
         {
             case 0: //R
                 rightDoorObj = Instantiate(roomData.rightDoorObj, (Vector2)rightDoorPoint, Quaternion.identity);
-                rightDoorObj.GetComponent<Door>().SetData(nextRoom, num);
+                rightDoorObj.GetComponent<Door>().SetData(nextRoom, num,roomNumber);
                 rightDoorObj.transform.SetParent(container.transform);
                 doors.Add(rightDoorObj);
                 break;
             case 1: //T
                 topDoorObj = Instantiate(roomData.topDoorObj, (Vector2)topDoorPoint , Quaternion.identity);
-                topDoorObj.GetComponent<Door>().SetData(nextRoom, num);
+                topDoorObj.GetComponent<Door>().SetData(nextRoom, num,roomNumber);
                 topDoorObj.transform.SetParent(container.transform);
                 doors.Add(topDoorObj);
                 break;
             case 2: //L
                 leftDoorObj = Instantiate(roomData.leftDoorObj, (Vector2)leftDoorPoint, Quaternion.identity);
-                leftDoorObj.GetComponent<Door>().SetData(nextRoom, num);
+                leftDoorObj.GetComponent<Door>().SetData(nextRoom, num,roomNumber);
                 leftDoorObj.transform.SetParent(container.transform);
                 doors.Add(leftDoorObj) ;
                 break;
             case 3: //B
                 bottomDoorObj = Instantiate(roomData.bottomDoorObj, (Vector2)bottomDoorPoint, Quaternion.identity);
-                bottomDoorObj.GetComponent<Door>().SetData(nextRoom, num);
+                bottomDoorObj.GetComponent<Door>().SetData(nextRoom, num,roomNumber);
                 bottomDoorObj.transform.SetParent(container.transform);
                 doors.Add(bottomDoorObj);
                 break;
