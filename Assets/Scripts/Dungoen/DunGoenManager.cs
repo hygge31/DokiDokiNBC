@@ -10,8 +10,7 @@ public class DunGoenManager : MonoBehaviour
 
     [Header("Dungoen Generator")]
     public DungoenGenerator dungoenGenerator;
-    public List<RoomData> dungoenRoomDataList = new List<RoomData>(); //
-
+    public List<RoomData> dungoenRoomDataList = new List<RoomData>(); 
     public List<GameObject> minimapSpriteList = new List<GameObject>();
     
 
@@ -35,6 +34,10 @@ public class DunGoenManager : MonoBehaviour
 
     private void Start()
     {
+        Instantiate(minimapCamera);
+        Instantiate(minimapUi);
+
+
         CreateDunGoen();
     }
 
