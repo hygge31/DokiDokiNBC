@@ -19,11 +19,7 @@ public class DungoenGenerator : MonoBehaviour
     public LayerMask dungoenlayer;
 
     public List<RoomDataSO> roomDataSOs = new List<RoomDataSO>();
-
     public List<Vector2Int> path = new List<Vector2Int>();
-
-    
-
 
     List<Vector2Int> dir = new List<Vector2Int>()
     {

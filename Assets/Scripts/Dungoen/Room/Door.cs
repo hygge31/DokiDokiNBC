@@ -70,19 +70,25 @@ public class Door : MonoBehaviour
 
     public void ExitDoor()
     {
-
+        
     }
 
-
+    
 
 
     void TransformPlayer(GameObject player)
     {
+        //Coroutine flash display 0.5f
         player.transform.position = (Vector2)outPoint;
         //todo
         DunGoenManager.Instance.curDungoenRoomNumber = nextRoomNumber;
+        
         DunGoenManager.Instance.dungoenRoomDataList[nextRoomNumber].SpawnMonster();
         //todo
+
+        DunGoenManager.Instance.minimapSpriteList[curRoomNumber].GetComponent<MinimapSprite>().OutPoisition();
+        DunGoenManager.Instance.minimapSpriteList[nextRoomNumber].GetComponent<MinimapSprite>().CurPosition();
+
     }
 
 

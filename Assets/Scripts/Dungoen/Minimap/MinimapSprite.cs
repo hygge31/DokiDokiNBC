@@ -7,9 +7,7 @@ public class MinimapSprite : MonoBehaviour
     public SpriteRenderer defaultSprite;
     public SpriteRenderer curPositionSprite;
     public SpriteRenderer questionMark;
-    Color color = new Color(133, 133, 133);
-
-
+    Color color = new Color(133, 133, 133,100);
 
 
 

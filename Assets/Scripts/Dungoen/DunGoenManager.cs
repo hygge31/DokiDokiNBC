@@ -22,6 +22,11 @@ public class DunGoenManager : MonoBehaviour
     [Header("Room Move Panel")]
     public GameObject panel;
 
+
+    [Header("Minimap part")]
+    public GameObject minimapUi;
+    public GameObject minimapCamera;
+
     private void Awake()
     {
         Instance = this;
@@ -47,15 +52,9 @@ public class DunGoenManager : MonoBehaviour
         ClearList();
 
         dungoenGenerator.ProcedurealDungoenGenerator();
-    }
 
+        minimapSpriteList[0].GetComponent<MinimapSprite>().CurPosition();
 
-    public void MoveToDungoenRoom(int dungoenRoomNumber)
-    {
-        curDungoenRoomNumber = dungoenRoomNumber;
-        dungoenRoomDataList[curDungoenRoomNumber].SpawnMonster();
-
-        //MiniMap
 
     }
 
