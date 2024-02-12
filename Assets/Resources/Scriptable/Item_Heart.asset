@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5915ff2c134241c48a4b41c8a5bd395a, type: 3}
   m_Name: Item_Heart
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: 5e7e4f56279774f419d2ee00c05db115, type: 3}
+  sprite: {fileID: 21300000, guid: 214af6cb92b730443a84323aac08355a, type: 3}
   isActive: 0
   isStackable: 0

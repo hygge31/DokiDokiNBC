@@ -50,7 +50,7 @@ public class Item_CodePiece : DropItem
 
         float current = 0;
         float percent = 0;
-        float time = 1f;
+        float time = 0.5f;
 
         while(percent < 1)
         {

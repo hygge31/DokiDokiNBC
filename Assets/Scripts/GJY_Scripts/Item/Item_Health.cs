@@ -8,9 +8,13 @@ public class Item_Health : DropItem
     [Range(7, 8)][SerializeField] float _maxPopPower;
     [SerializeField] AnimationCurve _animCurve;
 
+    private float _initGrav;
+
     protected override void Init()
     {
         base.Init();
+
+        _initGrav = _rigid.gravityScale;
     }
 
     public override void Setup(Transform spawnTransform = null)
@@ -60,7 +64,7 @@ public class Item_Health : DropItem
 
     protected override void Clear()
     {
-        _rigid.gravityScale = 1;
+        _rigid.gravityScale = _initGrav;
         _rigid.velocity = Vector3.zero;        
     }
 }

@@ -24,7 +24,10 @@ public class UI_Base : MonoBehaviour
 
         for (int i = 0; i < names.Length; i++)
         {
-            objects[i] = Util.FindChild<T>(gameObject, names[i], true);
+            if (type == typeof(GameObject))
+                objects[i] = Util.FindChild(gameObject, names[i], true);
+            else
+                objects[i] = Util.FindChild<T>(gameObject, names[i], true);
 
             if (objects[i] == null)
                 Debug.Log($"바인드에 실패했습니다. : {type.Name}");

@@ -40,7 +40,7 @@ public class Managers : MonoBehaviour
 
             s_instance = go.GetComponent<Managers>();
 
-            UI.ShowSceneUI<UI_Hud>();
+            UI.ShowSceneUI<UI_Room>();
             Pool.Init();
         }
     }

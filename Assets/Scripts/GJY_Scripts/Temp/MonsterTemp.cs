@@ -16,6 +16,11 @@ public class MonsterTemp : MonoBehaviour
             Item_CodePiece item = Managers.RM.Instantiate("Items/Item_CodePiece").GetComponent<Item_CodePiece>();
             item.Setup(transform);            
         }
+        if(Input.GetKeyDown(KeyCode.H))
+        {
+            Item_Health item = Managers.RM.Instantiate("Items/Item_Health").GetComponent<Item_Health>();
+            item.Setup(transform);
+        }
     }
 
     private void TestItemDrop()
