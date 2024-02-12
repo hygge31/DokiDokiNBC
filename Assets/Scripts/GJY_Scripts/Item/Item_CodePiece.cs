@@ -33,10 +33,10 @@ public class Item_CodePiece : DropItem
         _rigid.velocity = transform.up * _currentSpd;        
     }
 
-    public override void Setup()
+    public override void Setup(Transform spawnTransform = null)
     {
-        base.Setup();
-
+        base.Setup(spawnTransform);
+        
         transform.rotation = Quaternion.Euler(0, 0, Random.Range(0, 360));
         _currentSpd = _speed;
         StartCoroutine(DropAndMagneting());

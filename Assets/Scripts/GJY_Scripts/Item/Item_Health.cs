@@ -13,9 +13,9 @@ public class Item_Health : DropItem
         base.Init();
     }
 
-    public override void Setup()
+    public override void Setup(Transform spawnTransform = null)
     {
-        base.Setup();
+        base.Setup(spawnTransform);
         
         ItemDrop();
     }

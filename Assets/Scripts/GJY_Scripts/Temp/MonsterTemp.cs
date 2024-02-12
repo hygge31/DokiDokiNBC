@@ -6,7 +6,16 @@ public class MonsterTemp : MonoBehaviour
 {
     private void Start()
     {
-        Invoke("TestItemDrop", 3f);
+        //Invoke("TestItemDrop", 3f);
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.V))
+        {
+            Item_CodePiece item = Managers.RM.Instantiate("Items/Item_CodePiece").GetComponent<Item_CodePiece>();
+            item.Setup(transform);            
+        }
     }
 
     private void TestItemDrop()
@@ -16,11 +25,9 @@ public class MonsterTemp : MonoBehaviour
 
     private IEnumerator MultiDrop()
     {
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < 2; i++)
         {
-            Item_CodePiece item = Managers.RM.Instantiate("Items/Item_CodePiece").GetComponent<Item_CodePiece>();
-            item.Setup();            
-            yield return new WaitForSeconds(0.2f);
+            yield return null;
         }
 
         Destroy(gameObject);

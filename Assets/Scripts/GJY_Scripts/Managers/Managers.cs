@@ -12,9 +12,11 @@ public class Managers : MonoBehaviour
     #endregion
 
     #region Core
+    PoolManager _poolManager = new PoolManager();
     ResourceManager _resource = new ResourceManager();
     UIManaer _uiManager = new UIManaer();
 
+    public static PoolManager Pool => Instance?._poolManager;
     public static ResourceManager RM => Instance?._resource;
     public static UIManaer UI => Instance?._uiManager;
     #endregion
@@ -39,6 +41,14 @@ public class Managers : MonoBehaviour
             s_instance = go.GetComponent<Managers>();
 
             UI.ShowSceneUI<UI_Hud>();
+            Pool.Init();
         }
+    }
+
+    public static void Clear()
+    {
+        UI.Clear();
+
+        Pool.Clear();
     }
 }

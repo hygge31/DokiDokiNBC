@@ -19,5 +19,5 @@ public class Item : MonoBehaviour
         _rend.sprite = _itemSO.sprite;
     }
 
-    public virtual void Setup() { }
+    public virtual void Setup(Transform spawnTransform = null) { }
 }

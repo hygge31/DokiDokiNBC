@@ -7,12 +7,22 @@ public class DropItem : Item
     protected Rigidbody2D _rigid;
     protected Collider2D _coll;
 
+    private Poolable _poolable;
+
     protected override void Init()
     {
         base.Init();
 
         _rigid = GetComponent<Rigidbody2D>();
         _coll = GetComponent<Collider2D>();
+        _poolable = GetComponent<Poolable>();
+    }
+
+    public override void Setup(Transform spawnTransform = null)
+    {
+        base.Setup(spawnTransform);
+
+        transform.position = spawnTransform.position;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -25,7 +35,7 @@ public class DropItem : Item
 
     protected virtual void InteractWithPlayer() 
     {
-        gameObject.SetActive(false);
+        Managers.Pool.Push(_poolable);
     }
 
     protected virtual void Clear() { }
