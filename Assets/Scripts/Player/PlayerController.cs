@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -10,6 +8,8 @@ public class PlayerController : MonoBehaviour
     private Vector2 curMovementInput;
 
     private Rigidbody2D _rigidbody;
+    private Animator headAnimator;
+    private Animator bodyAnimator;
 
     public static PlayerController instance;
 
@@ -17,6 +17,10 @@ public class PlayerController : MonoBehaviour
     {
         instance = this;
         _rigidbody = GetComponent<Rigidbody2D>();
+
+        // 자식 오브젝트에서 Animator 컴포넌트를 찾아서 가져옴
+        headAnimator = GameObject.FindGameObjectWithTag("Head").GetComponent<Animator>();
+        bodyAnimator = GameObject.FindGameObjectWithTag("Body").GetComponent<Animator>();
     }
 
     private void FixedUpdate()
@@ -26,15 +30,66 @@ public class PlayerController : MonoBehaviour
 
     private void Move()
     {
-        Vector3 dir = transform.up * curMovementInput + transform.right * curMovementInput;
+        Vector3 dir = transform.up * curMovementInput.y + transform.right * curMovementInput.x;
         dir *= moveSpeed;
 
         _rigidbody.velocity = dir;
+
+        // 이동 입력에 따라 애니메이션 트리거 설정
+        if (curMovementInput.magnitude > 0)
+        {
+            headAnimator.SetBool("IsMoving", true);
+            bodyAnimator.SetBool("IsMoving", true); // 몸통 애니메이터에 이동 중임을 알림
+            SetAnimationDirection(curMovementInput);
+        }
+        else
+        {
+            headAnimator.SetBool("IsMoving", false);
+            bodyAnimator.SetBool("IsMoving", false); // 몸통 애니메이터에 이동 중이 아님을 알림
+        }
     }
 
+    // 이동 방향에 따라 애니메이션 방향 설정
+    private void SetAnimationDirection(Vector2 direction)
+    {
+        // 상하 이동
+        if (Mathf.Abs(direction.y) > Mathf.Abs(direction.x))
+        {
+            //상방향
+            if (direction.y > 0)
+            {
+                headAnimator.SetFloat("Direction", 0); 
+                bodyAnimator.SetFloat("Direction", 0); 
+            }
+            //하방향
+            else
+            {
+                headAnimator.SetFloat("Direction", 1); 
+                bodyAnimator.SetFloat("Direction", 1); 
+            }
+        }
+        // 좌우 이동
+        else
+        {
+            //우방향
+            if (direction.x > 0)
+            {
+                headAnimator.SetFloat("Direction", 2); 
+                bodyAnimator.SetFloat("Direction", 2); 
+            }
+            //좌방향
+            else
+            {
+                headAnimator.SetFloat("Direction", 3); 
+                bodyAnimator.SetFloat("Direction", 3); 
+            }
+        }
+    }
+
+    // InputSystem을 사용하여 이동 입력을 처리
     public void OnMoveInput(InputAction.CallbackContext context)
     {
-        if (context.phase == InputActionPhase.Performed)
+        if (context.phase == InputActionPhase.Performed || context.phase == InputActionPhase.Waiting)
         {
             curMovementInput = context.ReadValue<Vector2>();
         }
