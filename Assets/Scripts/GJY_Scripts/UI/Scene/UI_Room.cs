@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class UI_Room : UI_Scene
@@ -14,33 +15,45 @@ public class UI_Room : UI_Scene
         PC_Pointer,
     }
 
+    enum Animator
+    {
+        Clock_Image,
+    }
+
     protected override void Init()
     {
         base.Init();
 
-        Bind<UI_EventHandler>(typeof(Pointer));        
+        BindUIEventHandler(typeof(Pointer));   
+        BindAnimator(typeof(Animator));
 
-        Get<UI_EventHandler>((int)Pointer.Bed_Pointer).OnEnterHandler += BedEnter;        
-        Get<UI_EventHandler>((int)Pointer.Bed_Pointer).OnExitHandler += BedExit;
-        Get<UI_EventHandler>((int)Pointer.Bed_Pointer).OnClickHandler += BedClick;
+        GetUIEventHandler((int)Pointer.Bed_Pointer).OnEnterHandler += BedEnter;        
+        GetUIEventHandler((int)Pointer.Bed_Pointer).OnExitHandler += BedExit;
+        GetUIEventHandler((int)Pointer.Bed_Pointer).OnClickHandler += BedClick;
 
-        Get<UI_EventHandler>((int)Pointer.PC_Pointer).OnEnterHandler += PCEnter;
-        Get<UI_EventHandler>((int)Pointer.PC_Pointer).OnExitHandler += PCExit;        
-        Get<UI_EventHandler>((int)Pointer.PC_Pointer).OnClickHandler += PCClick;
+        GetUIEventHandler((int)Pointer.PC_Pointer).OnEnterHandler += PCEnter;
+        GetUIEventHandler((int)Pointer.PC_Pointer).OnExitHandler += PCExit;
+        GetUIEventHandler((int)Pointer.PC_Pointer).OnClickHandler += PCClick;
     }
 
     private void BedEnter(PointerEventData data) => StartCoroutine(HighLight((int)Pointer.Bed_Pointer, 1.1f, true));
     private void BedExit(PointerEventData data) => StartCoroutine(HighLight((int)Pointer.Bed_Pointer, 1, false));
-    private void BedClick(PointerEventData data) => StartCoroutine(HighLight((int)Pointer.Bed_Pointer, 1, false));
+    private void BedClick(PointerEventData data)
+    {
+        SceneManager.LoadScene("GJY2");
+    }
 
     private void PCEnter(PointerEventData data) => StartCoroutine(HighLight((int)Pointer.PC_Pointer, 1.1f, true));
     private void PCExit(PointerEventData data) => StartCoroutine(HighLight((int)Pointer.PC_Pointer, 1, false));
-    private void PCClick(PointerEventData data) => StartCoroutine(HighLight((int)Pointer.PC_Pointer, 1, false));
-
+    private void PCClick(PointerEventData data)
+    {
+        GetAnimator((int)Animator.Clock_Image).SetTrigger("UsePC");
+        StartCoroutine(HighLight((int)Pointer.PC_Pointer, 1, false));        
+    } 
 
     private IEnumerator HighLight(int typeIndex, float endSize, bool active)
     {
-        GameObject go = Get<UI_EventHandler>(typeIndex).gameObject;
+        GameObject go = GetUIEventHandler(typeIndex).gameObject;
         go.GetComponent<Outline>().enabled = active;
 
         float current = 0;

@@ -37,7 +37,7 @@ public class Managers : MonoBehaviour
                 go = new GameObject("@Managers");
                 go.AddComponent<Managers>();
             }
-
+            DontDestroyOnLoad(go);
             s_instance = go.GetComponent<Managers>();
 
             UI.ShowSceneUI<UI_Room>();
