@@ -9,8 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 51d9e95025e5f7e4e9628f6228cbcad4, type: 3}
-  m_Name: RtanBody
+  m_Script: {fileID: 11500000, guid: f2a979af29c634341a16680ab6ca69f4, type: 3}
+  m_Name: Fireball
   m_EditorClassIdentifier: 
-  sprite: {fileID: -1825704462, guid: 54b7ed1d2b531214299bb931fdcf8415, type: 3}
-  animator: {fileID: 9100000, guid: 2c7bd3d3628e20947823e5bd04c5b8cb, type: 2}
+  fireRate: 3
+  damage: 1
+  targetLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  isOnKnockback: 0
+  knockbackPower: 0
+  knockbackTime: 0

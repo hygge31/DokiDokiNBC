@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 51d9e95025e5f7e4e9628f6228cbcad4, type: 3}
-  m_Name: RtanHead
+  m_Script: {fileID: 11500000, guid: bc6cea0ae52963644a9c6a2fa353f14c, type: 3}
+  m_Name: OriginalHead
   m_EditorClassIdentifier: 
-  sprite: {fileID: 224076489, guid: 54b7ed1d2b531214299bb931fdcf8415, type: 3}
-  animator: {fileID: 9100000, guid: 7fef1220ec75e4d4d97885785fd159ee, type: 2}
+  sprite: {fileID: -1904032068, guid: 110868c0890a7f14aafc2f859d272193, type: 3}
+  animator: {fileID: 9100000, guid: 1f5a271fd20a0de49b2b209bf27764a2, type: 2}

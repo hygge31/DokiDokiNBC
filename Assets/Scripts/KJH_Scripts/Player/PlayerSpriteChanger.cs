@@ -1,12 +1,12 @@
 using UnityEngine;
 
-public class CharacterSpriteChanger : MonoBehaviour
+public class PlayerSpriteChanger : MonoBehaviour
 {
     [SerializeField] private SpriteRenderer headRenderer; // 머리 스프라이트 렌더러
     [SerializeField] private SpriteRenderer bodyRenderer; // 몸통 스프라이트 렌더러
 
     // 머리와 몸통에 대한 데이터를 받아와서 적용하는 메서드
-    public void ApplyBodyPartData(BodyPartData headData, BodyPartData bodyData)
+    public void ApplyBodyPartData(BodyPartSO headData, BodyPartSO bodyData)
     {
         if (headRenderer != null && headData != null)
         {
