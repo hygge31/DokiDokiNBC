@@ -14,6 +14,7 @@ public class Item_Health : DropItem
     {
         base.Init();
 
+        _rend.sprite = _itemSO.sprite;
         _initGrav = _rigid.gravityScale;
     }
 

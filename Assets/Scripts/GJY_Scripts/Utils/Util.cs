@@ -42,4 +42,23 @@ public static class Util
 
         return null;
     }
+
+    public static Transform FindParentFromHUD(string name = null)
+    {
+        GameObject hud = GameObject.Find("UI_Hud");
+        if(hud == null)
+        {
+            Debug.Log("현재 씬에 Hud가 존재하지 않습니다.");
+            return null;
+        }
+
+        Transform parent = FindChild<Transform>(hud, name, true);
+        if (parent == null)
+        {
+            Debug.Log($"해당 Transform이 존재하지 않습니다. : {name}");
+            return null;
+        }
+
+        return parent;
+    }
 }

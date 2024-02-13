@@ -37,6 +37,7 @@ public class UI_Base : MonoBehaviour
     protected void BindButton(Type type) => Bind<Button>(type);
     protected void BindImage(Type type) => Bind<Image>(type);
     protected void BindText(Type type) => Bind<Text>(type);
+    protected void BindInputField(Type type) => Bind<InputField>(type);
     protected void BindUIEventHandler(Type type) => Bind<UI_EventHandler>(type);
     protected void BindAnimator(Type type) => Bind<Animator>(type);
 
@@ -55,6 +56,7 @@ public class UI_Base : MonoBehaviour
     protected Button GetButton(int index) => Get<Button>(index);
     protected Image GetImage(int index) => Get<Image>(index);
     protected Text GetText(int index) => Get<Text>(index);
+    protected InputField GetInputField(int index) => Get<InputField>(index);
     protected UI_EventHandler GetUIEventHandler(int index) => Get<UI_EventHandler>(index);
     protected Animator GetAnimator(int index) => Get<Animator>(index);
 }

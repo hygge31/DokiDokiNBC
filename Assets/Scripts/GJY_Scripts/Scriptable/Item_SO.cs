@@ -7,6 +7,10 @@ public class Item_SO : ScriptableObject
 {
     public Sprite sprite;
 
+    public string displayName;
+    [TextArea]
+    public string displayDesc;
+
     public bool isActive;
     public bool isStackable;
 }
