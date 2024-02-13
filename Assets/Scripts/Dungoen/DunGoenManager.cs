@@ -15,6 +15,9 @@ public class DunGoenManager : MonoBehaviour
     
 
 
+
+
+
     [Header("Game State")]
     public int curDungoenRoomNumber;
 

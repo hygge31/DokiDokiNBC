@@ -16,6 +16,7 @@ public class DungoenGenerator : MonoBehaviour
 
     [Header("Dungoen Generator")]
     public int maxRoomCount = 12;
+    public int offset = 10;
     public LayerMask dungoenlayer;
 
     public List<RoomDataSO> roomDataSOs = new List<RoomDataSO>();
@@ -37,7 +38,7 @@ public class DungoenGenerator : MonoBehaviour
         CreateDoor();
         //Create minimap
         CreateMinimap();
-        CreateMinimapLine();
+        
     }
 
 
@@ -93,7 +94,7 @@ public class DungoenGenerator : MonoBehaviour
 
     #region MiniMap-------------------------------------------------------------------------------------------------
 
-    void CreateMinimap()
+    public void CreateMinimap()
     {
         foreach(RoomData roomData in DunGoenManager.Instance.dungoenRoomDataList)
         {
@@ -115,6 +116,8 @@ public class DungoenGenerator : MonoBehaviour
             DunGoenManager.Instance.minimapSpriteList.Add(spriteObj);
 
         }
+
+        CreateMinimapLine();
     }
 
 
@@ -183,7 +186,7 @@ public class DungoenGenerator : MonoBehaviour
     Vector2Int GetCreatePoint(RoomData roomData)
     {
         Vector2Int ranDir = dir[Random.Range(0, dir.Count)];
-        ranDir *= new Vector2Int(roomData.width+10,roomData.height+10);
+        ranDir *= new Vector2Int(roomData.width+offset,roomData.height+offset);
 
         return ranDir;
 
