@@ -44,7 +44,6 @@ public class RoomData :MonoBehaviour
     }
 
 
-
     public void SetRoomData(Vector2Int createPoint,int roomNumber)
     {
         center = createPoint;
@@ -128,7 +127,8 @@ public class RoomData :MonoBehaviour
     {
         if (!clear)
         {
-            Debug.Log("spawn monster, on Stage Change Message");
+            //DungoenManager All door Set active false
+            Debug.Log("Stage Change Message and spawn monster");
         }
 
     }
