@@ -69,6 +69,7 @@ public class PoolManager
         if(_root == null)
         {
             _root = new GameObject("@Pool_Root").transform;
+            Object.DontDestroyOnLoad(_root);
         }
     }
 

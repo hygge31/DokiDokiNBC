@@ -8,7 +8,9 @@ public class Managers : MonoBehaviour
     static Managers Instance { get { Init(); return s_instance; } }
 
     #region Contents
+    PlayerStatManager _playerStat = new PlayerStatManager();
 
+    public static PlayerStatManager Player => Instance?._playerStat;
     #endregion
 
     #region Core

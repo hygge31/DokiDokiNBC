@@ -15,7 +15,8 @@ public class Item_CodePiece : DropItem
     protected override void Init()
     {
         base.Init();
-        
+
+        _rend.sprite = _itemSO.sprite;
         _target = FindObjectOfType<GJY_PlayerTemp>().transform;        
     }
 

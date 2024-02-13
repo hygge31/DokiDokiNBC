@@ -40,6 +40,18 @@ public class UIManaer
         }
     }
 
+    public T MakeSub<T>(Transform parent = null, string name = null) where T : UI_Base
+    {
+        if (string.IsNullOrEmpty(name))
+            name = typeof(T).Name;
+
+        GameObject go = Managers.RM.Instantiate($"UI/Sub/{name}");
+        if (parent != null)
+            go.transform.SetParent(parent);
+
+        return go.GetOrAddComponent<T>();
+    }
+
     public T ShowSceneUI<T>(string name = null) where T : UI_Scene
     {
         if (string.IsNullOrEmpty(name))
@@ -59,9 +71,9 @@ public class UIManaer
         if (string.IsNullOrEmpty(name))
             name = typeof(T).Name;
 
-        GameObject go = Managers.RM.Instantiate($"UI/Scene/{name}");
+        GameObject go = Managers.RM.Instantiate($"UI/Popup/{name}");
         T popup = go.GetOrAddComponent<T>();
-        _popupStack.Push(popup);
+        _popupStack.Push(popup);        
 
         popup.transform.SetParent(Root.transform);
 
@@ -74,7 +86,10 @@ public class UIManaer
             return;
 
         if (_popupStack.Peek() != popup)
+        {
+            Debug.Log("Close Popup Failed.");
             return;
+        }            
 
         ClosePopupUI();
     }
@@ -85,15 +100,14 @@ public class UIManaer
             return;
 
         UI_Popup popup = _popupStack.Pop();
-
-        Object.Destroy(popup.gameObject);
+        Managers.RM.Destroy(popup.gameObject);        
         _order--;
     }
 
     public void CloseAllPopupUI()
     {
-        foreach (UI_Popup popup in _popupStack)
-            popup.ClosePopup();
+        while (_popupStack.Count > 0)
+            ClosePopupUI();
     }
 
     public void Clear()

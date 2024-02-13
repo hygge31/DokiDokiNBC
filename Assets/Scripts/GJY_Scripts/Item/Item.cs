@@ -6,7 +6,7 @@ public class Item : MonoBehaviour
 {
     [SerializeField] protected Item_SO _itemSO;
 
-    private SpriteRenderer _rend;
+    protected SpriteRenderer _rend;
 
     private void Awake()
     {        
@@ -15,9 +15,9 @@ public class Item : MonoBehaviour
 
     protected virtual void Init() 
     {
-        _rend = GetComponent<SpriteRenderer>();
-        _rend.sprite = _itemSO.sprite;
+        _rend = GetComponent<SpriteRenderer>();        
     }
 
     public virtual void Setup(Transform spawnTransform = null) { }
+    public virtual void Setup(Item_SO item, Transform spawnTrasnform = null) { }
 }
