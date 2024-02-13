@@ -4,7 +4,6 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     [Header("Movement")]
-    public float moveSpeed;
     private Vector2 curMovementInput;
 
     private Rigidbody2D _rigidbody;
@@ -12,11 +11,13 @@ public class PlayerController : MonoBehaviour
     private Animator bodyAnimator;
 
     public static PlayerController instance;
+    private CharacterStatsHandler _stats;
 
     private void Awake()
     {
         instance = this;
         _rigidbody = GetComponent<Rigidbody2D>();
+        _stats = GetComponent<CharacterStatsHandler>();
 
         // 자식 오브젝트에서 Animator 컴포넌트를 찾아서 가져옴
         headAnimator = GameObject.FindGameObjectWithTag("Head").GetComponent<Animator>();
@@ -31,7 +32,7 @@ public class PlayerController : MonoBehaviour
     private void Move()
     {
         Vector3 dir = transform.up * curMovementInput.y + transform.right * curMovementInput.x;
-        dir *= moveSpeed;
+        dir *= _stats.CurrentStates.speed;
 
         _rigidbody.velocity = dir;
 
@@ -39,13 +40,13 @@ public class PlayerController : MonoBehaviour
         if (curMovementInput.magnitude > 0)
         {
             headAnimator.SetBool("IsMoving", true);
-            bodyAnimator.SetBool("IsMoving", true); // 몸통 애니메이터에 이동 중임을 알림
+            bodyAnimator.SetBool("IsMoving", true);
             SetAnimationDirection(curMovementInput);
         }
         else
         {
             headAnimator.SetBool("IsMoving", false);
-            bodyAnimator.SetBool("IsMoving", false); // 몸통 애니메이터에 이동 중이 아님을 알림
+            bodyAnimator.SetBool("IsMoving", false);
         }
     }
 
@@ -92,6 +93,7 @@ public class PlayerController : MonoBehaviour
         if (context.phase == InputActionPhase.Performed || context.phase == InputActionPhase.Waiting)
         {
             curMovementInput = context.ReadValue<Vector2>();
+            PlayerAttackController.Instance.SetAttackDirection(curMovementInput);
         }
         else if (context.phase == InputActionPhase.Canceled)
         {
