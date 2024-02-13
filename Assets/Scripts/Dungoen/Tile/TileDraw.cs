@@ -26,8 +26,10 @@ public class TileDraw : MonoBehaviour
     [SerializeField] private TileBase wallTLCurve;
     [SerializeField] private TileBase wallBRCurve;
     [SerializeField] private TileBase wallBLCurve;
-    
 
+
+    [Header("Obstacle")]
+    [SerializeField] private TileBase obstacle1;
 
     public void DrawAllTile()
     {
