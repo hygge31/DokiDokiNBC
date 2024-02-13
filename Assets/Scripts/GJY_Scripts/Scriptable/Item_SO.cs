@@ -13,4 +13,10 @@ public class Item_SO : ScriptableObject
 
     public bool isActive;
     public bool isStackable;
+
+    [Header("Stat")]    
+    public float atk;
+    public float fireRate;
+    public float crit;
+    public float moveSpeed;
 }

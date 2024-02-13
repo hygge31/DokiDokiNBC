@@ -17,6 +17,14 @@ public class UI_Hud : UI_Scene
     {
         base.Init();
 
-        //Bind<GameObject>(typeof(Transforms));
+        Bind<Transform>(typeof(Transforms));
+
+        Managers.Player.OnApplyPerkStat += GetPerk;
+    }
+
+    private void GetPerk(Item_SO item)
+    {
+        UI_Perk perkUI = Managers.UI.MakeSub<UI_Perk>(Get<Transform>((int)Transforms.Perks_Panel));
+        perkUI.Setup(item);
     }
 }

@@ -17,3 +17,7 @@ MonoBehaviour:
   displayDesc: "\uC544~ \uCEF4\uD4E8\uD130 \uBC14\uAFB8\uACE0\uC2F6\uB2E4~"
   isActive: 0
   isStackable: 1
+  atk: 0
+  fireRate: -0.05
+  crit: 0
+  moveSpeed: 0

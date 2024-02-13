@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class GJY_PlayerTemp : MonoBehaviour
 {
-    public float speed;
+    public float atk;
+    public float fireRate;
+    public float crit;    
+    public float moveSpeed;
 
     private Rigidbody2D _rigid;
 
@@ -13,6 +16,9 @@ public class GJY_PlayerTemp : MonoBehaviour
     private void Awake()
     {
         _rigid = GetComponent<Rigidbody2D>();
+
+        Managers.Player.OnApplyPerkStat -= ApplyPerkStat;
+        Managers.Player.OnApplyPerkStat += ApplyPerkStat;
     }
 
     private void FixedUpdate()
@@ -37,8 +43,16 @@ public class GJY_PlayerTemp : MonoBehaviour
         float moveX = Input.GetAxisRaw("Horizontal");
         float moveY = Input.GetAxisRaw("Vertical");
         Vector2 movePos = new Vector2(moveX, moveY);
-        Vector2 nextPos = (Vector2)transform.position + movePos.normalized * speed * Time.fixedDeltaTime;
+        Vector2 nextPos = (Vector2)transform.position + movePos.normalized * moveSpeed * Time.fixedDeltaTime;
 
         _rigid.MovePosition(nextPos);
+    }
+
+    private void ApplyPerkStat(Item_SO item)
+    {
+        atk += item.atk;
+        fireRate += item.fireRate;
+        crit += item.crit;
+        moveSpeed += item.moveSpeed;
     }
 }

@@ -15,9 +15,7 @@ public class Item_Perk : DropItem
         base.InteractWithPlayer();
 
         // To Do - 플레이어 능력 부여
-
-        UI_Perk perkUI = Managers.UI.MakeSub<UI_Perk>(Util.FindParentFromHUD("Perks_Panel"));
-        perkUI.Setup(_itemSO);
+        Managers.Player.ApplyPerkStat(_itemSO);        
     }
 
     public override void Setup(Item_SO item, Transform spawnTransform = null)

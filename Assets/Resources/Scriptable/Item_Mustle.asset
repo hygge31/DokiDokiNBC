@@ -17,3 +17,7 @@ MonoBehaviour:
   displayDesc: "3\uB300 600 \uCF54\uB354"
   isActive: 0
   isStackable: 1
+  atk: 2
+  fireRate: 0
+  crit: 0
+  moveSpeed: 0
