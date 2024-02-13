@@ -10,12 +10,12 @@ public class CharacterSpriteChanger : MonoBehaviour
     {
         if (headRenderer != null && headData != null)
         {
-            headRenderer.sprite = headData.sprite;
+            //headRenderer.sprite = headData.sprite;
             headRenderer.GetComponent<Animator>().runtimeAnimatorController = headData.animator;
         }
         if (bodyRenderer != null && bodyData != null)
         {
-            bodyRenderer.sprite = bodyData.sprite;
+            //bodyRenderer.sprite = bodyData.sprite;
             bodyRenderer.GetComponent<Animator>().runtimeAnimatorController = bodyData.animator;
         }
     }
