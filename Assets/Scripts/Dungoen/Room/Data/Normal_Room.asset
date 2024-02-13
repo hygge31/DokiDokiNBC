@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6b9db9fc202c4a3fae6cfa9228629f2, type: 3}
   m_Name: Normal_Room
   m_EditorClassIdentifier: 
-  width: 25
+  width: 30
   height: 20
   leftDoorObj: {fileID: 3245197823838952657, guid: cea3922e42d644e80ba7f1c82ca6a6d1, type: 3}
   rightDoorObj: {fileID: 8850036719270798335, guid: c89b2b906f75741a582e8efd02169d62, type: 3}

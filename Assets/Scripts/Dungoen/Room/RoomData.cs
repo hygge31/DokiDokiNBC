@@ -44,6 +44,12 @@ public class RoomData :MonoBehaviour
     public bool clear;
     public List<Door> doors = new List<Door>();
 
+    [Header("Camera")]
+    public Camera _camera;
+    public Vector2 minCamLimit;
+    public Vector2 maxCamLimit;
+
+
 
 
     public RoomData(RoomDataSO roomDataSO)
@@ -60,6 +66,10 @@ public class RoomData :MonoBehaviour
         center = createPoint;
         this.roomNumber = roomNumber;
         bounds = new BoundsInt(new Vector3Int(center.x - (width / 2), center.y - (height / 2), 0), new Vector3Int(width, height, 0));
+
+        minCamLimit = new Vector2(center.x - width / 2, center.y - height / 2);
+        maxCamLimit = new Vector2(center.x + width / 2, center.y + height / 2);
+
 
         leftDoorPoint = new Vector2Int(center.x - (width / 2), center.y);
         rightDoorPoint = new Vector2Int(center.x + (width / 2), center.y);
@@ -212,6 +222,7 @@ public class RoomData :MonoBehaviour
             door.ExitDoor();
         }
      }
+
 
 
     public void SpawnMonster()

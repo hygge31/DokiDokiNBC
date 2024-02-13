@@ -40,13 +40,15 @@ public class DunGoenManager : MonoBehaviour
         Instantiate(minimapCamera);
         Instantiate(minimapUi);
 
-
+        
         CreateDunGoen();
+        DungoenAllDoorAppear();
     }
 
 
     private void Update()
     {
+        //test
         if (Input.GetKeyDown(KeyCode.Space)){
             DungoenAllDoorExit();
         }
@@ -55,6 +57,7 @@ public class DunGoenManager : MonoBehaviour
         {
             DungoenAllDoorAppear();
         }
+        //test
     }
 
 
