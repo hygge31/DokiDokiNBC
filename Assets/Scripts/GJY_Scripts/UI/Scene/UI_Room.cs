@@ -40,7 +40,7 @@ public class UI_Room : UI_Scene
     private void BedExit(PointerEventData data) => StartCoroutine(HighLight((int)Pointer.Bed_Pointer, 1, false));
     private void BedClick(PointerEventData data)
     {
-        SceneManager.LoadScene("GJY2");
+        SceneManager.LoadScene("Dungeon");
     }
 
     private void PCEnter(PointerEventData data) => StartCoroutine(HighLight((int)Pointer.PC_Pointer, 1.1f, true));

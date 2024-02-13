@@ -678,7 +678,7 @@ MonoBehaviour:
   offset: 10
   dungoenlayer:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 0
   roomDataSOs:
   - {fileID: 11400000, guid: c1226328eff3340d7b6cd3686966b937, type: 2}
   path:

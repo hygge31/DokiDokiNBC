@@ -6,11 +6,6 @@ using Random = UnityEngine.Random;
 
 public class MonsterTemp : MonoBehaviour
 {
-    private void Start()
-    {
-        //Invoke("TestItemDrop", 3f);
-    }
-
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.V))
@@ -31,20 +26,5 @@ public class MonsterTemp : MonoBehaviour
             Item_Perk item = Managers.RM.Instantiate($"Items/Item_Perk").GetComponent<Item_Perk>();
             item.Setup(itemSO, transform);
         }
-    }
-
-    private void TestItemDrop()
-    {
-        StartCoroutine(MultiDrop());
-    }
-
-    private IEnumerator MultiDrop()
-    {
-        for (int i = 0; i < 2; i++)
-        {
-            yield return null;
-        }
-
-        Destroy(gameObject);
     }
 }
