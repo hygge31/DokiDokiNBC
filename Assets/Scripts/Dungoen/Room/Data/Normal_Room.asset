@@ -18,3 +18,7 @@ MonoBehaviour:
   rightDoorObj: {fileID: 8850036719270798335, guid: c89b2b906f75741a582e8efd02169d62, type: 3}
   topDoorObj: {fileID: 5431153881281828739, guid: d9698c60bee904debb8501c5f21e7ccb, type: 3}
   bottomDoorObj: {fileID: 4136170357258491956, guid: 39823512b2e294809a34bc153d3ead0c, type: 3}
+  tile_leftDoor: {fileID: 4304168662230685135, guid: 2f765d9334bf54cc199facd6a9384603, type: 3}
+  tile_rightDoor: {fileID: 7817350080986961116, guid: 305b0f6fd64184c2da81b5be761282f4, type: 3}
+  tile_topDoor: {fileID: 5315110321207023012, guid: 89dc44d0395cc4810bc5ef7ac62ddbb6, type: 3}
+  tile_bottomDoor: {fileID: 4012751457584505058, guid: 6c485f7c629354245929905f112b202f, type: 3}

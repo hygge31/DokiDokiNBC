@@ -25,6 +25,7 @@ public class Door : MonoBehaviour
     public Color targetColor;
     public Color curColor;
 
+    public ParticleSystem smokeEffect;
 
     private void Awake()
     {
@@ -71,10 +72,14 @@ public class Door : MonoBehaviour
 
 
 
+
+
     public void AppearanceDoor()
     {
-        LerpCor(1);
         StartCoroutine(AppearanceDoorCo());
+        smokeEffect.Play();
+        LerpCor(1);
+        
     }
 
     IEnumerator AppearanceDoorCo()
@@ -88,7 +93,7 @@ public class Door : MonoBehaviour
             yield return null;
         }
         tile_door.transform.position = originPosition;
-
+        
         _collider.enabled = true;
     }
 
@@ -162,6 +167,8 @@ public class Door : MonoBehaviour
 
     }
 
+
+  
 
 
     public void DoorOff()
