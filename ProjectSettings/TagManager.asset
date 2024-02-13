@@ -4,8 +4,8 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Body
-  - Head
+  - Monster
+  - MonsterHitBox
   layers:
   - Default
   - TransparentFX
@@ -13,10 +13,10 @@ TagManager:
   - 
   - Water
   - UI
-  - Dungoen
-  - MinimapSprite
   - 
   - 
+  - Monster
+  - MonsterHitBox
   - 
   - 
   - 
