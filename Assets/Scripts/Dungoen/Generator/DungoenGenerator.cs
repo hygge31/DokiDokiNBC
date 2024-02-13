@@ -36,6 +36,10 @@ public class DungoenGenerator : MonoBehaviour
         path = RandomCreateRoomPosition(Vector2Int.zero, maxRoomCount); //todo fix player position,
         tileDrawer.DrawAllTile();
         CreateDoor();
+
+        DungoenuAllDoorOff();
+
+
         //Create minimap
         CreateMinimap();
         
@@ -169,6 +173,14 @@ public class DungoenGenerator : MonoBehaviour
     #endregion
 
 
+
+    void DungoenuAllDoorOff()
+    {
+        foreach(RoomData room in DunGoenManager.Instance.dungoenRoomDataList)
+        {
+            room.AllDoorOff();
+        }
+    }
 
 
     RoomData FindRoomdata(Vector2Int point)

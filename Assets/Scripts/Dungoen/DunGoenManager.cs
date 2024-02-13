@@ -44,6 +44,22 @@ public class DunGoenManager : MonoBehaviour
         CreateDunGoen();
     }
 
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space)){
+            DungoenAllDoorExit();
+        }
+
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            DungoenAllDoorAppear();
+        }
+    }
+
+
+
+
     public void CreateDunGoen()
     {
         if(container != null)
@@ -58,10 +74,25 @@ public class DunGoenManager : MonoBehaviour
         ClearList();
 
         dungoenGenerator.ProcedurealDungoenGenerator();
-
         minimapSpriteList[0].GetComponent<MinimapSprite>().CurPosition();
 
+    }
 
+
+    public void DungoenAllDoorExit()
+    {
+        foreach(RoomData room in dungoenRoomDataList)
+        {
+            room.ExitAllDoor();
+        }
+    }
+
+    public void DungoenAllDoorAppear()
+    {
+        foreach (RoomData room in dungoenRoomDataList)
+        {
+            room.AppearAllDoor();
+        }
     }
 
 

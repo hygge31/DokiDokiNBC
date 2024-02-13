@@ -42,7 +42,7 @@ public class RoomData :MonoBehaviour
 
     [Header("Room State")]
     public bool clear;
-    public List<GameObject> doors = new List<GameObject>();
+    public List<Door> doors = new List<Door>();
 
 
 
@@ -98,16 +98,21 @@ public class RoomData :MonoBehaviour
                     }
                    
 
-                    rightDoorObj = Instantiate(roomData.rightDoorObj, (Vector2)rightDoorPoint, Quaternion.identity);
+                    rightDoorObj = Instantiate(roomData.rightDoorObj, (Vector2)rightDoorPoint + Vector2.right*0.5f, Quaternion.identity);
+                    GameObject tileDoor = Instantiate(roomData.tile_rightDoor, (Vector2)rightDoorPoint+Vector2.right*3, Quaternion.identity);
+
                     rightDoor = true;
                     nextRoom.leftcDoor = true;
                     nextRoom.leftDoorPoint = rightDoorPoint;
                     nextRoom.leftDoorPoint.x = nextRoom.center.x - nextRoom.width / 2;
                    
                     //todo
-                    rightDoorObj.GetComponent<Door>().SetData(nextRoom, num, roomNumber);
+                    rightDoorObj.GetComponent<Door>().SetData(nextRoom, num, roomNumber,tileDoor, (Vector2)rightDoorPoint + Vector2.right * 3);
                     rightDoorObj.transform.SetParent(container.transform);
-                    doors.Add(rightDoorObj);
+                    tileDoor.transform.SetParent(container.transform);
+                    doors.Add(rightDoorObj.GetComponent<Door>());
+
+                    
 
                 }
                 break;
@@ -123,15 +128,21 @@ public class RoomData :MonoBehaviour
                    
 
                     topDoorObj = Instantiate(roomData.topDoorObj, (Vector2)topDoorPoint, Quaternion.identity);
+                    GameObject tileDoor = Instantiate(roomData.tile_topDoor, (Vector2)topDoorPoint, Quaternion.identity);
+
+
                     topDoor = true;
                     nextRoom.bottomcDoor = true;
 
                     nextRoom.bottomDoorPoint = topDoorPoint;
                     nextRoom.bottomDoorPoint.y = nextRoom.center.y - nextRoom.height / 2;
 
-                    topDoorObj.GetComponent<Door>().SetData(nextRoom, num, roomNumber);
+                    topDoorObj.GetComponent<Door>().SetData(nextRoom, num, roomNumber,tileDoor, (Vector2)topDoorPoint);
                     topDoorObj.transform.SetParent(container.transform);
-                    doors.Add(topDoorObj);
+                    tileDoor.transform.SetParent(container.transform);
+                    doors.Add(topDoorObj.GetComponent<Door>());
+
+                    
                 }
               
                 break;
@@ -139,12 +150,17 @@ public class RoomData :MonoBehaviour
                 if (!leftDoor)
                 {
               
-                    leftDoorObj = Instantiate(roomData.leftDoorObj, (Vector2)leftDoorPoint, Quaternion.identity);
+                    leftDoorObj = Instantiate(roomData.leftDoorObj, (Vector2)leftDoorPoint + Vector2.right*0.5f, Quaternion.identity);
+                    GameObject tileDoor = Instantiate(roomData.tile_leftDoor, (Vector2)leftDoorPoint+Vector2.right*3, Quaternion.identity);
+
                     leftDoor = true;
                     nextRoom.rightcDoor = true;
-                    leftDoorObj.GetComponent<Door>().SetData(nextRoom, num, roomNumber);
+                    leftDoorObj.GetComponent<Door>().SetData(nextRoom, num, roomNumber,tileDoor, (Vector2)leftDoorPoint + Vector2.right * 3);
                     leftDoorObj.transform.SetParent(container.transform);
-                    doors.Add(leftDoorObj);
+                    tileDoor.transform.SetParent(container.transform);
+                    doors.Add(leftDoorObj.GetComponent<Door>());
+
+                    
                 }
                 
                 break;
@@ -152,38 +168,50 @@ public class RoomData :MonoBehaviour
                 if (!bottomDoor)
                 {
                     bottomDoorObj = Instantiate(roomData.bottomDoorObj, (Vector2)bottomDoorPoint, Quaternion.identity);
+                    GameObject tileDoor = Instantiate(roomData.tile_bottomDoor, (Vector2)bottomDoorPoint+Vector2.up, Quaternion.identity);
+
+
                     bottomDoor = true;
 
                     nextRoom.topcDoor = true;
-                    bottomDoorObj.GetComponent<Door>().SetData(nextRoom, num, roomNumber);
+                    bottomDoorObj.GetComponent<Door>().SetData(nextRoom, num, roomNumber,tileDoor, (Vector2)bottomDoorPoint + Vector2.up);
                     bottomDoorObj.transform.SetParent(container.transform);
-                    doors.Add(bottomDoorObj);
+                    tileDoor.transform.SetParent(container.transform);
+                    doors.Add(bottomDoorObj.GetComponent<Door>());
+
+                    
                 }
                 
                 break;
         }
+
+
     }
 
-    public void ToggleDoor()
+    public void AllDoorOff()
     {
-        foreach(GameObject door in doors)
+        foreach (Door door in doors)
         {
-            if (door.activeSelf)
-            {
-                //퇴장 애니메이션
-                door.SetActive(false);
-            }
-            else
-            {
-                //등장 애니메이션
-                door.SetActive(true);
-                //door.GetComponent<Door>().AppearanceDoor();
-            }
+            door.DoorOff();
+        }
+    }
+ 
 
+    public void AppearAllDoor()
+    {
+        foreach (Door door in doors)
+        {
+            door.AppearanceDoor();
         }
     }
 
-  
+     public void ExitAllDoor()
+     {
+        foreach(Door door in doors)
+        {
+            door.ExitDoor();
+        }
+     }
 
 
     public void SpawnMonster()

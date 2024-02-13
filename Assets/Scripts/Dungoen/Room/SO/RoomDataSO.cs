@@ -13,4 +13,9 @@ public class RoomDataSO : ScriptableObject
     public GameObject rightDoorObj;
     public GameObject topDoorObj;
     public GameObject bottomDoorObj;
+
+    public GameObject tile_leftDoor;
+    public GameObject tile_rightDoor;
+    public GameObject tile_topDoor;
+    public GameObject tile_bottomDoor;
 }

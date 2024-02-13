@@ -1,29 +1,55 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class Door : MonoBehaviour
 {
     public int curRoomNumber;
     public int nextRoomNumber;
-    public Vector3 originPosition;
-    public Vector2Int outPoint;
+    public Vector2 originPosition;
+    Vector2 appearanvePot;
+    public Vector2 outPoint;
+
+
+    float speed = 0.1f;
 
     public SpriteRenderer spriteRenderer;
-    
+
+    public BoxCollider2D _collider;
+
+    public GameObject tile_door;
+
+
+    public Color orginColor;
+    public Color targetColor;
+    public Color curColor;
+
 
     private void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+        _collider = GetComponent<BoxCollider2D>();
     }
 
 
 
-    public void SetData(RoomData room, int num, int curRoomNumber)
+    public void SetData(RoomData room, int num, int curRoomNumber,GameObject tileDoor,Vector2 orgPot)
     {
+        
         nextRoomNumber = room.roomNumber;
+        tile_door = tileDoor;
+
+
+        orginColor = tile_door.transform.GetChild(0).GetComponent<Tilemap>().color;
+        Color newColor = orginColor;
+        newColor.a = 0;
+        targetColor = newColor;
+
+
         this.curRoomNumber = curRoomNumber;
-        originPosition = gameObject.transform.position;
+        originPosition = orgPot;
+        appearanvePot = originPosition + Vector2.up * 100;
         switch (num) //RTLB
         {
             case 0:
@@ -45,35 +71,106 @@ public class Door : MonoBehaviour
 
 
 
-    //public void AppearanceDoor()
-    //{
-        
-    //    gameObject.transform.position += Vector3.up * 20;
-    //    StartCoroutine(AppearanceDoorCo());
+    public void AppearanceDoor()
+    {
+        LerpCor(1);
+        StartCoroutine(AppearanceDoorCo());
+    }
 
+    IEnumerator AppearanceDoorCo()
+    {
+        float percent = 0;
+        tile_door.SetActive(true);
+        while (percent < 1)
+        {
+            percent += Time.deltaTime;
+            tile_door.transform.position = Vector3.Lerp(tile_door.transform.position, originPosition, percent);
+            yield return null;
+        }
+        tile_door.transform.position = originPosition;
 
-    //}
+        _collider.enabled = true;
+    }
 
-    //IEnumerator AppearanceDoorCo()
-    //{
-    //    float percent = 0;
-       
-    //    while (percent < 1)
-    //    {
-    //        percent += Time.deltaTime * 0.01f;
-    //        gameObject.transform.position = Vector3.Lerp(gameObject.transform.position, originPosition, percent);
-
-    //        yield return null;
-    //    }
-    //}
-    
 
     public void ExitDoor()
     {
-        
+        _collider.enabled = false;
+        LerpCor(0);
+        StartCoroutine(ExitDoorCo());
+
+
     }
 
-    
+    IEnumerator ExitDoorCo()
+    {
+        float percent = 0;
+
+        while(percent < 1)
+        {
+            percent += Time.deltaTime * 0.5f;
+            tile_door.transform.position = Vector3.Lerp(tile_door.transform.position, appearanvePot, percent);
+            yield return null;
+        }
+        tile_door.transform.position = appearanvePot;
+
+        tile_door.SetActive(false);
+    }
+
+
+
+
+    public void LerpCor(int num)
+    {
+        foreach(Transform t in tile_door.transform)
+        {
+            Tilemap tilemap = t.GetComponent<Tilemap>();
+            StartCoroutine(LerpCorCo(tilemap, num));
+
+        }
+    }
+
+    IEnumerator LerpCorCo(Tilemap tilemap,int num)
+    {
+        float percent = 0;
+
+
+        if(num == 0) 
+        {
+            while (percent < 1)
+            {
+                percent += Time.deltaTime;
+                tilemap.color = Color.Lerp(curColor, targetColor, percent);
+                yield return null;
+
+            }
+            curColor = targetColor;
+        }
+        else
+        {
+            while (percent < 1)
+            {
+                percent += Time.deltaTime;
+                tilemap.color = Color.Lerp(curColor, orginColor, percent);
+                yield return null;
+
+            }
+            curColor = orginColor;
+        }
+
+       
+
+    }
+
+
+
+    public void DoorOff()
+    {
+        _collider.enabled = false;
+        tile_door.transform.position = appearanvePot;
+        tile_door.SetActive(false);
+    }
+   
 
 
     void TransformPlayer(GameObject player)
