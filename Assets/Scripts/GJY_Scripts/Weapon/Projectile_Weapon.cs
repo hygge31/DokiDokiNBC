@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IDamagable
+public class Projectile_Weapon : MonoBehaviour
 {
-    public void GetDamage(float damage);
+    private float _atk;
+
 }
