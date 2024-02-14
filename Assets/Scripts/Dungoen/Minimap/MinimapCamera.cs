@@ -13,7 +13,7 @@ public class MinimapCamera : MonoBehaviour
 
     private void Start()
     {
-        playerPosition = DunGoenManager.Instance.playerTransform;
+        playerPosition = GameObject.Find("Player(Clone)").transform;
     }
 
 

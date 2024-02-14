@@ -4,6 +4,13 @@ using System.Drawing;
 using Unity.VisualScripting;
 using UnityEngine;
 
+public enum DunGoneType
+{
+    Monster,
+    Portal,
+}
+
+
 [System.Serializable]
 public class RoomData 
 {
@@ -44,6 +51,8 @@ public class RoomData
     [Header("Room State")]
     public bool clear;
     public List<Door> doors = new List<Door>();
+    public DunGoneType dungoenType;
+
 
     [Header("Camera")]
     public Camera _camera;
@@ -58,6 +67,7 @@ public class RoomData
         roomData = roomDataSO;
         width = roomData.width;
         height = roomData.height;
+        dungoenType = DunGoneType.Monster;
 
     }
 

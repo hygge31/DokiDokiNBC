@@ -32,17 +32,23 @@ public class DungoenGenerator : MonoBehaviour
     };
 
 
+    [Header("Portal")]
+    public GameObject portal;
+
     public void ProcedurealDungoenGenerator()
     {
         path = RandomCreateRoomPosition(Vector2Int.zero, maxRoomCount); //todo fix player position,
+
         tileDrawer.DrawAllTile();
+
         CreateDoor();
-
         DungoenuAllDoorOff();
-
+        RandomPortalPoint();
 
         //Create minimap
         CreateMinimap();
+
+
         
     }
 
@@ -75,6 +81,18 @@ public class DungoenGenerator : MonoBehaviour
             DunGoenManager.Instance.dungoenRoomDataList.Add(curRoomData);
         }
         return path;
+    }
+
+
+    void RandomPortalPoint()
+    {
+        int ran = Random.Range(1, DunGoenManager.Instance.dungoenRoomDataList.Count);
+        Debug.Log(ran);
+        DunGoenManager.Instance.dungoenRoomDataList[ran].dungoenType = DunGoneType.Portal;
+        Transform contain = DunGoenManager.Instance.container.transform.Find($"Room {ran}");
+
+        GameObject newPortal = Instantiate(portal, (Vector2)DunGoenManager.Instance.dungoenRoomDataList[ran].center, Quaternion.identity);
+        newPortal.transform.SetParent(contain);
     }
 
 
@@ -243,6 +261,8 @@ public class DungoenGenerator : MonoBehaviour
 
 
             GameObject spriteObj = Instantiate(minimapSpriteObj, (Vector2)roomData.center, Quaternion.identity);
+            spriteObj.GetComponent<MinimapSprite>().dunGoneType = roomData.dungoenType;
+
             spriteObj.transform.SetParent(container);
 
             DunGoenManager.Instance.minimapSpriteList.Add(spriteObj);

@@ -5,8 +5,6 @@ using UnityEngine;
 
 public class DungoenCamera : MonoBehaviour
 {
-    Camera _camera;
-
     public Transform playerTrnasform;
 
     public Vector2 center;
@@ -17,13 +15,13 @@ public class DungoenCamera : MonoBehaviour
 
     private void Awake()
     {
-      
+        DunGoenManager.Instance.OnMoveToDungoenRoom += SetCamLimit;
     }
 
     private void Start()
     {
+        
         playerTrnasform = GameObject.Find("Player(Clone)").transform;
-        DunGoenManager.Instance.OnMoveToDungoenRoom += SetCamLimit;
     
     }
 

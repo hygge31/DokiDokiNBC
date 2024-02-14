@@ -651,7 +651,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   container: {fileID: 1791039506903982814}
-  dungoenCamera: {fileID: 7978151414655425068, guid: 4d8779e063ae94c4a9f0dd2b3f59ae69, type: 3}
   dungoenGenerator: {fileID: 8821290842321878402}
   dungoenRoomDataList: []
   minimapSpriteList: []
@@ -699,6 +698,7 @@ MonoBehaviour:
   - {x: 40, y: 60}
   - {x: 40, y: 90}
   - {x: 40, y: 120}
+  portal: {fileID: 17274583329301492, guid: 8b31fa8de916c42f19ca79236e197b6f, type: 3}
 --- !u!1 &7552459179735846338
 GameObject:
   m_ObjectHideFlags: 0

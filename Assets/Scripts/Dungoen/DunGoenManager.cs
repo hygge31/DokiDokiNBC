@@ -9,15 +9,10 @@ public class DunGoenManager : MonoBehaviour
     public static DunGoenManager Instance;
     public GameObject container;
 
-
-    [Header("Dungoen Camera")]
-    public Camera dungoenCamera;
-
     [Header("Dungoen Generator")]
     public DungoenGenerator dungoenGenerator;
     public List<RoomData> dungoenRoomDataList = new List<RoomData>(); 
     public List<GameObject> minimapSpriteList = new List<GameObject>();
-
 
     [Header("Player")]
     public Transform playerTransform;
@@ -28,19 +23,19 @@ public class DunGoenManager : MonoBehaviour
     [Header("Room Move Panel")]
     public GameObject panel;
 
-
     [Header("Minimap part")]
     public GameObject minimapUi;
     public GameObject minimapCamera;
-
-    public event Action OnChangeMinimap;
-    public event Action<RoomData> OnMoveToDungoenRoom;
 
     [Header("Camera")]
     public Camera _camera;
     public float cameraWidth;
     public float cameraHeight;
 
+    
+    public event Action OnChangeMinimap;
+    public event Action<RoomData> OnMoveToDungoenRoom;
+    public event Action OnActivePortal;
 
     private void Awake()
     {
@@ -52,7 +47,6 @@ public class DunGoenManager : MonoBehaviour
         Instantiate(playerTransform);
 
 
-
         cameraWidth = _camera.orthographicSize * _camera.aspect - 1;
         cameraHeight = _camera.orthographicSize -2;
 
@@ -62,6 +56,7 @@ public class DunGoenManager : MonoBehaviour
     {
         CreateDunGoen();
         DungoenAllDoorAppear();
+        CallOnMoveToDungoenRoom(dungoenRoomDataList[0]);
     }
 
 
@@ -74,7 +69,7 @@ public class DunGoenManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Z))
         {
-            DungoenAllDoorAppear();
+            CallOnActivePortal();
         }
         //test
     }
@@ -88,6 +83,11 @@ public class DunGoenManager : MonoBehaviour
     {
         OnMoveToDungoenRoom?.Invoke(roomData);
     }
+    public void CallOnActivePortal()
+    {
+        OnActivePortal?.Invoke();
+    }
+
 
     public void CreateDunGoen()
     {
@@ -104,7 +104,7 @@ public class DunGoenManager : MonoBehaviour
 
         dungoenGenerator.ProcedurealDungoenGenerator();
         minimapSpriteList[0].GetComponent<MinimapSprite>().CurPosition();
-        CallOnMoveToDungoenRoom(dungoenRoomDataList[0]);
+        
     }
 
 
