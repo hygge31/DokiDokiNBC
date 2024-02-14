@@ -142,13 +142,17 @@ public class DunGoenManager : MonoBehaviour
 
 
         curDungoenRoomNumber = nextRoomNumber;
-        dungoenRoomDataList[curDungoenRoomNumber].SpawnMonster();
+        dungoenRoomDataList[nextRoomNumber].SpawnMonster();
         minimapSpriteList[curRoomNumber].GetComponent<MinimapSprite>().OutPoisition();
         minimapSpriteList[nextRoomNumber].GetComponent<MinimapSprite>().CurPosition();
         CallOnChangeMinimap();
         CallOnMoveToDungoenRoom(dungoenRoomDataList[nextRoomNumber]);
 
-        DungoenAllDoorExit();
+        if (!dungoenRoomDataList[nextRoomNumber].clear)
+        {
+            DungoenAllDoorExit();
+        }
+
     }
 
 
@@ -156,5 +160,9 @@ public class DunGoenManager : MonoBehaviour
     {
         dungoenRoomDataList[curDungoenRoomNumber].DieMonsterAddAndClearCheck();
     }
+
+
+
+
 
 }

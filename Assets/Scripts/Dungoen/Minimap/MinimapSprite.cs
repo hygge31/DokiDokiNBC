@@ -9,7 +9,7 @@ public class MinimapSprite : MonoBehaviour
 
 
     public SpriteRenderer defaultSprite;
-    public SpriteRenderer curPositionSprite;
+    public GameObject curPositionSprite;
     public SpriteRenderer questionMark;
     public SpriteRenderer portal;
 
@@ -27,13 +27,13 @@ public class MinimapSprite : MonoBehaviour
             portal.enabled = true;
         }
 
-        curPositionSprite.enabled = true;
+        curPositionSprite.SetActive(true);
         
     }
 
     public void OutPoisition()
     {
-        curPositionSprite.enabled = false;
+        curPositionSprite.SetActive(false);
         defaultSprite.color = Color.white;
     }
 
