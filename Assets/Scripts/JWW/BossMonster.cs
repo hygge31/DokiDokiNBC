@@ -4,152 +4,159 @@ using static UnityEngine.GraphicsBuffer;
 
 public class BossMonster : MonoBehaviour
 {
-    // 공격 패턴 종류를 나타내는 열거형
-    public enum AttackPattern
+    public GameObject bulletPrefab;//불릿
+    public Transform firePoint;//발사 트랜스폼
+    private Transform target;//플레이어의 트랜스폼
+
+    public float attackCooldown = 2f;//쿨다운
+    private float nextAttackTime = 0f;//다음 공격 시간
+    private float bulletSpeed = 5f;
+
+    [SerializeField]
+    private float bossHealth = 100f; // 보스의 최대 체력
+    private float maxHealth = 100f;
+    private float healthPercentage;//보스 퍼센테이지
+
+    private void Awake()
     {
-        StraightShot,
-        CircleShot,
-        RandomMovement
-    }
-    public GameObject firePosition;
-    public GameObject bulletPrefab; // 총알 프리팹
-
-    private Transform target;
-    // 현재 공격 패턴
-    private AttackPattern currentPattern;
-
-    // 다음 공격 패턴까지의 대기 시간
-    public float timeBetweenPatterns = 5f;
-    private float patternTimer;
-
-    [Header("일반 직선 공격 정보")]
-    private float nextAttackTime;
-    public float attackInterval = 0.3f;
-
-    [Header("원형 공격 정보")]
-    // 원형 공격의 반지름
-    public float radius = 3f;
-
-    // 원형 공격에 사용될 총알 수
-    public int bulletCount = 10;
-
-    // 원형 공격이 완료될 때까지 걸리는 시간
-    public float duration = 5f;
-
-    // 원형 공격의 회전 속도
-    public float rotationSpeed = 50f;
-    void Start()
-    {
+        bossHealth = maxHealth;
+        nextAttackTime = Time.time;
         target = GameObject.FindWithTag("Player").transform;
-        // 초기 공격 패턴 설정
-        currentPattern = AttackPattern.StraightShot;
-        patternTimer = timeBetweenPatterns;
-
-        // 보스 몬스터 공격 패턴 시작
-        StartCoroutine(StraightShotPattern());
     }
-
     void Update()
     {
-        LookPlayer();
-        // 다음 공격 패턴까지의 시간 업데이트
-        patternTimer -= Time.deltaTime;
-        if (patternTimer <= 0)
+        RotateFirePoint();
+        healthPercentage = (bossHealth / 100f) * 100f;
+
+        if (Time.time >= nextAttackTime)
         {
-            // 다음 공격 패턴 실행
-            StartCoroutine(StartAttackPattern());
-            patternTimer = timeBetweenPatterns;
+            if (healthPercentage >= 70f)
+            {
+                ExecuteSingleAttack();
+            }
+            else if (healthPercentage >= 40f && healthPercentage < 70f)
+            {
+                attackCooldown = 3f;
+                ExecuteDoubleAttack();
+            }
+            else if (healthPercentage >= 20f && healthPercentage < 40f)
+            {
+                attackCooldown = 5f;
+                ExecuteTripleAttack();
+            }
+            else
+            {
+                attackCooldown = 7f;
+                ExecuteQuadrupleAttack();
+            }
+
+            nextAttackTime = Time.time + attackCooldown;
         }
     }
 
-    IEnumerator StartAttackPattern()
+    private void ExecuteQuadrupleAttack()
     {
-        // 다음 공격 패턴을 랜덤하게 선택
-        //currentPattern = (AttackPattern)Random.Range(0, System.Enum.GetValues(typeof(AttackPattern)).Length);
-        currentPattern = AttackPattern.CircleShot;
-        // 선택된 공격 패턴 실행
-        switch (currentPattern)
+        ExecuteRandomAttack(3,4);
+        Invoke("ExecuteTripleAttack",attackCooldown/6);
+    }
+
+    private void ExecuteTripleAttack()
+    {
+        ExecuteRandomAttack(4, 6);
+        Invoke("ExecuteDoubleAttack", attackCooldown/4);
+    }
+
+    private void ExecuteDoubleAttack()
+    {
+        ExecuteRandomAttack(3, 4);
+        Invoke("ExecuteSingleAttack", attackCooldown/5);
+    }
+
+    private void ExecuteSingleAttack()
+    {
+        ExecuteRandomAttack(1, 3);//1 ~ 2
+    }
+
+    void ExecuteRandomAttack(int min,int max)//랜덤 공격
+    {
+        min = Mathf.Clamp(min,1, 6);
+        max = Mathf.Clamp(max,1, 6);
+        int attackPattern = Random.Range(min, max); // 1부터 5까지의 무작위 패턴 선택
+
+        switch (attackPattern)
         {
-            //case AttackPattern.StraightShot:
-            //    StartCoroutine(StraightShotPattern());
-            //    break;
-            case AttackPattern.CircleShot:
-                StartCoroutine(CircleShotPattern());
+            case 1:
+                FireStraight();
                 break;
-            case AttackPattern.RandomMovement:
-                StartCoroutine(RandomMovementPattern());
+            case 2:
+                FireSpread();
+                break;
+            case 3:
+                FireCircle();
+                break;
+            case 4:
+                FireDiverge();
+                break;
+            case 5:
+                FireRandomDirection();
                 break;
             default:
+                Debug.Log("잘못된 공격 패턴입니다.");
                 break;
         }
-
-        yield return null;
     }
 
-    IEnumerator StraightShotPattern()
+    void FireStraight()
     {
-        while (true)
+        GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+        MonsterBullet newbullt = bullet.GetComponent<MonsterBullet>();
+        newbullt.speed = bulletSpeed;
+    }
+
+    void FireSpread()
+    {
+        for (int i = -2; i <= 2; i++)
         {
-            // 현재 시간이 다음 공격 시간보다 크거나 같은 경우 공격 실행
-            if (Time.time >= nextAttackTime)
-            {
-                // Bullet 프리팹을 생성하여 플레이어를 향해 공격
-                GameObject bullet = Instantiate(bulletPrefab, firePosition.transform.position, Quaternion.identity);
-                // Bullet이 플레이어를 향하도록 설정
-                bullet.GetComponent<MonsterBullet>().playerDirection = (target.transform.position - transform.position).normalized;
-
-                // 다음 공격 시간 설정
-                nextAttackTime = Time.time + attackInterval;
-            }
-
-            yield return null;
+            GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation * Quaternion.Euler(0f, 0f, i * 15f));
+            MonsterBullet newbullt = bullet.GetComponent<MonsterBullet>();
+            newbullt.speed = bulletSpeed;
         }
     }
 
-    IEnumerator CircleShotPattern()
+    void FireCircle()
     {
-        float elapsedTime = 0f;
-
-        while (elapsedTime < duration)
+        for (int i = 0; i < 360; i += 20)
         {
-            // 원형 공격을 하는 동안 프레임당 각도 계산
-            float angleStep = 360f / bulletCount;
-
-            // 각도를 기준으로 Bullet 프리팹을 생성하여 플레이어를 향해 공격
-            for (int i = 0; i < bulletCount; i++)
-            {
-                float angle = i * angleStep;
-                Vector3 spawnPosition = transform.position + Quaternion.Euler(0, 0, angle) * (Vector3.up * radius);
-
-                GameObject bullet = Instantiate(bulletPrefab, spawnPosition, Quaternion.identity);
-                bullet.GetComponent<MonsterBullet>().playerDirection = (target.transform.position - spawnPosition).normalized;
-            }
-
-            // 다음 프레임까지 대기
-            yield return null;
-
-            // 다음 프레임까지의 경과 시간 업데이트
-            elapsedTime += Time.deltaTime;
-
-            // 원형 공격 동안 보스 몬스터를 회전시킴
-            //transform.Rotate(Vector3.forward * rotationSpeed * Time.deltaTime);
+            GameObject bullet = Instantiate(bulletPrefab, firePoint.position, Quaternion.Euler(0f, 0f, i));
+            MonsterBullet newbullt = bullet.GetComponent<MonsterBullet>();
+            newbullt.speed = bulletSpeed;
         }
-
-        // 원형 공격 종료 후 스크립트 제거
-        Destroy(gameObject);
-
-        yield return null;
+    }
+    void FireDiverge()
+    {
+        for (int i = -1; i <= 0; i++)
+        {
+            GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation * Quaternion.Euler(0f, 0f, i * 30f + 15f));
+            MonsterBullet newbullt = bullet.GetComponent<MonsterBullet>();
+            newbullt.speed = bulletSpeed;
+            newbullt.SpreadBulletInOnePoint();
+        }
     }
 
-    IEnumerator RandomMovementPattern()
+    void FireRandomDirection()
     {
-        // 무작위 이동 공격 패턴 구현
-        Debug.Log("Random Movement Pattern Executed");
-
-        yield return null;
+        for (int i = 0; i < 5; i++)
+        {
+            float randomAngle = Random.Range(0f, 360f);
+            GameObject bullet = Instantiate(bulletPrefab, firePoint.position, Quaternion.Euler(0f, 0f, randomAngle));
+            MonsterBullet newbullt = bullet.GetComponent<MonsterBullet>();
+            newbullt.speed = bulletSpeed;
+            newbullt.TrackingBullet();
+        }
     }
-    public void LookPlayer()
+    public void RotateFirePoint()//발사 위치와 발사 회전을 플레이어쪽으로 수정.
     {
-        firePosition.transform.localPosition = (target.transform.position- transform.position).normalized ;
+        firePoint.localPosition = (target.transform.position- transform.position).normalized; //보스에서 플레이어를 향한 단위 벡터만큼 떨어진 곳
+        firePoint.right = (target.transform.position - transform.position).normalized;//발사 위치의 오른쪽을 플레이어 방향으로 설정
     }
 }
