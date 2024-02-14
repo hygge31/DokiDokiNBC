@@ -19,6 +19,7 @@ MonoBehaviour:
   isStackable: 0
   atk: 2
   fireRate: 1
-  crit: 0
   moveSpeed: 0
-  weaponType: 0
+  addBullet: 0
+  pierceCount: 0
+  weaponType: 1

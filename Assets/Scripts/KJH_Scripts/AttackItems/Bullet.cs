@@ -16,28 +16,5 @@ public class Bullet : MonoBehaviour
         TravelSpeed = travelSpeed;
     }
 
-    private LayerMask levelCollisionLayer;
-    private LayerMask targetLayer;
-
     public virtual void Setup() { }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (levelCollisionLayer == (levelCollisionLayer | (1 << collision.gameObject.layer)))
-        {
-            gameObject.SetActive(false);
-        }
-        else if (targetLayer == (targetLayer | (1 << collision.gameObject.layer)))
-        {
-            //체력감소
-            HealthSystem healthSystem = collision.GetComponentInParent<HealthSystem>();
-            if (healthSystem != null)
-            {
-                healthSystem.ChangeHealth(-Atk);
-            }
-            gameObject.SetActive(false);
-        }
-    }
-
-
 }

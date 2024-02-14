@@ -38,11 +38,9 @@ public class PlayerAttackController : MonoBehaviour
         if (context.phase == InputActionPhase.Performed)
         {
             IsAttacking = true;
-            Debug.Log("공격시작");
         }
         else if (context.phase == InputActionPhase.Canceled)
         {
-            Debug.Log("공격종료");
             IsAttacking = false;
         }
     }
@@ -50,7 +48,6 @@ public class PlayerAttackController : MonoBehaviour
     // 공격 방향을 설정합니다.
     public void SetAttackDirection()
     {
-        Debug.Log("공격방향설정");
 
         //애니메이터의 파라미터 값을 받음
         float direction = animator.GetFloat("Direction");
