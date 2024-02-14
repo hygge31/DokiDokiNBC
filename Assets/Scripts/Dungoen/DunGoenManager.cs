@@ -19,7 +19,7 @@ public class DunGoenManager : MonoBehaviour
 
     [Header("Game State")]
     public int curDungoenRoomNumber;
-
+    public int count; // init
     [Header("Room Move Panel")]
     public GameObject panel;
 
@@ -57,6 +57,7 @@ public class DunGoenManager : MonoBehaviour
         CreateDunGoen();
         DungoenAllDoorAppear();
         CallOnMoveToDungoenRoom(dungoenRoomDataList[0]);
+        
     }
 
 
@@ -64,7 +65,7 @@ public class DunGoenManager : MonoBehaviour
     {
         //test
         if (Input.GetKeyDown(KeyCode.Space)){
-            DungoenAllDoorExit();
+            DungoenAllDoorAppear();
         }
 
         if (Input.GetKeyDown(KeyCode.Z))
@@ -134,15 +135,26 @@ public class DunGoenManager : MonoBehaviour
 
     public void MoveToDungoen(int curRoomNumber ,int nextRoomNumber)
     {
+        if (!dungoenRoomDataList[nextRoomNumber].clear)
+        {
+            count++;
+        }
+
+
         curDungoenRoomNumber = nextRoomNumber;
         dungoenRoomDataList[curDungoenRoomNumber].SpawnMonster();
         minimapSpriteList[curRoomNumber].GetComponent<MinimapSprite>().OutPoisition();
         minimapSpriteList[nextRoomNumber].GetComponent<MinimapSprite>().CurPosition();
         CallOnChangeMinimap();
         CallOnMoveToDungoenRoom(dungoenRoomDataList[nextRoomNumber]);
+
+        DungoenAllDoorExit();
     }
 
 
-    
+    public void DieMonster()
+    {
+        dungoenRoomDataList[curDungoenRoomNumber].DieMonsterAddAndClearCheck();
+    }
 
 }

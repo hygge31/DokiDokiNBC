@@ -34,6 +34,7 @@ public class DungoenGenerator : MonoBehaviour
 
     [Header("Portal")]
     public GameObject portal;
+    public GameObject spawner;
 
     public void ProcedurealDungoenGenerator()
     {
@@ -43,12 +44,12 @@ public class DungoenGenerator : MonoBehaviour
 
         CreateDoor();
         DungoenuAllDoorOff();
+
         RandomPortalPoint();
+        RandomSpawnerPosition();
 
         //Create minimap
         CreateMinimap();
-
-
         
     }
 
@@ -62,7 +63,9 @@ public class DungoenGenerator : MonoBehaviour
         path.Add(curPoint);
         RoomData curRoomData = new RoomData(roomDataSOs[Random.Range(0,roomDataSOs.Count)]);
         curRoomData.SetRoomData(curPoint,0);
+        curRoomData.clear = true;
         DunGoenManager.Instance.dungoenRoomDataList.Add(curRoomData);
+
         // -- Init
 
 
@@ -95,6 +98,35 @@ public class DungoenGenerator : MonoBehaviour
         newPortal.transform.SetParent(contain);
     }
 
+
+    void RandomSpawnerPosition()
+    {
+        foreach(RoomData roomData in DunGoenManager.Instance.dungoenRoomDataList)
+        {
+            Transform contain = DunGoenManager.Instance.container.transform.Find($"Room {roomData.roomNumber}");
+
+            //init
+            int maxSpawn = Random.Range(1, 3);
+            //
+            for (int i = 0; i < maxSpawn; i++)
+            {
+                Vector2Int minLimit = (Vector2Int)roomData.bounds.min + new Vector2Int(4, 4);
+                Vector2Int maxLimit = (Vector2Int)roomData.bounds.max - new Vector2Int(4, 4);
+
+                int ranx = Random.Range(minLimit.x, maxLimit.x);
+                int rany = Random.Range(minLimit.y, maxLimit.y);
+
+                GameObject newSpawner = Instantiate(spawner, new Vector2(ranx, rany), Quaternion.identity);
+                roomData.spawnerList.Add(newSpawner.GetComponent<Spawner>());
+
+                newSpawner.transform.SetParent(contain);
+            }
+            roomData.clearCondition = maxSpawn;
+
+           
+        }
+
+    }
 
     void CreateDoor()
     {

@@ -59,6 +59,11 @@ public class RoomData
     public Vector2 minCamLimit;
     public Vector2 maxCamLimit;
 
+    [Header("Spawn")]
+    public List<Spawner> spawnerList = new List<Spawner>();
+    public int clearCondition;
+    public int curDeathMonster;
+
 
 
 
@@ -125,10 +130,29 @@ public class RoomData
     {
         if (!clear)
         {
-            //DungoenManager All door Set active false
-            Debug.Log("Stage Change Message and spawn monster");
+            foreach(Spawner spawner in spawnerList)
+            {
+                spawner.Spawn();
+            }
         }
 
+    }
+
+
+    public void DieMonsterAddAndClearCheck()
+    {
+        curDeathMonster++;
+
+        if(clearCondition <= curDeathMonster) //Clear
+        {
+            if(dungoenType == DunGoneType.Portal)
+            {
+                DunGoenManager.Instance.CallOnActivePortal();
+            }
+
+            clear = true;
+            DunGoenManager.Instance.DungoenAllDoorAppear();
+        }
     }
 
 
