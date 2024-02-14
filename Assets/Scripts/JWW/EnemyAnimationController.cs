@@ -10,13 +10,13 @@ public class EnemyAnimationController : EnemyAnimation
     private static readonly int isDead = Animator.StringToHash("Die"); //파라미터를 해시로 변환
     private static readonly int isHit = Animator.StringToHash("Hit"); //파라미터를 해시로 변환
 
-    private HealthSystem healthSystem;
+    private PlayerHealthSystem healthSystem;
     private Rigidbody2D _rigidbody;
     private Enemy1 _enemy;
     protected override void Awake()
     {
         base.Awake();
-        healthSystem = GetComponent<HealthSystem>();
+        healthSystem = GetComponent<PlayerHealthSystem>();
         _rigidbody = GetComponentInParent<Rigidbody2D>();
         _enemy = GetComponent<Enemy1>();
     }

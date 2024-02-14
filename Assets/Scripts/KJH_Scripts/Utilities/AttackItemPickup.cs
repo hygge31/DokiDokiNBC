@@ -15,7 +15,7 @@ public class AttackItemPickup : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             PlayerAttackController playerController = other.GetComponent<PlayerAttackController>();
-            playerController.EquipItem(item);
+            //playerController.EquipItem(item);
             Destroy(gameObject);
         }
     }

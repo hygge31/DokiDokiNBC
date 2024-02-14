@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
-public class HealthSystem : MonoBehaviour
+public class PlayerHealthSystem : MonoBehaviour
 {
     [SerializeField] private float healthChangeDelay = .5f;
 

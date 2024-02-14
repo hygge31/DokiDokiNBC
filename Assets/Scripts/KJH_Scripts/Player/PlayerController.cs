@@ -11,13 +11,13 @@ public class PlayerController : MonoBehaviour
     private Animator bodyAnimator;
 
     public static PlayerController instance;
-    private CharacterStatsHandler _stats;
+    private PlayerStatManager playerStatManager;
 
     private void Awake()
     {
         instance = this;
         _rigidbody = GetComponent<Rigidbody2D>();
-        _stats = GetComponent<CharacterStatsHandler>();
+        playerStatManager = Managers.Player;
 
         // 자식 오브젝트에서 Animator 컴포넌트를 찾아서 가져옴
         headAnimator = GameObject.FindGameObjectWithTag("Head").GetComponent<Animator>();
@@ -32,7 +32,7 @@ public class PlayerController : MonoBehaviour
     private void Move()
     {
         Vector3 dir = transform.up * curMovementInput.y + transform.right * curMovementInput.x;
-        dir *= _stats.CurrentStates.moveSpeed;
+        dir *= playerStatManager.MoveSpeed;
 
         _rigidbody.velocity = dir;
 

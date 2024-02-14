@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class MonsterHitBox : MonoBehaviour
 {
-    private HealthSystem healthSystem;
+    private PlayerHealthSystem healthSystem;
 
     private void Awake()
     {
-        healthSystem = GetComponentInParent<HealthSystem>();
+        healthSystem = GetComponentInParent<PlayerHealthSystem>();
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {

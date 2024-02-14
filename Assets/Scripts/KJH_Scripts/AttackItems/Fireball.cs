@@ -27,7 +27,7 @@ public class Fireball : MonoBehaviour, IAttack
     private void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player");
-        charStats = player.GetComponent<CharacterStatsHandler>();
+        //charStats = player.GetComponent<CharacterStatsHandler>();
         UpdateStats();
     }
 
@@ -65,7 +65,7 @@ public class Fireball : MonoBehaviour, IAttack
         }
         else if (targetLayer == (targetLayer | (1 << collision.gameObject.layer)))
         {
-            HealthSystem healthSystem = collision.GetComponentInParent<HealthSystem>();
+            PlayerHealthSystem healthSystem = collision.GetComponentInParent<PlayerHealthSystem>();
             if (healthSystem != null)
             {
                 healthSystem.ChangeHealth(-atk);

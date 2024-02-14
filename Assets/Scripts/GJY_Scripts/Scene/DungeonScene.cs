@@ -8,8 +8,9 @@ public class DungeonScene : BaseScene
     {
         base.Init();
 
-        SceneType = Define.TestScenes.GJY2;
+        SceneType = Define.TestScenes.KJH;
         Managers.Player.PlayerSetup();
         Managers.Attack.WeaponSetup();
+        Managers.UI.ShowSceneUI<UI_Hud>();
     }
 }

@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class DisappearOnDeath : MonoBehaviour
 {
-    private HealthSystem _healthSystem;
+    private PlayerHealthSystem _healthSystem;
     private Rigidbody2D _rigidbody;
 
     private void Start()
     {
-        _healthSystem = GetComponent<HealthSystem>();
+        _healthSystem = GetComponent<PlayerHealthSystem>();
         _rigidbody = GetComponent<Rigidbody2D>();
         _healthSystem.OnDeath += OnDeath;
     }

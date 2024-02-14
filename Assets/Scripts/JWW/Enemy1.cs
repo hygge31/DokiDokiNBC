@@ -42,7 +42,7 @@ public class Enemy1 : EnemyController
     }
     public void ApplyMovement(Vector2 direction)
     {
-        direction = direction * characterStatsHandler.CurrentStates.speed;//몬스터의 스피드 만큼 속도 적용
+        direction = direction * characterStatsHandler.CurrentStates.moveSpeed;//몬스터의 스피드 만큼 속도 적용
         _rigidbody.velocity = direction;
     }   
     private void Rotate(Vector2 direction)

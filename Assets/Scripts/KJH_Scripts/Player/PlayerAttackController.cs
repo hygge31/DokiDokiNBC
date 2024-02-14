@@ -7,25 +7,23 @@ public class PlayerAttackController : MonoBehaviour
 {
     public static PlayerAttackController Instance;
 
-    public IAttack equippedItem; // 현재 장착된 공격 로직
-
     [Header("Projectiles")]
     [HideInInspector]
     public Vector2 attackDirection; // 공격 방향
     [HideInInspector]
     public Quaternion rotation; // 투사체 방향
     private Animator animator;
+    private PlayerStatManager playerStatManager;
 
     [Header("Attack")]
     private float timeSinceLastAttack = 0f; // 발사 후 시간
     protected bool IsAttacking { get; set; }
-    private CharacterStatsHandler charStats;
 
     private void Awake()
     {
         Instance = this;
         animator = GetComponentInChildren<Animator>();
-        charStats = GetComponent<CharacterStatsHandler>();
+        playerStatManager = Managers.Player;
     }
 
     private void FixedUpdate()
@@ -37,7 +35,7 @@ public class PlayerAttackController : MonoBehaviour
     {
         // 마우스 왼쪽 버튼이 눌렸을 때 공격
 
-        if (context.phase == InputActionPhase.Started && equippedItem != null)
+        if (context.phase == InputActionPhase.Performed)
         {
             IsAttacking = true;
             Debug.Log("공격시작");
@@ -47,11 +45,6 @@ public class PlayerAttackController : MonoBehaviour
             Debug.Log("공격종료");
             IsAttacking = false;
         }
-    }
-
-    public void EquipItem(IAttack item)
-    {
-        equippedItem = item;
     }
 
     // 공격 방향을 설정합니다.
@@ -89,15 +82,15 @@ public class PlayerAttackController : MonoBehaviour
     private void HandleAttackDelay()
     {
 
-        if (timeSinceLastAttack <= charStats.CurrentStates.fireRate)
+        if (timeSinceLastAttack <= playerStatManager.FireRate)
         {
             timeSinceLastAttack += Time.deltaTime;
         }
-        if (IsAttacking && timeSinceLastAttack > charStats.CurrentStates.fireRate)
+        if (IsAttacking && timeSinceLastAttack > playerStatManager.FireRate)
         {
             timeSinceLastAttack = 0;
             SetAttackDirection();
-            equippedItem.PerformAttack(attackDirection);
+            Managers.Attack.UseWeapon(transform.position, attackDirection);
         }
     }
 }

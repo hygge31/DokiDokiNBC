@@ -30,6 +30,6 @@ public class Define
     public enum TestScenes
     {
         GJY,
-        GJY2,
+        KJH,
     }
 }
