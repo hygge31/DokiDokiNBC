@@ -29,7 +29,7 @@ public class MonsterTemp : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.L))
         {
             string[] itemNames = Enum.GetNames(typeof(Define.Weapons));
-            Item_SO itemSO = Resources.Load<Item_SO>($"Scriptable/{itemNames[Random.Range(0, itemNames.Length)]}");
+            Item_SO itemSO = Resources.Load<Item_SO>($"Scriptable/{itemNames[Random.Range(1, itemNames.Length)]}");
 
             Item_Weapon weapon = Managers.RM.Instantiate($"Items/Item_Weapon").GetComponent<Item_Weapon>();
             weapon.Setup(itemSO, transform);

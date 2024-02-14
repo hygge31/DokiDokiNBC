@@ -16,9 +16,12 @@ public class Item_SO : ScriptableObject
 
     [Header("Stat")]    
     public float atk;
-    public float fireRate;
-    public float crit;
+    public float fireRate;    
     public float moveSpeed;
+
+    [Header("Ability")]
+    public int addBullet;
+    public int pierceCount;
 
     [Header("Weapon")]
     public Define.Weapons weaponType;
