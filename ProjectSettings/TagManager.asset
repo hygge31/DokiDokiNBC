@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Monster
   - MonsterHitBox
+  - Head
+  - Body
   layers:
   - Default
   - TransparentFX
@@ -13,8 +15,8 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
+  - Level
+  - Player
   - Monster
   - MonsterHitBox
   - 
