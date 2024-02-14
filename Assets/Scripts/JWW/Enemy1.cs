@@ -3,9 +3,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
+using static Enemy1;
 
 public class Enemy1 : EnemyController
 {
+    public enum MonsterNumber
+    {
+        Enmemy1,
+        Enmemy3
+    }
+    public MonsterNumber monsterNumber;
     private Rigidbody2D _rigidbody;
     private Vector2 _movementDirection = Vector2.zero;
     public CharacterStatsHandler characterStatsHandler;
@@ -14,6 +21,7 @@ public class Enemy1 : EnemyController
     protected override void Awake()
     {
         base.Awake();
+        monsterNumber = enemySO.monsterNumber;
         characterStatsHandler = GetComponent<CharacterStatsHandler>();
         _rigidbody = GetComponent<Rigidbody2D>();
     }
@@ -49,7 +57,15 @@ public class Enemy1 : EnemyController
     {
         if (direction != Vector2.zero)//
         {
-            int num = direction.x < 0 ? 1 : -1;
+            int num = 1;
+            if (monsterNumber == MonsterNumber.Enmemy1)
+            {
+                num = direction.x < 0 ? 1 : -1;
+            }
+            else if (monsterNumber == MonsterNumber.Enmemy3)
+            {
+                num = direction.x < 0 ? -1 : 1;
+            }
             transform.localScale = new Vector3(num, 1, 1);
         }
     }
