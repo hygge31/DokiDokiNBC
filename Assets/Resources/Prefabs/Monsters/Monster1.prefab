@@ -282,6 +282,7 @@ GameObject:
   - component: {fileID: 4487118761625968994}
   - component: {fileID: 1156409333619909127}
   - component: {fileID: 5016479373033359020}
+  - component: {fileID: -5796140546165473402}
   m_Layer: 8
   m_Name: Monster1
   m_TagString: Monster
@@ -380,9 +381,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseStats:
-    statsChangeType: 2
     maxHealth: 10
-    speed: 2
+    atk: 0
+    fireRate: 0
+    moveSpeed: 1.59
+  statsModifiers: []
 --- !u!114 &5016479373033359020
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -396,6 +399,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthChangeDelay: 0.2
+--- !u!114 &-5796140546165473402
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7388285900432109781}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab491f74d09fe8f4188854ce34c5ed5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7649553414669379124
 GameObject:
   m_ObjectHideFlags: 0

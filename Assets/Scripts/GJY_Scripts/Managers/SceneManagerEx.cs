@@ -7,16 +7,16 @@ public class SceneManagerEx
 {
     public BaseScene CurrentScene => Object.FindObjectOfType<BaseScene>();
 
-    public void LoadScene(Define.TestScenes scene)
+    public void LoadScene(Define.Scenes scene)
     {
         Managers.Clear();
 
         SceneManager.LoadScene(GetSceneName(scene));
     }
 
-    private string GetSceneName(Define.TestScenes scene)
+    private string GetSceneName(Define.Scenes scene)
     {
-        string sceneName = System.Enum.GetName(typeof(Define.TestScenes), scene);
+        string sceneName = System.Enum.GetName(typeof(Define.Scenes), scene);
         return sceneName;
     }
 

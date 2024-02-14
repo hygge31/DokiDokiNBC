@@ -25,7 +25,7 @@ public class PlayerStatManager
     public void Init()
     {
         Hp = 3;
-        MoveSpeed = 3;
+        MoveSpeed = 10;
         Atk = 1;
         FireRate = 1;
     }

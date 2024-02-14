@@ -10,6 +10,7 @@ public class EnemyDisappear : MonoBehaviour
         //{
         //    component.enabled = false;
         //}
+        DunGoenManager.Instance.DieMonster();
         Destroy(transform.parent.gameObject);
     }
 }

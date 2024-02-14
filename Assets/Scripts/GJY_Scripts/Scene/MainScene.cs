@@ -8,7 +8,7 @@ public class MainScene : BaseScene
     {
         base.Init();
 
-        SceneType = Define.TestScenes.GJY;
+        SceneType = Define.Scenes.Dungeon;
         Managers.UI.ShowSceneUI<UI_Room>();
         Managers.Pool.Init();
     }

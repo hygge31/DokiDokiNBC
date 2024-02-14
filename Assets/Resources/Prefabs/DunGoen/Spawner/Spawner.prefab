@@ -45,4 +45,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monsterList:
-  - {fileID: 4524845726882730223, guid: 0e00f49ddc361427699f1a6ea24fa892, type: 3}
+  - {fileID: 7388285900432109781, guid: 8d43abc5d9b64b341a1eb672d22253b3, type: 3}
+  - {fileID: 6705028435812413390, guid: bf4b1eceb6c4dd24fa38cf3f4211ae75, type: 3}
