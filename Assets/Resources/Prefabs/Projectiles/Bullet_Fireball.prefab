@@ -14,8 +14,9 @@ GameObject:
   - component: {fileID: -4352670510734332074}
   - component: {fileID: 7579331563904025419}
   - component: {fileID: 5091277152722482755}
+  - component: {fileID: 5208927113413296091}
   m_Layer: 0
-  m_Name: Fireball
+  m_Name: Bullet_Fireball
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -100,14 +101,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70257ba06a95ee148b93f8b257ea7bae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pfFireball: {fileID: 8483047927148254116}
-  levelCollisionLayer:
-    serializedVersion: 2
-    m_Bits: 0
-  targetLayer:
-    serializedVersion: 2
-    m_Bits: 512
-  projectileSpeed: 10
 --- !u!50 &-4352670510734332074
 Rigidbody2D:
   serializedVersion: 4
@@ -201,3 +194,16 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &5208927113413296091
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8483047927148254116}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71f3f97891ff94346bcba1ad37f847b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IsUsing: 0
