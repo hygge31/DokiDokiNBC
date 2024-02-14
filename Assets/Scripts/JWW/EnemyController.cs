@@ -5,17 +5,20 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour
 {
     public event Action<Vector2> OnMoveEvent; //움직이는 이벤트
-    public event Action OnAttackEvent; // 공격 이벤트
+    public event Action<EnemySO> OnAttackEvent; // 공격 이벤트
 
     protected Transform target; //타겟의 트렌스폼
     [SerializeField]
     public bool isAttacking = false; //공격 가능한지
-    public float attackTime = 0;
-    public float attackDelay = 1f;
+    public float attackTime = float.MaxValue;
+    public float attackDelay;
+    public EnemySO enemySO;
+    public bool isDead = false;
+
     [SerializeField] public string targetTag = "Player"; //공격 대상의 태그
     protected virtual void Awake()
     {
-        
+        attackDelay = enemySO.delay;
     }
     protected virtual void Start()
     {
@@ -23,24 +26,27 @@ public class EnemyController : MonoBehaviour
     }
     protected virtual void FixedUpdate()
     {
-        if (isAttacking && attackTime >= attackDelay )//시간이 딜레이보다 많아졌다면
+        if (!isDead)
         {
-            CallAttackEvent();
-            attackTime = 0;
-        }
-        else
-        {
-            attackTime += Time.deltaTime;
-            attackTime = Mathf.Clamp(attackTime,0,1);
+            if (isAttacking && attackTime >= attackDelay)//시간이 딜레이보다 많아졌다면
+            {
+                CallAttackEvent(enemySO);
+                attackTime = 0;
+            }
+            else
+            {
+                attackTime += Time.fixedDeltaTime;
+                attackTime = Mathf.Clamp(attackTime, 0, attackDelay);
+            }
         }
     }
     public void CallMoveEvent(Vector2 direction)
     {
         OnMoveEvent?.Invoke(direction);
     }
-    public void CallAttackEvent()
+    public void CallAttackEvent(EnemySO enemySO)
     {
-        OnAttackEvent?.Invoke();
+        OnAttackEvent?.Invoke(enemySO);
     }
     protected Vector3 GetDirection() //플레이어를 향한 방향벡터 반환
     {

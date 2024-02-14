@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2789001952975832666}
   - component: {fileID: 5309906178822974190}
+  - component: {fileID: 1221156120587124881}
   m_Layer: 9
   m_Name: MonsterHitBox
   m_TagString: MonsterHitBox
@@ -77,6 +78,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.79, y: 1.13}
   m_EdgeRadius: 0
+--- !u!114 &1221156120587124881
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1812677978116118148}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed3cb7976203624428990007bd67f457, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6746378356820527631
 GameObject:
   m_ObjectHideFlags: 0
@@ -89,6 +102,8 @@ GameObject:
   - component: {fileID: 6173796657944522802}
   - component: {fileID: 9080238987226962467}
   - component: {fileID: 7315027650012614088}
+  - component: {fileID: 4567861950887907215}
+  - component: {fileID: 5399934102321238835}
   m_Layer: 8
   m_Name: MainSprite
   m_TagString: Untagged
@@ -229,6 +244,30 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.79, y: 1.13}
   m_EdgeRadius: 0
+--- !u!114 &4567861950887907215
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6746378356820527631}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0affb066ecb53f74bb1a29d7ff10ad5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5399934102321238835
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6746378356820527631}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84a3ea9de026c0f41b590fefcf6af8d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7388285900432109781
 GameObject:
   m_ObjectHideFlags: 0
@@ -241,6 +280,8 @@ GameObject:
   - component: {fileID: 807963414481334914}
   - component: {fileID: 4037142103532293127}
   - component: {fileID: 4487118761625968994}
+  - component: {fileID: 1156409333619909127}
+  - component: {fileID: 5016479373033359020}
   m_Layer: 8
   m_Name: Monster
   m_TagString: Monster
@@ -278,7 +319,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 10
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -308,7 +349,10 @@ MonoBehaviour:
   isAttacking: 0
   attackTime: 0
   attackDelay: 1
+  enemySO: {fileID: 11400000, guid: 770ee40a93c42bc4aa0ee41222479bcd, type: 2}
+  isDead: 0
   targetTag: Player
+  characterStatsHandler: {fileID: 1156409333619909127}
   isContect: 0
 --- !u!114 &4487118761625968994
 MonoBehaviour:
@@ -322,6 +366,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15634e9b7fcde144a90333d86168ad43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1156409333619909127
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7388285900432109781}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c305f54809eb9f246939d0e2700d2c6b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseStats:
+    statsChangeType: 2
+    maxHealth: 10
+    speed: 2
+--- !u!114 &5016479373033359020
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7388285900432109781}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd56044fdc4b6f949be926c37eb192cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthChangeDelay: 0.2
 --- !u!1 &7649553414669379124
 GameObject:
   m_ObjectHideFlags: 0
@@ -387,7 +460,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.32, y: 0.55}
+  m_Offset: {x: -0.32, y: 0.57445204}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -398,7 +471,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.32, y: 1}
+  m_Size: {x: 1.32, y: 1.2864392}
   m_EdgeRadius: 0
 --- !u!114 &2999766463222532165
 MonoBehaviour:
