@@ -24,8 +24,19 @@ public class PlayerController : MonoBehaviour
         bodyAnimator = GameObject.FindGameObjectWithTag("Body").GetComponent<Animator>();
     }
 
+    private void Update()
+    {
+        if(Input.GetKeyUp(KeyCode.Escape))
+        {
+            Managers.Scene.LoadScene(Define.Scenes.Main);
+        }
+    }
+
     private void FixedUpdate()
     {
+        if (playerStatManager.IsDead)
+            return;
+
         Move();
     }
 

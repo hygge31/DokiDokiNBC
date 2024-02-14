@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 285cf742d64f82c4ea9de56b2afc5d68, type: 3}
   displayName: "\uBA38\uC2AC\uBA38\uC2AC"
-  displayDesc: "\uD50C\uB808\uC774\uC5B4\uC758 \uACF5\uACA9\uB825\uC774 2 \uC99D\uAC00\uD569\uB2C8\uB2E4."
+  displayDesc: "\uBB34\uAE30 \uACF5\uACA9\uB825\uC774 10% \uC99D\uAC00\uD569\uB2C8\uB2E4."
   isWeapon: 0
   isStackable: 1
-  atk: 2
+  atk: 0.1
   fireRate: 0
   moveSpeed: 0
   addBullet: 0
