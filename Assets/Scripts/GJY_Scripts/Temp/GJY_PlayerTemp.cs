@@ -62,8 +62,7 @@ public class GJY_PlayerTemp : MonoBehaviour
     private void ApplyPerkStat(Item_SO item)
     {
         atk += item.atk;
-        fireRate += item.fireRate;
-        crit += item.crit;
+        fireRate += item.fireRate;        
         moveSpeed += item.moveSpeed;
     }
 }

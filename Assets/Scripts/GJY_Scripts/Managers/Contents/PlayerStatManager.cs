@@ -22,13 +22,14 @@ public class PlayerStatManager
     public float Crit {  get; private set; }
     public float MoveSpeed {  get; private set; }    
 
-    public void PlayerInit()
+    public void Init()
     {
         Hp = 3;
         MoveSpeed = 3;
         Atk = 1;
         FireRate = 1;
     }
+
     public void PlayerSetup()
     {
         // To Do - 플레이어 실제 스탯을 받아서 적용 시키기.
@@ -63,8 +64,7 @@ public class PlayerStatManager
     public void ApplyPerkStat(Item_SO item)
     {
         Atk += item.atk;
-        FireRate += item.fireRate;
-        Crit += item.crit;
+        FireRate += item.fireRate;        
         MoveSpeed += item.moveSpeed;        
 
         OnApplyPerkStat?.Invoke(item);

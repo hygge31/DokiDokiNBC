@@ -79,7 +79,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Perk \uC774\uB984 \uB4E4\uC5B4\uAC08 \uC790\uB9AC"
+  m_Text: 
 --- !u!1 &1211585510028570000
 GameObject:
   m_ObjectHideFlags: 0
@@ -716,7 +716,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Perk \uC815\uBCF4 \uB4E4\uC5B4\uAC08 \uC790\uB9AC"
+  m_Text: 
 --- !u!1 &8760690898234670267
 GameObject:
   m_ObjectHideFlags: 0

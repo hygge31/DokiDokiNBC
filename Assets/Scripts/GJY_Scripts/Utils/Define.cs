@@ -6,17 +6,19 @@ public class Define
 {
     public enum Weapons
     {        
+        Weapon_None,
         Weapon_Normal,
-        Weapon_Laser,
-        Weapon_Grenade,
+        Weapon_Missile,
+        Weapon_Turret,
     }
 
     public enum Perks
     {
         Item_CPU,
         Item_Injector,
-        Item_Mustle,
-        Item_Scouter,
+        Item_Mustle,        
+        Item_Pierce,
+        Item_MultiBullet,
     }
 
     public enum Scenes

@@ -46,6 +46,7 @@ public class Managers : MonoBehaviour
             DontDestroyOnLoad(go);
             s_instance = go.GetComponent<Managers>();
 
+            Player.Init();
             Attack.Init();
         }
     }

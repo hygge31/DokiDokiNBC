@@ -20,11 +20,11 @@ public class AttackManager
             case Define.Weapons.Weapon_Normal:
                 currentWeapon = new WeaponNormal();
                 break;
-            case Define.Weapons.Weapon_Laser:
-                currentWeapon = new WeaponLaser();
+            case Define.Weapons.Weapon_Missile:
+                currentWeapon = new WeaponMissile();
                 break;
-            case Define.Weapons.Weapon_Grenade:
-                currentWeapon = new WeaponGrenade();
+            case Define.Weapons.Weapon_Turret:
+                currentWeapon = new WeaponTurret();
                 break;
         }
 

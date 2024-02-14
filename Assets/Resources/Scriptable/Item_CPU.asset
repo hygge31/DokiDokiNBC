@@ -14,10 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 2d981256407c92e4caa3f75cf02b47ec, type: 3}
   displayName: CPU
-  displayDesc: "\uC544~ \uCEF4\uD4E8\uD130 \uBC14\uAFB8\uACE0\uC2F6\uB2E4~"
-  isActive: 0
+  displayDesc: "\uC5F0\uC0B0\uC18D\uB3C4\uAC00 \uBE68\uB77C\uC838 \uD22C\uC0AC\uCCB4
+    \uBC1C\uC0AC \uC18D\uB3C4\uAC00 \uC99D\uAC00\uD569\uB2C8\uB2E4."
+  isWeapon: 0
   isStackable: 1
   atk: 0
-  fireRate: -0.05
-  crit: 0
+  fireRate: -0.1
   moveSpeed: 0
+  addBullet: 0
+  pierceCount: 0
+  weaponType: 0
