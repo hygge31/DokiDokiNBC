@@ -1,0 +1,1076 @@
+fileFormatVersion: 2
+guid: 49e59f641bc9a874f90af67a2b60222c
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: IsaacNormal_4
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 855
+        width: 84
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 00f559173f3705248b970d6d33b529bb
+      internalID: 1864385040
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IsaacNormal_5
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 852
+        width: 84
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d1519722a42efc745bfd4b2135d86987
+      internalID: -1664912663
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IsaacNormal_6
+      rect:
+        serializedVersion: 2
+        x: 270
+        y: 855
+        width: 84
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 990d6a8672642b34ca8b5b49c72e337e
+      internalID: 1451211042
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IsaacNormal_7
+      rect:
+        serializedVersion: 2
+        x: 390
+        y: 852
+        width: 84
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8c05812baac304646a3c3e73c083d5f9
+      internalID: 983371008
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IsaacNormal_8
+      rect:
+        serializedVersion: 2
+        x: 510
+        y: 855
+        width: 84
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 42da60bd4c53e51428cd26e1cb34c2e7
+      internalID: 442192790
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IsaacNormal_9
+      rect:
+        serializedVersion: 2
+        x: 630
+        y: 852
+        width: 84
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4479f932bf72bee42bc2b8e0d824a32b
+      internalID: 1057383856
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IsaacNormal_10
+      rect:
+        serializedVersion: 2
+        x: 750
+        y: 855
+        width: 84
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 509c1b06ea47f7844b96fe5d84641908
+      internalID: 43599203
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IsaacNormal_11
+      rect:
+        serializedVersion: 2
+        x: 870
+        y: 852
+        width: 84
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: afd2d1005a6e0134ab59b81779c0d6ed
+      internalID: 839198410
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IsaacNormal_13
+      rect:
+        serializedVersion: 2
+        x: 45
+        y: 726
+        width: 54
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6ab2469a5d8fe474c8bd9a36dac40826
+      internalID: -309800710
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IsaacNormal_14
+      rect:
+        serializedVersion: 2
+        x: 141
+        y: 726
+        width: 54
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ea68ea93731810e459b4e9c4bd98822a
+      internalID: 367858371
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IsaacNormal_15
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 726
+        width: 54
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 211b38ee07e2e804dbe02daea4fc406b
+      internalID: 1792911721
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IsaacNormal_16
+      rect:
+        serializedVersion: 2
+        x: 333
+        y: 720
+        width: 54
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f16400c16a7a7254c93cbd3833243d75
+      internalID: 1503955450
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IsaacNormal_17
+      rect:
+        serializedVersion: 2
+        x: 429
+        y: 723
+        width: 54
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 92f44514c29c77442a55c70dc9313200
+      internalID: -1063611001
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IsaacNormal_18
+      rect:
+        serializedVersion: 2
+        x: 525
+        y: 726
+        width: 54
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e89b3beb0bb4cc642b2c96e1dd937bf6
+      internalID: 1128009361
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IsaacNormal_19
+      rect:
+        serializedVersion: 2
+        x: 621
+        y: 726
+        width: 54
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: acd071ece06344f4b93b8801a89da876
+      internalID: 1111435665
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IsaacNormal_20
+      rect:
+        serializedVersion: 2
+        x: 714
+        y: 726
+        width: 54
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d8e5530e60be73747a61f604528f8e77
+      internalID: -1102696495
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IsaacNormal_21
+      rect:
+        serializedVersion: 2
+        x: 813
+        y: 720
+        width: 54
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8a16ec46e712178499f6c9d49ac409d2
+      internalID: -543118190
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IsaacNormal_22
+      rect:
+        serializedVersion: 2
+        x: 909
+        y: 723
+        width: 54
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2185f36aa245599499afd658dca8df93
+      internalID: -2106377528
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IsaacNormal_24
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 597
+        width: 48
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b01e84afd5a21e740b20cb230b2ab1f6
+      internalID: 1633163618
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IsaacNormal_25
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 597
+        width: 45
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 04cfdaed41cef394cb48bcf2ff38290d
+      internalID: -630322585
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IsaacNormal_26
+      rect:
+        serializedVersion: 2
+        x: 237
+        y: 597
+        width: 48
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bc620b92aa7c28d41889a081777ee806
+      internalID: -161166377
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IsaacNormal_27
+      rect:
+        serializedVersion: 2
+        x: 333
+        y: 597
+        width: 51
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dd59bd06a524d8f4f81b644c36ceaa32
+      internalID: 634023563
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IsaacNormal_28
+      rect:
+        serializedVersion: 2
+        x: 429
+        y: 597
+        width: 51
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4d4ed73c7f6525f4b9e6e408697f0762
+      internalID: 1911782282
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IsaacNormal_29
+      rect:
+        serializedVersion: 2
+        x: 528
+        y: 597
+        width: 45
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a429c95b942f9f24ea1745419330a846
+      internalID: -140256236
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IsaacNormal_30
+      rect:
+        serializedVersion: 2
+        x: 624
+        y: 597
+        width: 45
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c729c13697430ea429a91dbf2b1805f0
+      internalID: 1777850229
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IsaacNormal_31
+      rect:
+        serializedVersion: 2
+        x: 717
+        y: 597
+        width: 54
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 299a1b12c7722b549b273527cecf2f5c
+      internalID: 827604503
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IsaacNormal_32
+      rect:
+        serializedVersion: 2
+        x: 813
+        y: 597
+        width: 54
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 45941e24988e528429b5cae04f981ad6
+      internalID: -183565237
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IsaacNormal_33
+      rect:
+        serializedVersion: 2
+        x: 909
+        y: 597
+        width: 54
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 281146d52c0806f488aa3cddce28d792
+      internalID: 1624679132
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IsaacNormal_36
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 408
+        width: 84
+        height: 99
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3ba9ac1626478c645975c6949e74b708
+      internalID: -2095268867
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IsaacNormal_37
+      rect:
+        serializedVersion: 2
+        x: 222
+        y: 417
+        width: 84
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b1b230721b4bfba48bf74dabc76955a4
+      internalID: 627169834
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IsaacNormal_38
+      rect:
+        serializedVersion: 2
+        x: 414
+        y: 411
+        width: 84
+        height: 99
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f749bb67d109ba74ea9eb018263b7423
+      internalID: -1367921094
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IsaacNormal_39
+      rect:
+        serializedVersion: 2
+        x: 603
+        y: 414
+        width: 90
+        height: 87
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fdb309045849d0b4d8b16dc543fd4f20
+      internalID: 1952163331
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IsaacNormal_56
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 219
+        width: 90
+        height: 99
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eb51cf5843285174e9e3a566fe10279d
+      internalID: -1716108661
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IsaacNormal_57
+      rect:
+        serializedVersion: 2
+        x: 219
+        y: 219
+        width: 102
+        height: 99
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 51d262fb599b355439b0a15d20827c35
+      internalID: 444388345
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IsaacNormal_58
+      rect:
+        serializedVersion: 2
+        x: 414
+        y: 213
+        width: 84
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8bfed0a8102e54b47a5650bd1e489d04
+      internalID: -474043173
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IsaacNormal_59
+      rect:
+        serializedVersion: 2
+        x: 606
+        y: 219
+        width: 84
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 25630ac704de4614997224ab2a6ed98e
+      internalID: 36051613
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IsaacNormal_61
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 3
+        width: 84
+        height: 132
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: adc5a442be88fd845b662437a95a4d13
+      internalID: -1175115574
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IsaacNormal_62
+      rect:
+        serializedVersion: 2
+        x: 228
+        y: 42
+        width: 84
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cfea6ba93eca6744ba5059d66d307bc7
+      internalID: 1984383870
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IsaacNormal_63
+      rect:
+        serializedVersion: 2
+        x: 399
+        y: 24
+        width: 108
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f6be31e105b45b6418589795ed336d69
+      internalID: -728148736
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IsaacNormal_64
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 0
+        width: 9
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f8a8b90e5006de449ad81a6e3ac7b6e5
+      internalID: -58323624
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IsaacNormal_65
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 0
+        width: 9
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9eb8066a0fbb1fb458b0ed2ea63d64ea
+      internalID: 101840766
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IsaacNormal_66
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 0
+        width: 18
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ce13d5e663a6820458232cf5623f3a55
+      internalID: 1627435197
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      IsaacNormal_0: -1533168031
+      IsaacNormal_1: -172972150
+      IsaacNormal_10: 43599203
+      IsaacNormal_11: 839198410
+      IsaacNormal_12: 19287439
+      IsaacNormal_13: -309800710
+      IsaacNormal_14: 367858371
+      IsaacNormal_15: 1792911721
+      IsaacNormal_16: 1503955450
+      IsaacNormal_17: -1063611001
+      IsaacNormal_18: 1128009361
+      IsaacNormal_19: 1111435665
+      IsaacNormal_2: -812808652
+      IsaacNormal_20: -1102696495
+      IsaacNormal_21: -543118190
+      IsaacNormal_22: -2106377528
+      IsaacNormal_23: -1338040841
+      IsaacNormal_24: 1633163618
+      IsaacNormal_25: -630322585
+      IsaacNormal_26: -161166377
+      IsaacNormal_27: 634023563
+      IsaacNormal_28: 1911782282
+      IsaacNormal_29: -140256236
+      IsaacNormal_3: 353942070
+      IsaacNormal_30: 1777850229
+      IsaacNormal_31: 827604503
+      IsaacNormal_32: -183565237
+      IsaacNormal_33: 1624679132
+      IsaacNormal_34: 1249600178
+      IsaacNormal_35: -688399198
+      IsaacNormal_36: -2095268867
+      IsaacNormal_37: 627169834
+      IsaacNormal_38: -1367921094
+      IsaacNormal_39: 1952163331
+      IsaacNormal_4: 1864385040
+      IsaacNormal_40: 1820657704
+      IsaacNormal_41: 959541948
+      IsaacNormal_42: -1149333102
+      IsaacNormal_43: 1979580939
+      IsaacNormal_44: -52448564
+      IsaacNormal_45: -526324143
+      IsaacNormal_46: 101752237
+      IsaacNormal_47: -1865722279
+      IsaacNormal_48: -1925043016
+      IsaacNormal_49: -886817011
+      IsaacNormal_5: -1664912663
+      IsaacNormal_50: 1603347809
+      IsaacNormal_51: 686185365
+      IsaacNormal_52: 605606421
+      IsaacNormal_53: -1105629320
+      IsaacNormal_54: 1781183443
+      IsaacNormal_55: -614781298
+      IsaacNormal_56: -1716108661
+      IsaacNormal_57: 444388345
+      IsaacNormal_58: -474043173
+      IsaacNormal_59: 36051613
+      IsaacNormal_6: 1451211042
+      IsaacNormal_60: -2108267994
+      IsaacNormal_61: -1175115574
+      IsaacNormal_62: 1984383870
+      IsaacNormal_63: -728148736
+      IsaacNormal_64: -58323624
+      IsaacNormal_65: 101840766
+      IsaacNormal_66: 1627435197
+      IsaacNormal_7: 983371008
+      IsaacNormal_8: 442192790
+      IsaacNormal_9: 1057383856
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
