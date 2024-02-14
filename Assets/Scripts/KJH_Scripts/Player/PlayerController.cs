@@ -32,7 +32,7 @@ public class PlayerController : MonoBehaviour
     private void Move()
     {
         Vector3 dir = transform.up * curMovementInput.y + transform.right * curMovementInput.x;
-        dir *= _stats.CurrentStates.speed;
+        dir *= _stats.CurrentStates.moveSpeed;
 
         _rigidbody.velocity = dir;
 
@@ -93,7 +93,6 @@ public class PlayerController : MonoBehaviour
         if (context.phase == InputActionPhase.Performed || context.phase == InputActionPhase.Waiting)
         {
             curMovementInput = context.ReadValue<Vector2>();
-            PlayerAttackController.Instance.SetAttackDirection(curMovementInput);
         }
         else if (context.phase == InputActionPhase.Canceled)
         {

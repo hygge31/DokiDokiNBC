@@ -1,16 +1,6 @@
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "BodyPartData", menuName = "KJH_SO/Body Part Data", order = 1)]
-//public class BodyPartData : ScriptableObject
-//{
-//    public string spritePath; // 스프라이트 리소스 파일 경로
-//    public string animatorPath; // 애니메이터 리소스 파일 경로
-
-//    public RuntimeAnimatorController LoadAnimator()
-//    {
-//        return Resources.Load<RuntimeAnimatorController>(animatorPath);
-//    }
-//}
 
 public class BodyPartSO : ScriptableObject
 {

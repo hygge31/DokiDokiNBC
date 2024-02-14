@@ -8,6 +8,8 @@ public class CharacterStatsHandler : MonoBehaviour
     [SerializeField] private CharacterStats baseStats;
     public CharacterStats CurrentStates { get; private set; }
 
+    public List<CharacterStats> statsModifiers = new List<CharacterStats>();
+
     private void Awake()
     {
         UpdateCharacterStats();
@@ -16,9 +18,9 @@ public class CharacterStatsHandler : MonoBehaviour
     private void UpdateCharacterStats()
     {
         CurrentStates = new CharacterStats { };
-        CurrentStates.statsChangeType = baseStats.statsChangeType;
         CurrentStates.maxHealth = baseStats.maxHealth;
-        CurrentStates.speed = baseStats.speed;
-
+        CurrentStates.moveSpeed = baseStats.moveSpeed;
+        CurrentStates.fireRate = baseStats.fireRate;
+        CurrentStates.atk = baseStats.atk;
     }
 }

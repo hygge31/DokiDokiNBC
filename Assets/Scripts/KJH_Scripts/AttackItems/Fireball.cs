@@ -1,33 +1,81 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 
 public class Fireball : MonoBehaviour, IAttack
 {
-    //private PlayerAttackController _playerAttackController;
+    private CharacterStatsHandler charStats;
 
-    //[SerializeField] AttackSO attackStat;
+    [Header("Base Stats")]
+    private float projectileSpeed = 10.0f; // 투사체 속도
+    private float atk = 1f; //투사체 데미지
+    private float fireRate = 1f; // 발사속도
 
-    //[SerializeField] private float speed = 4f;
+    private GameObject player; // 플레이어 할당
 
-    //private Rigidbody2D _rigidbody2D;
+    [SerializeField] private GameObject pfFireball; // 프리팹
 
-    //private void Awake()
-    //{
-    //    _rigidbody2D = GetComponent<Rigidbody2D>();
-    //}
+    private Transform firePoint; // 투사체 발사 지점
+    private Quaternion rotation; // 투사체 방향
 
+    [SerializeField] private LayerMask levelCollisionLayer; // 콜리전 레이어
+    [SerializeField] private LayerMask targetLayer; //타겟(적) 레이어
+
+
+
+    private void Awake()
+    {
+        player = GameObject.FindGameObjectWithTag("Player");
+        charStats = player.GetComponent<CharacterStatsHandler>();
+        UpdateStats();
+    }
+
+    private void UpdateStats()
+    {
+        charStats.CurrentStates.atk = charStats.CurrentStates.atk * atk;
+        charStats.CurrentStates.fireRate = charStats.CurrentStates.fireRate * fireRate;
+    }
     public void PerformAttack(Vector2 attackDirection)
     {
         //아이템 공격 로직
-        //_playerAttackController.CreateProjectile(attackStat);
         Debug.Log("Annnnnnnnnnnd Fireball!");
-
-        //float fireRate = attackStat.fireRate;
-        //float damage = attackStat.damage;
-
-        //_rigidbody2D.velocity = attackDirection.normalized * speed;
-
+        rotation = PlayerAttackController.Instance.rotation;
+        attackDirection = PlayerAttackController.Instance.attackDirection;
+        LaunchProjectile(attackDirection, rotation);
     }
 
+    // 투사체 발사
+    void LaunchProjectile(Vector2 direction, Quaternion rotation)
+    {
+        // 투사체 포지션 찾기
+        firePoint = player.transform;
+
+        
+        GameObject projectile = Instantiate(pfFireball, firePoint.position, rotation);
+        Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
+        rb.velocity = direction * projectileSpeed;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (levelCollisionLayer.value == (levelCollisionLayer.value | (1 << collision.gameObject.layer)))
+        {
+            DestroyProjectile();
+        }
+        else if (targetLayer == (targetLayer | (1 << collision.gameObject.layer)))
+        {
+            HealthSystem healthSystem = collision.GetComponentInParent<HealthSystem>();
+            if (healthSystem != null)
+            {
+                healthSystem.ChangeHealth(-atk);
+            }
+            DestroyProjectile();
+        }
+    }
+
+    private void DestroyProjectile()
+    {
+        gameObject.SetActive(false);
+    }
 }

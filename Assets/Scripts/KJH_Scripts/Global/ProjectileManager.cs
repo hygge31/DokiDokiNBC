@@ -21,12 +21,12 @@ public class ProjectileManager : MonoBehaviour
     }
 
 
-    public void ShootBullet(Vector2 startPostiion, AttackSO attackData)
-    {
-        GameObject obj = objectPool.SpawnFromPool(attackData.bulletNameTag);
+    //public void ShootBullet(Vector2 startPostiion, AttackSO attackData)
+    //{
+    //    GameObject obj = objectPool.SpawnFromPool(attackData.bulletNameTag);
 
-        obj.transform.position = startPostiion;
-        obj.SetActive(true);
-    }
+    //    obj.transform.position = startPostiion;
+    //    obj.SetActive(true);
+    //}
 
 }
