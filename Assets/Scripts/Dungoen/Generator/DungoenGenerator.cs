@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using UnityEditor;
 
 public class DungoenGenerator : MonoBehaviour
 {
@@ -89,12 +90,139 @@ public class DungoenGenerator : MonoBehaviour
                 if (path.Contains(checkNextRoomPoint))
                 {
                     RoomData nextRoomData = FindRoomdata(checkNextRoomPoint);
-                    roomData.CreateDoor(nextRoomData, i);
+                    CreateDoor(roomData,nextRoomData, i);
                 }
             }
             //roomData.ToggleDoor();
         }
     }
+
+    public void CreateDoor(RoomData curRommData ,RoomData nextRoom, int num) //
+    {
+        Transform container;
+
+        if (!DunGoenManager.Instance.container.transform.Find($"Room {curRommData.roomNumber}"))
+        {
+            container = new GameObject($"Room {curRommData.roomNumber}").transform;
+        }
+        else
+        {
+            container = DunGoenManager.Instance.container.transform.Find($"Room {curRommData.roomNumber}");
+        }
+
+
+        container.transform.SetParent(DunGoenManager.Instance.container.transform);
+
+        int width = curRommData.width;
+        int height = curRommData.height;
+
+
+
+        switch (num)
+        {
+            case 0: //R
+                //todo
+
+                if (!curRommData.rightDoor)
+                {
+                    if (!curRommData.rightcDoor)
+                    {
+                        int ranY = Random.Range(curRommData.center.y - height / 2 + 2, curRommData.center.y + height / 2 - 2);
+                        Vector2Int pot = new Vector2Int(curRommData.center.x + (width / 2), ranY);
+                        curRommData.rightDoorPoint = pot;
+                    }
+
+
+                    curRommData.rightDoorObj = Instantiate(curRommData.roomData.rightDoorObj, (Vector2)curRommData.rightDoorPoint + Vector2.right * 0.5f, Quaternion.identity);
+                    GameObject tileDoor = Instantiate(curRommData.roomData.tile_rightDoor, (Vector2)curRommData.rightDoorPoint + Vector2.right * 3, Quaternion.identity);
+
+                    curRommData.rightDoor = true;
+                    nextRoom.leftcDoor = true;
+                    nextRoom.leftDoorPoint = curRommData.rightDoorPoint;
+                    nextRoom.leftDoorPoint.x = nextRoom.center.x - nextRoom.width / 2;
+
+                    //todo
+                    curRommData.rightDoorObj.GetComponent<Door>().SetData(nextRoom, num, curRommData.roomNumber, tileDoor, (Vector2)curRommData.rightDoorPoint + Vector2.right * 3);
+                    curRommData.rightDoorObj.transform.SetParent(container.transform);
+                    tileDoor.transform.SetParent(container.transform);
+                    curRommData.doors.Add(curRommData.rightDoorObj.GetComponent<Door>());
+
+
+
+                }
+                break;
+            case 1: //T
+                if (!curRommData.topDoor)
+                {
+                    if (!curRommData.topcDoor)
+                    {
+                        int ranX = Random.Range(curRommData.center.x - width / 2 + 2, curRommData.center.x + width / 2 - 2);
+                        Vector2Int pot = new Vector2Int(ranX, curRommData.center.y + (height / 2));
+                        curRommData.topDoorPoint = pot;
+                    }
+
+
+                    curRommData.topDoorObj = Instantiate(curRommData.roomData.topDoorObj, (Vector2)curRommData.topDoorPoint, Quaternion.identity);
+                    GameObject tileDoor = Instantiate(curRommData.roomData.tile_topDoor, (Vector2)curRommData.topDoorPoint, Quaternion.identity);
+
+
+                    curRommData.topDoor = true;
+                    nextRoom.bottomcDoor = true;
+
+                    nextRoom.bottomDoorPoint = curRommData.topDoorPoint;
+                    nextRoom.bottomDoorPoint.y = nextRoom.center.y - nextRoom.height / 2;
+
+                    curRommData.topDoorObj.GetComponent<Door>().SetData(nextRoom, num, curRommData.roomNumber, tileDoor, (Vector2)curRommData.topDoorPoint);
+                    curRommData.topDoorObj.transform.SetParent(container.transform);
+                    tileDoor.transform.SetParent(container.transform);
+                    curRommData.doors.Add(curRommData.topDoorObj.GetComponent<Door>());
+
+
+                }
+
+                break;
+            case 2: //L
+                if (!curRommData.leftDoor)
+                {
+
+                    curRommData.leftDoorObj = Instantiate(curRommData.roomData.leftDoorObj, (Vector2)curRommData.leftDoorPoint + Vector2.right * 0.5f, Quaternion.identity);
+                    GameObject tileDoor = Instantiate(curRommData.roomData.tile_leftDoor, (Vector2)curRommData.leftDoorPoint + Vector2.right * 3, Quaternion.identity);
+
+                    curRommData.leftDoor = true;
+                    nextRoom.rightcDoor = true;
+                    curRommData.leftDoorObj.GetComponent<Door>().SetData(nextRoom, num, curRommData.roomNumber, tileDoor, (Vector2)curRommData.leftDoorPoint + Vector2.right * 3);
+                    curRommData.leftDoorObj.transform.SetParent(container.transform);
+                    tileDoor.transform.SetParent(container.transform);
+                    curRommData.doors.Add(curRommData.leftDoorObj.GetComponent<Door>());
+
+
+                }
+
+                break;
+            case 3: //B
+                if (!curRommData.bottomDoor)
+                {
+                    curRommData.bottomDoorObj = Instantiate(curRommData.roomData.bottomDoorObj, (Vector2)curRommData.bottomDoorPoint, Quaternion.identity);
+                    GameObject tileDoor = Instantiate(curRommData.roomData.tile_bottomDoor, (Vector2)curRommData.bottomDoorPoint + Vector2.up, Quaternion.identity);
+
+
+                    curRommData.bottomDoor = true;
+
+                    nextRoom.topcDoor = true;
+                    curRommData.bottomDoorObj.GetComponent<Door>().SetData(nextRoom, num, curRommData.roomNumber, tileDoor, (Vector2)curRommData.bottomDoorPoint + Vector2.up);
+                    curRommData.bottomDoorObj.transform.SetParent(container.transform);
+                    tileDoor.transform.SetParent(container.transform);
+                    curRommData.doors.Add(curRommData.bottomDoorObj.GetComponent<Door>());
+
+
+                }
+
+                break;
+        }
+
+
+    }
+
 
     #region MiniMap-------------------------------------------------------------------------------------------------
 

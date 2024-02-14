@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro.EditorUtilities;
@@ -12,9 +13,10 @@ public class DunGoenManager : MonoBehaviour
     public DungoenGenerator dungoenGenerator;
     public List<RoomData> dungoenRoomDataList = new List<RoomData>(); 
     public List<GameObject> minimapSpriteList = new List<GameObject>();
-    
 
 
+    [Header("Player")]
+    public Transform playerTransform;
 
 
 
@@ -28,6 +30,10 @@ public class DunGoenManager : MonoBehaviour
     [Header("Minimap part")]
     public GameObject minimapUi;
     public GameObject minimapCamera;
+
+    public event Action OnChangeMinimap;
+    public event Action<RoomData> OnMoveToDungoenRoom;
+
 
     private void Awake()
     {
@@ -61,7 +67,14 @@ public class DunGoenManager : MonoBehaviour
     }
 
 
-
+    public void CallOnChangeMinimap()
+    {
+        OnChangeMinimap?.Invoke();
+    }
+    public void CallOnMoveToDungoenRoom(RoomData roomData)
+    {
+        OnMoveToDungoenRoom?.Invoke(roomData);
+    }
 
     public void CreateDunGoen()
     {
@@ -78,7 +91,8 @@ public class DunGoenManager : MonoBehaviour
 
         dungoenGenerator.ProcedurealDungoenGenerator();
         minimapSpriteList[0].GetComponent<MinimapSprite>().CurPosition();
-
+        playerTransform = Instantiate(playerTransform.gameObject,Vector3.zero, Quaternion.identity).transform;
+        CallOnMoveToDungoenRoom(dungoenRoomDataList[0]);
     }
 
 
@@ -105,4 +119,18 @@ public class DunGoenManager : MonoBehaviour
         minimapSpriteList.Clear();
     }
    
+
+    public void MoveToDungoen(int curRoomNumber ,int nextRoomNumber)
+    {
+        curDungoenRoomNumber = nextRoomNumber;
+        dungoenRoomDataList[curDungoenRoomNumber].SpawnMonster();
+        minimapSpriteList[curRoomNumber].GetComponent<MinimapSprite>().OutPoisition();
+        minimapSpriteList[nextRoomNumber].GetComponent<MinimapSprite>().CurPosition();
+        CallOnChangeMinimap();
+        CallOnMoveToDungoenRoom(dungoenRoomDataList[nextRoomNumber]);
+    }
+
+
+    
+
 }
