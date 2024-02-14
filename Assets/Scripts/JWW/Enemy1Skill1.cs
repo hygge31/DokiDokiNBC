@@ -7,11 +7,11 @@ public class Enemy1Skill1 : MonoBehaviour
     public EnemySO enemySO;
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        PlayerHealthSystem healthSystem = null;
+        HealthSystem healthSystem = null;
         if (collision.tag != "Player")
             return;
-        if (collision.GetComponent<PlayerHealthSystem>() != null)
-            healthSystem = collision.GetComponent<PlayerHealthSystem>();
+        if (collision.GetComponent<HealthSystem>() != null)
+            healthSystem = collision.GetComponent<HealthSystem>();
         healthSystem?.ChangeHealth(-enemySO.skillPower);
     }
     public void Destroy()
