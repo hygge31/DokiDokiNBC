@@ -9,8 +9,7 @@ public class PlayerStatManager
     public Action<int, int> OnHealing;
     public Action<int, int> OnExtraHealing;
     public Action<int, int> OnGetDamaged;
-    public Action<Item_SO> OnApplyPerkStat;
-    public Action<Item_SO> OnGetOrChangeActiveItem;
+    public Action<Item_SO> OnApplyPerkStat;    
 
     // ### HPs
     public int Hp { get; private set; }
@@ -21,10 +20,7 @@ public class PlayerStatManager
     public float Atk {  get; private set; }
     public float FireRate {  get; private set; }
     public float Crit {  get; private set; }
-    public float MoveSpeed {  get; private set; }
-    
-
-    public Item_SO ActiveItem { get; private set; }
+    public float MoveSpeed {  get; private set; }    
 
     public void PlayerSetup()
     {
@@ -65,12 +61,6 @@ public class PlayerStatManager
         MoveSpeed += item.moveSpeed;        
 
         OnApplyPerkStat?.Invoke(item);
-    }
-
-    public void GetActiveItem(Item_SO item)
-    {
-        ActiveItem = item;
-        OnGetOrChangeActiveItem?.Invoke(item);
     }
 
     public void GetDamaged()

@@ -10,5 +10,6 @@ public class DungeonScene : BaseScene
 
         SceneType = Define.TestScenes.GJY2;
         Managers.Player.PlayerSetup();
+        Managers.Attack.WeaponSetup();
     }
 }

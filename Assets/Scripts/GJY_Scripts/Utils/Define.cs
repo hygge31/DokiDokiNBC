@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class Define
 {
+    public enum Weapons
+    {        
+        Weapon_Normal,
+        Weapon_Laser,
+        Weapon_Grenade,
+    }
+
     public enum Perks
     {
         Item_CPU,

@@ -11,7 +11,7 @@ public class Item_SO : ScriptableObject
     [TextArea]
     public string displayDesc;
 
-    public bool isActive;
+    public bool isWeapon;
     public bool isStackable;
 
     [Header("Stat")]    
@@ -19,4 +19,7 @@ public class Item_SO : ScriptableObject
     public float fireRate;
     public float crit;
     public float moveSpeed;
+
+    [Header("Weapon")]
+    public Define.Weapons weaponType;
 }

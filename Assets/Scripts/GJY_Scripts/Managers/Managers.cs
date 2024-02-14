@@ -8,8 +8,10 @@ public class Managers : MonoBehaviour
     static Managers Instance { get { Init(); return s_instance; } }
 
     #region Contents
+    AttackManager _attack = new AttackManager();
     PlayerStatManager _playerStat = new PlayerStatManager();
 
+    public static AttackManager Attack => Instance?._attack;
     public static PlayerStatManager Player => Instance?._playerStat;
     #endregion
 
@@ -43,6 +45,8 @@ public class Managers : MonoBehaviour
             }
             DontDestroyOnLoad(go);
             s_instance = go.GetComponent<Managers>();
+
+            Attack.Init();
         }
     }
 

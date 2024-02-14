@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,21 +14,36 @@ public class GJY_PlayerTemp : MonoBehaviour
     public float crit;    
     public float moveSpeed;
 
-    private Rigidbody2D _rigid;
+    private Rigidbody2D _rigid;    
 
     private bool isMovable = true;
+
+    private Vector2 _fireDir;
 
     private void Awake()
     {
         _rigid = GetComponent<Rigidbody2D>();
 
         Managers.Player.OnApplyPerkStat -= ApplyPerkStat;
-        Managers.Player.OnApplyPerkStat += ApplyPerkStat;
+        Managers.Player.OnApplyPerkStat += ApplyPerkStat;        
     }
 
     private void FixedUpdate()
     {
         Move();
+    }
+
+    private void Update()
+    {
+        if(Input.GetMouseButtonDown(0))
+        {
+            Fire();
+        }
+    }
+
+    private void Fire()
+    {
+        Managers.Attack.UseWeapon(transform.position, _fireDir);
     }
 
     private void Move()
