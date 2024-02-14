@@ -16,10 +16,12 @@ public class Managers : MonoBehaviour
     #region Core
     PoolManager _poolManager = new PoolManager();
     ResourceManager _resource = new ResourceManager();
+    SceneManagerEx _sceneManager = new SceneManagerEx();
     UIManaer _uiManager = new UIManaer();
 
     public static PoolManager Pool => Instance?._poolManager;
     public static ResourceManager RM => Instance?._resource;
+    public static SceneManagerEx Scene => Instance?._sceneManager;
     public static UIManaer UI => Instance?._uiManager;
     #endregion
 
@@ -41,9 +43,6 @@ public class Managers : MonoBehaviour
             }
             DontDestroyOnLoad(go);
             s_instance = go.GetComponent<Managers>();
-
-            UI.ShowSceneUI<UI_Room>();
-            Pool.Init();
         }
     }
 

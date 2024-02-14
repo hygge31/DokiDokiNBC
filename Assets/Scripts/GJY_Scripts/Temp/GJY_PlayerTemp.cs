@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class GJY_PlayerTemp : MonoBehaviour
 {
+    public int hp;
+    public int maxHp;
+    public int extraHp;
+
     public float atk;
     public float fireRate;
     public float crit;    
@@ -24,15 +28,6 @@ public class GJY_PlayerTemp : MonoBehaviour
     private void FixedUpdate()
     {
         Move();
-    }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.B))
-        {
-            isMovable = !isMovable;
-            // Temp To Do - 상점 UI 출력
-        }
     }
 
     private void Move()

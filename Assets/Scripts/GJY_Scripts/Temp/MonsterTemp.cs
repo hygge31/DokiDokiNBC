@@ -27,4 +27,10 @@ public class MonsterTemp : MonoBehaviour
             item.Setup(itemSO, transform);
         }
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+            Managers.Player.GetDamaged();
+    }
 }

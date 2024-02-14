@@ -59,7 +59,9 @@ public class Item_Health : DropItem
     protected override void InteractWithPlayer()
     {
         base.InteractWithPlayer();
-        // To Do - 플레이어 체력 회복
+
+        Managers.Player.Healing();
+
         Clear();
     }
 

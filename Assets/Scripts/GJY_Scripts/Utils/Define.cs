@@ -11,4 +11,18 @@ public class Define
         Item_Mustle,
         Item_Scouter,
     }
+
+    public enum Scenes
+    {
+        None,
+        Title,
+        Main,
+        Dungeon,
+    }
+
+    public enum TestScenes
+    {
+        GJY,
+        GJY2,
+    }
 }
