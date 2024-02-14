@@ -17,7 +17,7 @@ public class Item_CodePiece : DropItem
         base.Init();
 
         _rend.sprite = _itemSO.sprite;
-        _target = FindObjectOfType<PlayerController>().transform;        
+        _target = FindObjectOfType<GJY_PlayerTemp>().transform;        
     }
 
     private void FixedUpdate()
