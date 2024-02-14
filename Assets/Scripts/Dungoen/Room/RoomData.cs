@@ -1,10 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
+using Unity.VisualScripting;
 using UnityEngine;
 
+public enum DunGoneType
+{
+    Monster,
+    Portal,
+}
+
+
 [System.Serializable]
-public class RoomData :MonoBehaviour
+public class RoomData 
 {
     //Room SO
 
@@ -43,11 +51,18 @@ public class RoomData :MonoBehaviour
     [Header("Room State")]
     public bool clear;
     public List<Door> doors = new List<Door>();
+    public DunGoneType dungoenType;
+
 
     [Header("Camera")]
     public Camera _camera;
     public Vector2 minCamLimit;
     public Vector2 maxCamLimit;
+
+    [Header("Spawn")]
+    public List<Spawner> spawnerList = new List<Spawner>();
+    public int clearCondition;
+    public int curDeathMonster;
 
 
 
@@ -57,6 +72,7 @@ public class RoomData :MonoBehaviour
         roomData = roomDataSO;
         width = roomData.width;
         height = roomData.height;
+        dungoenType = DunGoneType.Monster;
 
     }
 
@@ -67,8 +83,11 @@ public class RoomData :MonoBehaviour
         this.roomNumber = roomNumber;
         bounds = new BoundsInt(new Vector3Int(center.x - (width / 2), center.y - (height / 2), 0), new Vector3Int(width, height, 0));
 
-        minCamLimit = new Vector2(center.x - width / 2, center.y - height / 2);
-        maxCamLimit = new Vector2(center.x + width / 2, center.y + height / 2);
+
+
+
+        minCamLimit = new Vector2(center.x - width / 2, center.y - height / 2) + new Vector2(DunGoenManager.Instance.cameraWidth, DunGoenManager.Instance.cameraHeight);
+        maxCamLimit = new Vector2(center.x + width / 2, center.y + height / 2) - new Vector2(DunGoenManager.Instance.cameraWidth, DunGoenManager.Instance.cameraHeight);
 
 
         leftDoorPoint = new Vector2Int(center.x - (width / 2), center.y);
@@ -78,125 +97,7 @@ public class RoomData :MonoBehaviour
     }
 
 
-    public void CreateDoor(RoomData nextRoom, int num) //
-    {
-        Transform container;
-
-        if(!DunGoenManager.Instance.container.transform.Find($"Room {roomNumber}"))
-        {
-             container = new GameObject($"Room {roomNumber}").transform;
-        }
-        else
-        {
-            container = DunGoenManager.Instance.container.transform.Find($"Room {roomNumber}");
-        }
-
-
-        container.transform.SetParent(DunGoenManager.Instance.container.transform);
-        switch (num)
-        {
-            case 0: //R
-                //todo
-
-                if (!rightDoor)
-                {
-                    if (!rightcDoor)
-                    {
-                        int ranY = Random.Range(center.y - height / 2 + 2, center.y + height / 2 - 2);
-                        Vector2Int pot = new Vector2Int(center.x + (width / 2), ranY);
-                        rightDoorPoint = pot;
-                    }
-                   
-
-                    rightDoorObj = Instantiate(roomData.rightDoorObj, (Vector2)rightDoorPoint + Vector2.right*0.5f, Quaternion.identity);
-                    GameObject tileDoor = Instantiate(roomData.tile_rightDoor, (Vector2)rightDoorPoint+Vector2.right*3, Quaternion.identity);
-
-                    rightDoor = true;
-                    nextRoom.leftcDoor = true;
-                    nextRoom.leftDoorPoint = rightDoorPoint;
-                    nextRoom.leftDoorPoint.x = nextRoom.center.x - nextRoom.width / 2;
-                   
-                    //todo
-                    rightDoorObj.GetComponent<Door>().SetData(nextRoom, num, roomNumber,tileDoor, (Vector2)rightDoorPoint + Vector2.right * 3);
-                    rightDoorObj.transform.SetParent(container.transform);
-                    tileDoor.transform.SetParent(container.transform);
-                    doors.Add(rightDoorObj.GetComponent<Door>());
-
-                    
-
-                }
-                break;
-            case 1: //T
-                if (!topDoor)
-                {
-                    if (!topcDoor)
-                    {
-                        int ranX = Random.Range(center.x - width / 2 + 2, center.x + width / 2 - 2);
-                        Vector2Int pot = new Vector2Int(ranX, center.y + (height / 2));
-                        topDoorPoint = pot;
-                    }
-                   
-
-                    topDoorObj = Instantiate(roomData.topDoorObj, (Vector2)topDoorPoint, Quaternion.identity);
-                    GameObject tileDoor = Instantiate(roomData.tile_topDoor, (Vector2)topDoorPoint, Quaternion.identity);
-
-
-                    topDoor = true;
-                    nextRoom.bottomcDoor = true;
-
-                    nextRoom.bottomDoorPoint = topDoorPoint;
-                    nextRoom.bottomDoorPoint.y = nextRoom.center.y - nextRoom.height / 2;
-
-                    topDoorObj.GetComponent<Door>().SetData(nextRoom, num, roomNumber,tileDoor, (Vector2)topDoorPoint);
-                    topDoorObj.transform.SetParent(container.transform);
-                    tileDoor.transform.SetParent(container.transform);
-                    doors.Add(topDoorObj.GetComponent<Door>());
-
-                    
-                }
-              
-                break;
-            case 2: //L
-                if (!leftDoor)
-                {
-              
-                    leftDoorObj = Instantiate(roomData.leftDoorObj, (Vector2)leftDoorPoint + Vector2.right*0.5f, Quaternion.identity);
-                    GameObject tileDoor = Instantiate(roomData.tile_leftDoor, (Vector2)leftDoorPoint+Vector2.right*3, Quaternion.identity);
-
-                    leftDoor = true;
-                    nextRoom.rightcDoor = true;
-                    leftDoorObj.GetComponent<Door>().SetData(nextRoom, num, roomNumber,tileDoor, (Vector2)leftDoorPoint + Vector2.right * 3);
-                    leftDoorObj.transform.SetParent(container.transform);
-                    tileDoor.transform.SetParent(container.transform);
-                    doors.Add(leftDoorObj.GetComponent<Door>());
-
-                    
-                }
-                
-                break;
-            case 3: //B
-                if (!bottomDoor)
-                {
-                    bottomDoorObj = Instantiate(roomData.bottomDoorObj, (Vector2)bottomDoorPoint, Quaternion.identity);
-                    GameObject tileDoor = Instantiate(roomData.tile_bottomDoor, (Vector2)bottomDoorPoint+Vector2.up, Quaternion.identity);
-
-
-                    bottomDoor = true;
-
-                    nextRoom.topcDoor = true;
-                    bottomDoorObj.GetComponent<Door>().SetData(nextRoom, num, roomNumber,tileDoor, (Vector2)bottomDoorPoint + Vector2.up);
-                    bottomDoorObj.transform.SetParent(container.transform);
-                    tileDoor.transform.SetParent(container.transform);
-                    doors.Add(bottomDoorObj.GetComponent<Door>());
-
-                    
-                }
-                
-                break;
-        }
-
-
-    }
+   
 
     public void AllDoorOff()
     {
@@ -229,10 +130,29 @@ public class RoomData :MonoBehaviour
     {
         if (!clear)
         {
-            //DungoenManager All door Set active false
-            Debug.Log("Stage Change Message and spawn monster");
+            foreach(Spawner spawner in spawnerList)
+            {
+                spawner.Spawn();
+            }
         }
 
+    }
+
+
+    public void DieMonsterAddAndClearCheck()
+    {
+        curDeathMonster++;
+
+        if(clearCondition <= curDeathMonster) //Clear
+        {
+            if(dungoenType == DunGoneType.Portal)
+            {
+                DunGoenManager.Instance.CallOnActivePortal();
+            }
+
+            clear = true;
+            DunGoenManager.Instance.DungoenAllDoorAppear();
+        }
     }
 
 

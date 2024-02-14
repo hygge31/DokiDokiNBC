@@ -654,10 +654,15 @@ MonoBehaviour:
   dungoenGenerator: {fileID: 8821290842321878402}
   dungoenRoomDataList: []
   minimapSpriteList: []
+  playerTransform: {fileID: 1144340165990618343, guid: 1accdae4c2559e049b80bd9d968f5556, type: 3}
   curDungoenRoomNumber: 0
+  count: 0
   panel: {fileID: 0}
   minimapUi: {fileID: 181524562308738900, guid: fc702630294b14149a6069bdc63510cc, type: 3}
   minimapCamera: {fileID: 2723129543925032339, guid: 43c32d7dd16a244cd8432b429ee93cc6, type: 3}
+  _camera: {fileID: 0}
+  cameraWidth: 0
+  cameraHeight: 0
 --- !u!114 &8821290842321878402
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -694,6 +699,8 @@ MonoBehaviour:
   - {x: 40, y: 60}
   - {x: 40, y: 90}
   - {x: 40, y: 120}
+  portal: {fileID: 17274583329301492, guid: 8b31fa8de916c42f19ca79236e197b6f, type: 3}
+  spawner: {fileID: 7513746694730626220, guid: 92bac69b0edc24df4ad69421614a4038, type: 3}
 --- !u!1 &7552459179735846338
 GameObject:
   m_ObjectHideFlags: 0

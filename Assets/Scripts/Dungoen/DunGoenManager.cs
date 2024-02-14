@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro.EditorUtilities;
@@ -12,37 +13,51 @@ public class DunGoenManager : MonoBehaviour
     public DungoenGenerator dungoenGenerator;
     public List<RoomData> dungoenRoomDataList = new List<RoomData>(); 
     public List<GameObject> minimapSpriteList = new List<GameObject>();
-    
 
-
-
-
+    [Header("Player")]
+    public Transform playerTransform;
 
     [Header("Game State")]
     public int curDungoenRoomNumber;
-
+    public int count; // init
     [Header("Room Move Panel")]
     public GameObject panel;
-
 
     [Header("Minimap part")]
     public GameObject minimapUi;
     public GameObject minimapCamera;
 
+    [Header("Camera")]
+    public Camera _camera;
+    public float cameraWidth;
+    public float cameraHeight;
+
+    
+    public event Action OnChangeMinimap;
+    public event Action<RoomData> OnMoveToDungoenRoom;
+    public event Action OnActivePortal;
+
     private void Awake()
     {
         Instance = this;
+
+        _camera = Camera.main;
+        Instantiate(minimapCamera);
+        Instantiate(minimapUi);
+        Instantiate(playerTransform);
+
+
+        cameraWidth = _camera.orthographicSize * _camera.aspect - 1;
+        cameraHeight = _camera.orthographicSize -2;
 
     }
 
     private void Start()
     {
-        Instantiate(minimapCamera);
-        Instantiate(minimapUi);
-
-        
         CreateDunGoen();
         DungoenAllDoorAppear();
+        CallOnMoveToDungoenRoom(dungoenRoomDataList[0]);
+        
     }
 
 
@@ -50,17 +65,29 @@ public class DunGoenManager : MonoBehaviour
     {
         //test
         if (Input.GetKeyDown(KeyCode.Space)){
-            DungoenAllDoorExit();
+            DungoenAllDoorAppear();
         }
 
-        if (Input.GetKeyDown(KeyCode.A))
+        if (Input.GetKeyDown(KeyCode.Z))
         {
-            DungoenAllDoorAppear();
+            CallOnActivePortal();
         }
         //test
     }
 
 
+    public void CallOnChangeMinimap()
+    {
+        OnChangeMinimap?.Invoke();
+    }
+    public void CallOnMoveToDungoenRoom(RoomData roomData)
+    {
+        OnMoveToDungoenRoom?.Invoke(roomData);
+    }
+    public void CallOnActivePortal()
+    {
+        OnActivePortal?.Invoke();
+    }
 
 
     public void CreateDunGoen()
@@ -78,7 +105,7 @@ public class DunGoenManager : MonoBehaviour
 
         dungoenGenerator.ProcedurealDungoenGenerator();
         minimapSpriteList[0].GetComponent<MinimapSprite>().CurPosition();
-
+        
     }
 
 
@@ -105,4 +132,37 @@ public class DunGoenManager : MonoBehaviour
         minimapSpriteList.Clear();
     }
    
+
+    public void MoveToDungoen(int curRoomNumber ,int nextRoomNumber)
+    {
+        if (!dungoenRoomDataList[nextRoomNumber].clear)
+        {
+            count++;
+        }
+
+
+        curDungoenRoomNumber = nextRoomNumber;
+        dungoenRoomDataList[nextRoomNumber].SpawnMonster();
+        minimapSpriteList[curRoomNumber].GetComponent<MinimapSprite>().OutPoisition();
+        minimapSpriteList[nextRoomNumber].GetComponent<MinimapSprite>().CurPosition();
+        CallOnChangeMinimap();
+        CallOnMoveToDungoenRoom(dungoenRoomDataList[nextRoomNumber]);
+
+        if (!dungoenRoomDataList[nextRoomNumber].clear)
+        {
+            DungoenAllDoorExit();
+        }
+
+    }
+
+
+    public void DieMonster()
+    {
+        dungoenRoomDataList[curDungoenRoomNumber].DieMonsterAddAndClearCheck();
+    }
+
+
+
+
+
 }

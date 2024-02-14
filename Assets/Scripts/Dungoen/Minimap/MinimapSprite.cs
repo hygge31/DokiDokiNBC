@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class MinimapSprite : MonoBehaviour
 {
-    public SpriteRenderer defaultSprite;
-    public SpriteRenderer curPositionSprite;
-    public SpriteRenderer questionMark;
-    
 
+    public DunGoneType dunGoneType;
+
+
+    public SpriteRenderer defaultSprite;
+    public GameObject curPositionSprite;
+    public SpriteRenderer questionMark;
+    public SpriteRenderer portal;
 
 
 
@@ -18,13 +21,19 @@ public class MinimapSprite : MonoBehaviour
         {
             questionMark.enabled = false;
         }
-        curPositionSprite.enabled = true;
+
+        if(dunGoneType == DunGoneType.Portal)
+        {
+            portal.enabled = true;
+        }
+
+        curPositionSprite.SetActive(true);
         
     }
 
     public void OutPoisition()
     {
-        curPositionSprite.enabled = false;
+        curPositionSprite.SetActive(false);
         defaultSprite.color = Color.white;
     }
 

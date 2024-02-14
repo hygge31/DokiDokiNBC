@@ -12,8 +12,6 @@ public class Door : MonoBehaviour
     public Vector2 outPoint;
 
 
-    float speed = 0.1f;
-
     public SpriteRenderer spriteRenderer;
 
     public BoxCollider2D _collider;
@@ -54,16 +52,16 @@ public class Door : MonoBehaviour
         switch (num) //RTLB
         {
             case 0:
-                outPoint = room.leftDoorPoint + new Vector2Int(1,0);
+                outPoint = room.leftDoorPoint + new Vector2Int(1,0)*2;
                 break;
             case 1:
-                outPoint = room.bottomDoorPoint + new Vector2Int(0, 1);
+                outPoint = room.bottomDoorPoint + new Vector2Int(0, 1)*2;
                 break;
             case 2:
                 outPoint = room.rightDoorPoint + new Vector2Int(-1, 0);
                 break;
             case 3:
-                outPoint = room.topDoorPoint + new Vector2Int(0, -1);
+                outPoint = room.topDoorPoint + new Vector2Int(0, -1)*2;
                 break;
 
         }
@@ -185,13 +183,7 @@ public class Door : MonoBehaviour
         //Coroutine flash display 0.5f
         player.transform.position = (Vector2)outPoint;
         //todo
-        DunGoenManager.Instance.curDungoenRoomNumber = nextRoomNumber;
-        
-        DunGoenManager.Instance.dungoenRoomDataList[nextRoomNumber].SpawnMonster();
-        //todo
-
-        DunGoenManager.Instance.minimapSpriteList[curRoomNumber].GetComponent<MinimapSprite>().OutPoisition();
-        DunGoenManager.Instance.minimapSpriteList[nextRoomNumber].GetComponent<MinimapSprite>().CurPosition();
+        DunGoenManager.Instance.MoveToDungoen(curRoomNumber, nextRoomNumber);
 
     }
 
