@@ -93,10 +93,9 @@ public class DungoenGenerator : MonoBehaviour
                     CreateDoor(roomData,nextRoomData, i);
                 }
             }
-            //roomData.ToggleDoor();
         }
     }
-
+    #region Door-------------------------------------------------------------------------------------------------
     public void CreateDoor(RoomData curRommData ,RoomData nextRoom, int num) //
     {
         Transform container;
@@ -223,6 +222,7 @@ public class DungoenGenerator : MonoBehaviour
 
     }
 
+    #endregion
 
     #region MiniMap-------------------------------------------------------------------------------------------------
 

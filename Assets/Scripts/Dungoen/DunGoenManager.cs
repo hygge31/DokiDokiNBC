@@ -9,6 +9,10 @@ public class DunGoenManager : MonoBehaviour
     public static DunGoenManager Instance;
     public GameObject container;
 
+
+    [Header("Dungoen Camera")]
+    public Camera dungoenCamera;
+
     [Header("Dungoen Generator")]
     public DungoenGenerator dungoenGenerator;
     public List<RoomData> dungoenRoomDataList = new List<RoomData>(); 
@@ -17,8 +21,6 @@ public class DunGoenManager : MonoBehaviour
 
     [Header("Player")]
     public Transform playerTransform;
-
-
 
     [Header("Game State")]
     public int curDungoenRoomNumber;
@@ -34,19 +36,30 @@ public class DunGoenManager : MonoBehaviour
     public event Action OnChangeMinimap;
     public event Action<RoomData> OnMoveToDungoenRoom;
 
+    [Header("Camera")]
+    public Camera _camera;
+    public float cameraWidth;
+    public float cameraHeight;
+
 
     private void Awake()
     {
         Instance = this;
 
+        _camera = Camera.main;
+        Instantiate(minimapCamera);
+        Instantiate(minimapUi);
+        Instantiate(playerTransform);
+
+
+
+        cameraWidth = _camera.orthographicSize * _camera.aspect - 1;
+        cameraHeight = _camera.orthographicSize -2;
+
     }
 
     private void Start()
     {
-        Instantiate(minimapCamera);
-        Instantiate(minimapUi);
-
-        
         CreateDunGoen();
         DungoenAllDoorAppear();
     }
@@ -59,7 +72,7 @@ public class DunGoenManager : MonoBehaviour
             DungoenAllDoorExit();
         }
 
-        if (Input.GetKeyDown(KeyCode.A))
+        if (Input.GetKeyDown(KeyCode.Z))
         {
             DungoenAllDoorAppear();
         }
@@ -91,7 +104,6 @@ public class DunGoenManager : MonoBehaviour
 
         dungoenGenerator.ProcedurealDungoenGenerator();
         minimapSpriteList[0].GetComponent<MinimapSprite>().CurPosition();
-        playerTransform = Instantiate(playerTransform.gameObject,Vector3.zero, Quaternion.identity).transform;
         CallOnMoveToDungoenRoom(dungoenRoomDataList[0]);
     }
 

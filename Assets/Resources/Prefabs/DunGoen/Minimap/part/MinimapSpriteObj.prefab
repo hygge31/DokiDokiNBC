@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8598360736324642772}
   - component: {fileID: 8577836853989136259}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: MinimapSpriteObj
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -33,7 +33,7 @@ Transform:
   - {fileID: 4701618307751599105}
   - {fileID: 1322936878542280630}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8577836853989136259
 MonoBehaviour:
@@ -60,7 +60,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1322936878542280630}
   - component: {fileID: 7657987985984204292}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: A-Jeep
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -144,7 +144,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4033780644728925612}
   - component: {fileID: 7475535360510223522}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: questionMarkSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -228,7 +228,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4701618307751599105}
   - component: {fileID: 8766342767130452891}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: DefaultSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}

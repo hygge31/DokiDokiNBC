@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
+using Unity.VisualScripting;
 using UnityEngine;
 
 [System.Serializable]
@@ -67,8 +68,11 @@ public class RoomData
         this.roomNumber = roomNumber;
         bounds = new BoundsInt(new Vector3Int(center.x - (width / 2), center.y - (height / 2), 0), new Vector3Int(width, height, 0));
 
-        minCamLimit = new Vector2(center.x - width / 2, center.y - height / 2);
-        maxCamLimit = new Vector2(center.x + width / 2, center.y + height / 2);
+
+
+
+        minCamLimit = new Vector2(center.x - width / 2, center.y - height / 2) + new Vector2(DunGoenManager.Instance.cameraWidth, DunGoenManager.Instance.cameraHeight);
+        maxCamLimit = new Vector2(center.x + width / 2, center.y + height / 2) - new Vector2(DunGoenManager.Instance.cameraWidth, DunGoenManager.Instance.cameraHeight);
 
 
         leftDoorPoint = new Vector2Int(center.x - (width / 2), center.y);
