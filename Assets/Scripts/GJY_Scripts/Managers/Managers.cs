@@ -10,9 +10,11 @@ public class Managers : MonoBehaviour
     #region Contents
     AttackManager _attack = new AttackManager();
     PlayerStatManager _playerStat = new PlayerStatManager();
+    GameManager _gameManager = new GameManager();
 
     public static AttackManager Attack => Instance?._attack;
     public static PlayerStatManager Player => Instance?._playerStat;
+    public static GameManager GameManager => Instance?._gameManager;
     #endregion
 
     #region Core

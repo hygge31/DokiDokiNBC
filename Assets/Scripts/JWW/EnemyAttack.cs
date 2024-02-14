@@ -17,7 +17,9 @@ public class EnemyAttack : MonoBehaviour
     {
         if (collision.gameObject.tag != "Player")
             return;
-        collision.gameObject.GetComponent<HealthSystem>().ChangeHealth(-enemyController.enemySO.power);
+        //collision.gameObject.GetComponent<HealthSystem>().ChangeHealth(-enemyController.enemySO.power);
+
+        Managers.Player.GetDamaged();
     }
     public void EndOfAttack()
     {

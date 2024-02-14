@@ -24,8 +24,8 @@ public class PlayerStatManager
 
     public void Init()
     {
-        Hp = 3;
-        MoveSpeed = 10;
+        Hp = 50;
+        MoveSpeed = 5;
         Atk = 1;
         FireRate = 1;
     }
@@ -42,8 +42,7 @@ public class PlayerStatManager
         //MoveSpeed = stat.CurrentStates.speed;
 
         // Temp
-        Hp = 3;
-        MoveSpeed = 3;
+        
 
         OnPlayerSetup?.Invoke();
     }
@@ -78,7 +77,7 @@ public class PlayerStatManager
         if (ExtraHp > 0)
         {
             ExtraHp--;
-            OnGetDamaged?.Invoke(prevExtraHp, ExtraHp);
+            OnGetDamaged?.Invoke(prevExtraHp, ExtraHp);            
         }
         else
         {
