@@ -102,8 +102,11 @@ public class UI_Hud : UI_Scene
                         UpdateTexts();
                         return;
                     }
-                    else // 중첩 불가능하면 아무일도 없음
+                    else // 중첩 불가능하면 텍스트만 업데이트
+                    {
+                        UpdateTexts();
                         return;
+                    }                         
                 }
             }
         }
@@ -121,7 +124,7 @@ public class UI_Hud : UI_Scene
     {
         GetText((int)Texts.CodePiece_Text); // To Do - 가지고 있는 코드조각 표기
         GetText((int)Texts.Atk_Text).text = $"{_playerStatManager.Atk}";
-        GetText((int)Texts.FireRate_Text).text = $"{_playerStatManager.FireRate}";
+        GetText((int)Texts.FireRate_Text).text = $"{_playerStatManager.FireRate:F2}";
         GetText((int)Texts.MoveSpeed_Text).text = $"{_playerStatManager.MoveSpeed}";
         GetText((int)Texts.AddBullet_Text).text = $"{_playerStatManager.AddBullet}";
         GetText((int)Texts.Pierce_Text).text = $"{_playerStatManager.PierceCount}";

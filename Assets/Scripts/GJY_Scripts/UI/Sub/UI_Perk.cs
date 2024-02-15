@@ -48,7 +48,8 @@ public class UI_Perk : UI_Base
         _image.sprite = item.sprite;
         _count += count;
 
-        GetText((int)Texts.Count_Text).text = $"X {_count}";
+        if (item.isStackable)
+            GetText((int)Texts.Count_Text).text = $"X {_count}";        
     }
     
 

@@ -41,7 +41,7 @@ public class DropManager
     {
         if (RandomGet(_weaponPercentage) == false)
             return;
-
+        
         string[] itemNames = Enum.GetNames(typeof(Define.Weapons));
         Item_SO itemSO = Resources.Load<Item_SO>($"Scriptable/{itemNames[Random.Range(1, itemNames.Length)]}");
 
