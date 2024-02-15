@@ -44,6 +44,7 @@ public class Boss : MonoBehaviour
 
             yield return new WaitForSeconds(0.1f);
         }
+        DunGoenManager.Instance.CreatePortal(transform);
         fill.fillAmount = 0;
     }
 

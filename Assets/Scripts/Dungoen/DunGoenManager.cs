@@ -14,6 +14,8 @@ public class DunGoenManager : MonoBehaviour
     public DungoenGenerator dungoenGenerator;
     public List<RoomData> dungoenRoomDataList = new List<RoomData>(); 
     public List<GameObject> minimapSpriteList = new List<GameObject>();
+    public GameObject portalObj;
+
 
     [Header("Player")]
     public Transform playerTransform;
@@ -239,6 +241,19 @@ public class DunGoenManager : MonoBehaviour
 
         Item_Weapon weapon = Managers.RM.Instantiate($"Items/Item_Weapon").GetComponent<Item_Weapon>();
         weapon.Setup(itemSO, pot);
+    }
+
+
+    public void CreatePortal(Transform transform)
+    {
+        StartCoroutine(CreatePortalCo(transform));
+    }
+
+    IEnumerator CreatePortalCo(Transform transform)
+    {
+        Portal newPortal = Instantiate(portalObj, transform.position, Quaternion.identity).GetComponent<Portal>();
+        yield return new WaitForSeconds(1f);
+        newPortal.PotalOn();
     }
 
 }
