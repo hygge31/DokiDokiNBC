@@ -6,12 +6,8 @@ using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class Bullet_Thunder : Bullet
 {
-    [SerializeField] private LayerMask targetLayer;
     private CircleCollider2D circleCollider;
 
-    private float duration = 5f;
-    private float travelSpeed = 0f;
-    private float atk = 10f;
     private float distance = 3f;
 
     private Vector2 attackDirection;
@@ -24,15 +20,12 @@ public class Bullet_Thunder : Bullet
         circleCollider.enabled = false;
     }
 
-    public override void Setup(Vector3 spawnPos, Vector2 dir, float atk, float travelSpeed, float duration)
+    public override void Setup(Vector3 spawnPos, Vector2 dir, float atk, float travelSpeed, float duration, int pierceCount)
     {
-        base.Setup(spawnPos, dir, atk, travelSpeed, duration);
+        base.Setup(spawnPos, dir, atk, travelSpeed, duration, pierceCount);
 
         transform.position = spawnPos;
         attackDirection = dir;
-        this.atk = atk;
-        this.travelSpeed = travelSpeed;
-        this.duration = duration;
 
         PositionAdjust(spawnPos);
     }
@@ -45,7 +38,7 @@ public class Bullet_Thunder : Bullet
             HealthSystem healthSystem = collision.GetComponentInParent<HealthSystem>();
             if (healthSystem != null)
             {
-                healthSystem.ChangeHealth(-atk);
+                healthSystem.ChangeHealth(-Atk);
             }
         }
     }

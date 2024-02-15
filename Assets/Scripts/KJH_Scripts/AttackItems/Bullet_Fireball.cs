@@ -45,7 +45,7 @@ public class Bullet_Fireball : Bullet
 
     private void OnFire(Vector2 dir)
     {
-        rb.velocity = dir * TavelSpeed;
+        rb.velocity = dir * TravelSpeed;
         if (isHit)
         {
             rb.velocity = Vector3.zero;
