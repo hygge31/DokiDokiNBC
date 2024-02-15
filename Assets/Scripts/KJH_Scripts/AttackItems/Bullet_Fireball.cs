@@ -8,21 +8,21 @@ public class Bullet_Fireball : Bullet
     [SerializeField] private LayerMask targetLayer;
     private Rigidbody2D rb;
 
+    public Animator animator; // 폭발 애니메이션을 위함
+
+    
     private float aliveTime = 0f;
     private float duration = 5f;
     private float travelSpeed = 6f;
     private float atk = 1f;
     private Vector2 attackDirection;
 
-    //public Bullet_Fireball(float atk, float fireRate, float travelSpeed) : base(atk, fireRate, travelSpeed)
-    //{
-    //    atk = 1f;
-    //    fireRate = 1f;
-    //    travelSpeed = 6f;
-    //}
+    private bool isHit = false;
+
 
     private void Awake()
     {
+        animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
     }
 
@@ -49,6 +49,10 @@ public class Bullet_Fireball : Bullet
     private void OnFire(Vector2 dir)
     {
         rb.velocity = dir * travelSpeed;
+        if (isHit)
+        {
+            rb.velocity = Vector3.zero;
+        }
     }
 
 
@@ -57,19 +61,20 @@ public class Bullet_Fireball : Bullet
         if (targetLayer == (targetLayer | (1 << collision.gameObject.layer)))
         {
             //체력감소
-            Debug.Log("맞음");
             HealthSystem healthSystem = collision.GetComponentInParent<HealthSystem>();
             if (healthSystem != null)
             {
                 healthSystem.ChangeHealth(-atk);
             }
-            Clear();
+            isHit = true;
+            if (isHit)
+                animator.SetTrigger("Explode");
         }
     }
 
     public void Clear()
     {
-        Debug.Log("사라짐");
+        isHit = false;
         aliveTime = 0;
         rb.velocity = Vector3.zero;
         transform.position = new Vector3(100, 0, 0);
@@ -77,5 +82,4 @@ public class Bullet_Fireball : Bullet
 
         Managers.RM.Destroy(gameObject);
     }
-
 }

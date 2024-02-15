@@ -189,6 +189,7 @@ MonoBehaviour:
   targetLayer:
     serializedVersion: 2
     m_Bits: 256
+  animator: {fileID: 0}
 --- !u!50 &-4352670510734332074
 Rigidbody2D:
   serializedVersion: 4

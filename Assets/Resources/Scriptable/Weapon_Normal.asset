@@ -20,6 +20,8 @@ MonoBehaviour:
   atk: 2
   fireRate: 1
   moveSpeed: 0
+  bulletSpeed: 8
   addBullet: 0
   pierceCount: 0
   weaponType: 1
+  duration: 5
