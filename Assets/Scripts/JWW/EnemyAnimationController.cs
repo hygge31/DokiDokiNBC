@@ -53,13 +53,14 @@ public class EnemyAnimationController : EnemyAnimation
             component.enabled = false;
         }
         animator.SetTrigger(isDead);
+        Destroy(gameObject,2f);
     }
-    public void Disappear()
-    {
-        foreach (Behaviour component in transform.GetComponentsInChildren<Behaviour>())
-        {
-            component.enabled = false;
-        }
-        Destroy(transform.gameObject);
-    }
+    //public void Disappear()
+    //{
+    //    foreach (Behaviour component in transform.GetComponentsInChildren<Behaviour>())
+    //    {
+    //        component.enabled = false;
+    //    }
+    //    Destroy(transform.gameObject);
+    //}
 }
