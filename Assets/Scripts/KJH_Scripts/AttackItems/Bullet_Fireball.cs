@@ -13,11 +13,13 @@ public class Bullet_Fireball : Bullet
     private float aliveTime = 0f;
     
     private Vector2 attackDirection;
+    private int pCount;
     [SerializeField] private AudioClip fireballClip;
     [SerializeField] private AudioClip explodeClip;
+    [SerializeField] private AudioClip pierceClip;
 
     private bool isHit = false;
-
+    HealthSystem recentlyHitEnemey = null;
 
     private void Awake()
     {
@@ -45,7 +47,9 @@ public class Bullet_Fireball : Bullet
         transform.position = spawnPos;
         transform.rotation = PlayerAttackController.Instance.rotation;
         attackDirection = dir;
+        pCount = pierceCount + 1;
         SoundManager.Instance.PlayClip(fireballClip);
+        recentlyHitEnemey = null;
     }
 
     private void OnFire(Vector2 dir)
@@ -61,20 +65,42 @@ public class Bullet_Fireball : Bullet
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Level"))
+        {
+            isHit = true;
+        }
+
         if (targetLayer == (targetLayer | (1 << collision.gameObject.layer)))
         {
+            //최근 맞춘 적 관통할 때 중복 충돌을 체크하기 위함
             //체력감소            
             HealthSystem healthSystem = collision.GetComponentInParent<HealthSystem>();
             if (healthSystem != null)
             {
-                healthSystem.ChangeHealth(-Atk);
-            }
-            isHit = true;
-            if (isHit)
-            {
-                SoundManager.Instance.PlayClip(explodeClip);
-                animator.SetTrigger("Explode");
-            }
+                if (healthSystem != recentlyHitEnemey)
+                {
+                    healthSystem.ChangeHealth(-Atk);
+                    pCount--;
+                    Debug.Log("관통");
+                    recentlyHitEnemey = healthSystem;
+                    if(pCount > 0)
+                    {
+                        SoundManager.Instance.PlayClip(pierceClip);
+                    }
+                }
+
+                if (pCount == 0)
+                {
+                    Debug.Log("관통 종료");
+                    isHit = true;
+                }
+            }          
+        }
+
+        if (isHit)
+        {
+            SoundManager.Instance.PlayClip(explodeClip);
+            animator.SetTrigger("Explode");
         }
     }
 
