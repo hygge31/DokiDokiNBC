@@ -25,6 +25,7 @@ public class Door : MonoBehaviour
 
     public ParticleSystem smokeEffect;
     public ParticleSystem smokeEffect2;
+    public ParticleSystem smokeEffect3;
 
     private void Awake()
     {
@@ -78,6 +79,7 @@ public class Door : MonoBehaviour
         StartCoroutine(AppearanceDoorCo());
         smokeEffect.Play();
         smokeEffect2.Play();
+        smokeEffect3.Play();
         LerpCor(1);
         
     }
@@ -100,6 +102,7 @@ public class Door : MonoBehaviour
 
     public void ExitDoor()
     {
+        smokeEffect3.Stop();
         _collider.enabled = false;
         smokeEffect2.Stop();
         LerpCor(0);
@@ -111,7 +114,7 @@ public class Door : MonoBehaviour
     IEnumerator ExitDoorCo()
     {
         float percent = 0;
-
+        yield return new WaitForSeconds(1f);
         while(percent < 1)
         {
             percent += Time.deltaTime * 0.5f;
