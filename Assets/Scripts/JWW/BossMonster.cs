@@ -47,7 +47,7 @@ public class BossMonster : MonoBehaviour
     }
     private void Start()
     {
-        bossHealth = _healthSystem.CurrentHealth;
+        bossHealth = 1000;//_healthSystem.CurrentHealth;
     }
     void Update()
     {
