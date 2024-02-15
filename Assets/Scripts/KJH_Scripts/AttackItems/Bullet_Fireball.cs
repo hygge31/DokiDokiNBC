@@ -6,12 +6,19 @@ public class Bullet_Fireball : Bullet
 {    
     private Rigidbody2D rb;
 
+    private Animator animator; // 폭발 애니메이션을 위함
+
+    
     private float aliveTime = 0f;
     
     private Vector2 attackDirection;
 
+    private bool isHit = false;
+
+
     private void Awake()
     {
+        animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
     }
 
@@ -38,7 +45,11 @@ public class Bullet_Fireball : Bullet
 
     private void OnFire(Vector2 dir)
     {
-        rb.velocity = dir * TravelSpeed;
+        rb.velocity = dir * TavelSpeed;
+        if (isHit)
+        {
+            rb.velocity = Vector3.zero;
+        }
     }
 
 
@@ -52,12 +63,15 @@ public class Bullet_Fireball : Bullet
             {
                 healthSystem.ChangeHealth(-Atk);
             }
-            Clear();
+            isHit = true;
+            if (isHit)
+                animator.SetTrigger("Explode");
         }
     }
 
     public void Clear()
-    {        
+    {
+        isHit = false;
         aliveTime = 0;
         rb.velocity = Vector3.zero;
         transform.position = new Vector3(100, 0, 0);

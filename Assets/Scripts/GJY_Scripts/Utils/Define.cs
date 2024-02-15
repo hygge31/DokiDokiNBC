@@ -10,6 +10,7 @@ public class Define
         Weapon_Normal,
         Weapon_Missile,
         Weapon_Turret,
+        Weapon_Thunder,
     }
 
     public enum Perks

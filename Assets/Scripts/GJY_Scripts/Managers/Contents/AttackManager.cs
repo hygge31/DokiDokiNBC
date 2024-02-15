@@ -29,6 +29,9 @@ public class AttackManager
             case Define.Weapons.Weapon_Turret:
                 currentWeapon = new WeaponTurret();
                 break;
+            case Define.Weapons.Weapon_Thunder:
+                currentWeapon = new WeaponThunder();
+                break;
         }
 
         OnChangeWeapon?.Invoke(item);
