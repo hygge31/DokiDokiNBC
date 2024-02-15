@@ -10,33 +10,39 @@ public class PlayerStatManager
     public Action OnDead;
     public Action OnPlayerSetup;
     public Action OnWeaponChange;
+    public Action OnUpgradeFromShop;
     public Action<string, int> OnPerkSetup;
     public Action<int, int> OnHealing;
     public Action<int, int> OnGetDamaged;
     public Action<Item_SO> OnApplyPerkStat;
+
+    public int upgrade_Atk { get; set; }
+    public int upgrade_FireRate { get; set; }
+    public int upgrade_MoveSpeed { get; set; }
 
     // ### Stats
     public int Hp { get; private set; }
 
     public float Atk { get; private set; }
     public float FireRate { get; private set; }
-    public float MoveSpeed { get; private set; }    
+    public float MoveSpeed { get; private set; }
     public int AddBullet { get; private set; }
     public int PierceCount { get; private set; }
 
     // ### Applied Stats    
     public float A_Atk { get; private set; }
-    public float A_FireRate { get; private set; }    
+    public float A_FireRate { get; private set; }
+    public float A_MoveSpeed { get; private set; }
     public int A_AddBullet { get; private set; }
     public int A_PierceCount { get; private set; }
 
     // ### Weapon Stats    
     public float W_Atk { get; private set; }
-    public float W_FireRate { get; private set; }    
+    public float W_FireRate { get; private set; }
     public float W_BulletSpeed { get; private set; }
     public int W_AddBullet { get; private set; }
     public int W_PierceCount { get; private set; }
-    public float W_Duration { get; private set; }    
+    public float W_Duration { get; private set; }
 
     public bool IsDead { get; private set; } = false;
 
@@ -47,11 +53,11 @@ public class PlayerStatManager
         Hp = 10;
         MoveSpeed = 5;
         Atk = 1;
-        FireRate = 1;        
+        FireRate = 1;
         AddBullet = 0;
         PierceCount = 0;
-        
-        Managers.Attack.OnWeaponSetup += WeaponStatApply;        
+
+        Managers.Attack.OnWeaponSetup += WeaponStatApply;
     }
 
     public void PlayerSetup()
@@ -77,7 +83,7 @@ public class PlayerStatManager
     }
 
     private void WeaponStatApply(Item_SO weapon)
-    {        
+    {
         W_FireRate = weapon.fireRate;
         W_Atk = weapon.atk;
         W_BulletSpeed = weapon.bulletSpeed;
@@ -101,7 +107,7 @@ public class PlayerStatManager
         PierceCount += item.pierceCount;
 
         if (item.name == Perks.Item_Injector.ToString() && _perkDict.GetValueOrDefault(item.name) == 1)
-            MoveSpeed *= item.moveSpeed;
+            A_MoveSpeed = MoveSpeed * item.moveSpeed;
 
         AppliedStatCalculator();
 
@@ -111,11 +117,35 @@ public class PlayerStatManager
     private void AppliedStatCalculator()
     {
         A_FireRate = FireRate * W_FireRate;
-        A_Atk = Atk * W_Atk;        
+        A_Atk = Atk * W_Atk;
         A_AddBullet = AddBullet + W_AddBullet;
         A_PierceCount = PierceCount + W_PierceCount;
+        A_MoveSpeed = MoveSpeed * (_perkDict.ContainsKey("Item_Injector") == true ? 2 : 1);
 
         OnWeaponChange?.Invoke();
+    }
+
+    public void Upgrade(string input)
+    {
+        switch (input)
+        {
+            case "1":
+                Atk += 0.5f;
+                upgrade_Atk++;
+                break;
+            case "2":
+                FireRate -= 0.1f;
+                upgrade_FireRate++;
+                break;
+            case "3":
+                MoveSpeed += 0.5f;
+                upgrade_MoveSpeed++;
+                break;
+        }
+
+        AppliedStatCalculator();
+
+        OnUpgradeFromShop?.Invoke();
     }
 
     public void GetDamaged()
@@ -147,5 +177,7 @@ public class PlayerStatManager
         OnHealing = null;
         OnGetDamaged = null;
         OnApplyPerkStat = null;
-    }
+        OnUpgradeFromShop = null;
+        OnWeaponChange = null;
+}
 }

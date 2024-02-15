@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Bullet_Missile : Bullet
 {    
-    [SerializeField] AnimationCurve curve;    
+    [SerializeField] AnimationCurve curve;
+    [SerializeField] LayerMask trackingLayer;
 
     private bool _isLockOn = false;    
 
@@ -90,7 +91,7 @@ public class Bullet_Missile : Bullet
             yield return null;
         }
 
-        RaycastHit2D hit = Physics2D.CircleCast(transform.position, 25, Vector2.zero, 0, targetLayer);
+        RaycastHit2D hit = Physics2D.CircleCast(transform.position, 25, Vector2.zero, 0, trackingLayer);
         if (hit)
             _target = hit.transform;
 

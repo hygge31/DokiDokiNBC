@@ -11,5 +11,6 @@ public class MainScene : BaseScene
         SceneType = Define.Scenes.Dungeon;
         Managers.UI.ShowSceneUI<UI_Room>();
         Managers.Pool.Init();
+        Managers.GameManager.PCOn();
     }
 }

@@ -17,8 +17,14 @@ public class UI_ShopAlertPopup : UI_Popup
 
         BindButton(typeof(Buttons));
 
-        GetButton((int)Buttons.Yes_Btn).onClick.AddListener(Managers.UI.CloseAllPopupUI);
+        GetButton((int)Buttons.Yes_Btn).onClick.AddListener(YesBtn);
         GetButton((int)Buttons.No_Btn1).onClick.AddListener(ClosePopup);
         GetButton((int)Buttons.No_Btn2).onClick.AddListener(ClosePopup);
+    }
+
+    private void YesBtn()
+    {
+        Managers.GameManager.PCOff();
+        Managers.UI.CloseAllPopupUI();
     }
 }

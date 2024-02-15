@@ -190,6 +190,9 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  trackingLayer:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!114 &8139825951594819313
 MonoBehaviour:
   m_ObjectHideFlags: 0

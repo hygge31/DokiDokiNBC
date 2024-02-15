@@ -46,7 +46,10 @@ public class UI_Room : UI_Scene
     {
         GetAnimator((int)Animator.Clock_Image).SetTrigger("UsePC");
         StartCoroutine(HighLight((int)Pointer.PC_Pointer, 1, false));
-        Managers.UI.ShowPopupUI<UI_Shop>();
+        if (!Managers.GameManager.IsPCPowerOff)
+            Managers.UI.ShowPopupUI<UI_Shop>();
+        else
+            Managers.UI.ShowPopupUI<UI_CanNotUsePcPopup>();
     } 
 
     private IEnumerator HighLight(int typeIndex, float endSize, bool active)

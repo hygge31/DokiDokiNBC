@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UI_ShopCommandsPopup : MonoBehaviour
+public class UI_Upgrade : UI_Base
 {
     
 }
