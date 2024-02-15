@@ -20,7 +20,7 @@ public class Boss : MonoBehaviour
     
     private void Start()
     {
-        SoundManager.Instance.ChangeBackGroundMusic(bossMusic);
+        SoundManager.Instance.ChangeBackGroundMusic(bossMusic,0.2f);
         StartCoroutine(BossAppearCo());
     }
 
