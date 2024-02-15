@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using static UnityEditor.Progress;
 
 public class UI_Hud : UI_Scene
 {
-    private Stack<Image> _hpImages = new Stack<Image>();
+    private Stack<Image> _hpImages = new Stack<Image>();    
+    private PlayerStatManager _playerStatManager;
 
     enum Transforms
     {
@@ -19,28 +19,42 @@ public class UI_Hud : UI_Scene
         Weapon_Image,
     }
 
+    enum Texts
+    {
+        CodePiece_Text,
+        Atk_Text,
+        FireRate_Text,
+        MoveSpeed_Text,
+        AddBullet_Text,
+        Pierce_Text,
+    }
+
     protected override void Init()
     {
         base.Init();
 
-        Bind<Transform>(typeof(Transforms));
+        Bind<Transform>(typeof(Transforms));        
         BindImage(typeof(Images));
+        BindText(typeof(Texts));
 
         Managers.Player.OnPlayerSetup += PlayerSetup;
+        Managers.Player.OnPerkSetup += PerkSetup;
         Managers.Player.OnApplyPerkStat += GetPerk;
         Managers.Player.OnHealing += HPImageControl;
         Managers.Player.OnGetDamaged += HPImageControl;
 
         Managers.Attack.OnWeaponSetup += WeaponSetup;
         Managers.Attack.OnChangeWeapon += GetWeapon;
+
+        _playerStatManager = Managers.Player;
     }
 
     private void PlayerSetup()
     {
         int hp = Managers.Player.Hp;
         int count = hp / 2 + hp % 2;
-        
-        for(int i = 0; i < count; i++)
+
+        for (int i = 0; i < count; i++)
         {
             Image image = Managers.UI.MakeSub<UI_Hp>(Get<Transform>((int)Transforms.HPImages_Panel)).GetComponent<Image>();
             _hpImages.Push(image);
@@ -49,7 +63,16 @@ public class UI_Hud : UI_Scene
         if (hp % 2 != 0)
         {
             _hpImages.Peek().fillAmount = 0.5f;
-        }        
+        }
+
+        UpdateTexts();
+    }
+
+    private void PerkSetup(string perk, int count)
+    {
+        Item_SO item = Resources.Load<Item_SO>($"Scriptable/{perk}");
+        UI_Perk perkUI = Managers.UI.MakeSub<UI_Perk>(Get<Transform>((int)Transforms.Perks_Panel));
+        perkUI.Setup(item, count);
     }
 
     private void WeaponSetup(Item_SO weapon)
@@ -64,8 +87,47 @@ public class UI_Hud : UI_Scene
 
     private void GetPerk(Item_SO item)
     {
+        // 퍽을 얻었을 때 자식이 하나라도 있으면 그 UI가 어떤 UI 인지 확인
+        Transform perkPanel = Get<Transform>((int)Transforms.Perks_Panel);
+        if (perkPanel.childCount != 0)
+        {
+            // 모든 자식의 UI_Perk 확인하여 Sprite가 일치하면 다시 확인
+            foreach (UI_Perk ui in perkPanel.GetComponentsInChildren<UI_Perk>())
+            {
+                if (ui.GetSprite() == item.sprite)
+                {
+                    if (item.isStackable) // 중첩 가능하면 Setup으로 중첩
+                    {
+                        ui.Setup(item);
+                        UpdateTexts();
+                        return;
+                    }
+                    else // 중첩 불가능하면 텍스트만 업데이트
+                    {
+                        UpdateTexts();
+                        return;
+                    }                         
+                }
+            }
+        }
         UI_Perk perkUI = Managers.UI.MakeSub<UI_Perk>(Get<Transform>((int)Transforms.Perks_Panel));
         perkUI.Setup(item);
+        UpdateTexts();
+    }
+
+    private void GetCodePiece()
+    {
+        GetText((int)Texts.CodePiece_Text);
+    }
+
+    private void UpdateTexts()
+    {
+        GetText((int)Texts.CodePiece_Text); // To Do - 가지고 있는 코드조각 표기
+        GetText((int)Texts.Atk_Text).text = $"{_playerStatManager.Atk}";
+        GetText((int)Texts.FireRate_Text).text = $"{_playerStatManager.FireRate:F2}";
+        GetText((int)Texts.MoveSpeed_Text).text = $"{_playerStatManager.MoveSpeed}";
+        GetText((int)Texts.AddBullet_Text).text = $"{_playerStatManager.AddBullet}";
+        GetText((int)Texts.Pierce_Text).text = $"{_playerStatManager.PierceCount}";
     }
 
     private void HPImageControl(int prevHp, int curHp)
@@ -74,10 +136,10 @@ public class UI_Hud : UI_Scene
         int count = curHp / 2 + curHp % 2;
 
         // 이미지 개수와 Stack 개수가 같을 때
-        if(_hpImages.Count == count)
+        if (_hpImages.Count == count)
         {
             Image image = _hpImages.Peek();
-            
+
             if (curHp % 2 != 0) // curHp가 홀수 == 데미지를 받음
             {
                 image.fillAmount = 0.5f;
@@ -101,7 +163,7 @@ public class UI_Hud : UI_Scene
             else
             {
                 Image image = _hpImages.Pop();
-                Managers.RM.Destroy(image.gameObject);                
+                Managers.RM.Destroy(image.gameObject);
             }
         }
     }

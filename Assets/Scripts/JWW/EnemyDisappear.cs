@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class EnemyDisappear : MonoBehaviour
 {
+    WaitForSeconds wait = new WaitForSeconds(0.1f);
+
     public void Disappear()
     {
         //foreach (Behaviour component in transform.parent.GetComponentsInChildren<Behaviour>())
@@ -11,6 +13,22 @@ public class EnemyDisappear : MonoBehaviour
         //    component.enabled = false;
         //}
         DunGoenManager.Instance.DieMonster();
+
+        StartCoroutine(DropRoutine());        
+    }
+
+    private IEnumerator DropRoutine()
+    {
+        int randomCount = Random.Range(5, 16);
+
+        for (int i = 0; i < randomCount; i++)
+        {
+            Managers.Drop.DropCodePiece(transform);
+            yield return wait;
+        }
+        Managers.Drop.DropHealthRandom(transform);
+        Managers.Drop.DropPerk(transform);
+
         Destroy(transform.parent.gameObject);
     }
 }

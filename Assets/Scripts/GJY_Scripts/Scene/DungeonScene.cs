@@ -12,5 +12,5 @@ public class DungeonScene : BaseScene
         Managers.UI.ShowSceneUI<UI_Hud>();
         Managers.Player.PlayerSetup();
         Managers.Attack.WeaponSetup();        
-    }
+    }    
 }

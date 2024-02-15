@@ -9,10 +9,13 @@ public class Managers : MonoBehaviour
 
     #region Contents
     AttackManager _attack = new AttackManager();
+    DropManager _drop = new DropManager();
     PlayerStatManager _playerStat = new PlayerStatManager();
     GameManager _gameManager = new GameManager();
 
+
     public static AttackManager Attack => Instance?._attack;
+    public static DropManager Drop => Instance?._drop;
     public static PlayerStatManager Player => Instance?._playerStat;
     public static GameManager GameManager => Instance?._gameManager;
     #endregion
@@ -56,7 +59,8 @@ public class Managers : MonoBehaviour
     public static void Clear()
     {
         UI.Clear();
-
+        Player.Clear();
+        Attack.Clear();
         Pool.Clear();
     }
 }

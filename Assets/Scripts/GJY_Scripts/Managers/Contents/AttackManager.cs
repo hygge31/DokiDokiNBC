@@ -46,4 +46,10 @@ public class AttackManager
     {
         currentWeapon.Attack(origin, dir);
     }
+
+    public void Clear()
+    {
+        OnWeaponSetup = null;
+        OnChangeWeapon = null;
+    }
 }

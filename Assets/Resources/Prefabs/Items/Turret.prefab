@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8242161136606647023}
   - component: {fileID: 5453526677770097463}
+  - component: {fileID: 8952214317317448553}
   - component: {fileID: 8942690774490731035}
   m_Layer: 0
   m_Name: Turret
@@ -26,12 +27,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6217464978039592560}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2, y: 1.25, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &5453526677770097463
 SpriteRenderer:
@@ -74,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 738866aac3fd2294e9aee2dda67f7f8a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 54f237c373aa2044d9069cb17efb0cd4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -85,6 +86,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &8952214317317448553
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6217464978039592560}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fc185255c939e84cb86b506e96c0ed9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &8942690774490731035
 MonoBehaviour:
   m_ObjectHideFlags: 0

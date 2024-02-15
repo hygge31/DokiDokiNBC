@@ -42,14 +42,16 @@ public class UI_Perk : UI_Base
         _nameText = Util.FindParentFromHUD("PerkName_Text").GetComponent<Text>();
     }
 
-    public void Setup(Item_SO item)
+    public void Setup(Item_SO item, int count = 1)
     {
         _item = item;
         _image.sprite = item.sprite;
-        _count++;        
+        _count += count;
 
-        GetText((int)Texts.Count_Text).text = $"X {_count}";
+        if (item.isStackable)
+            GetText((int)Texts.Count_Text).text = $"X {_count}";        
     }
+    
 
     private void ShowItemInfo(PointerEventData data)
     {
@@ -61,5 +63,10 @@ public class UI_Perk : UI_Base
     {
         _nameText.text = "";
         _infoText.text = "";
+    }
+
+    public Sprite GetSprite()
+    {
+        return _image.sprite;
     }
 }
