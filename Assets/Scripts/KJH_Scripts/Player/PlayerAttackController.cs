@@ -22,7 +22,7 @@ public class PlayerAttackController : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-        animator = GetComponentInChildren<Animator>();
+        animator = GameObject.Find("Body").GetComponent<Animator>();
         playerStatManager = Managers.Player;
     }
 
