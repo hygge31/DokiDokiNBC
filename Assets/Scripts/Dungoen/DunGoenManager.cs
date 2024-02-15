@@ -74,7 +74,7 @@ public class DunGoenManager : MonoBehaviour
         }
         else
         {
-            SoundManager.Instance.ChangeBackGroundMusic(dungoenBgm);
+            SoundManager.Instance.ChangeBackGroundMusic(dungoenBgm,0.3f);
 
             Instantiate(minimapCamera);
             Instantiate(minimapUi);

@@ -28,10 +28,11 @@ public class SoundManager : MonoBehaviour
     }
 
 
-    public void ChangeBackGroundMusic(AudioClip clip)
+    public void ChangeBackGroundMusic(AudioClip clip, float soundVolume)
     {
         musicAudioSource.Stop();
         musicAudioSource.clip = clip;
+        musicAudioSource.volume = soundVolume;
         musicAudioSource.Play();
 
     }
