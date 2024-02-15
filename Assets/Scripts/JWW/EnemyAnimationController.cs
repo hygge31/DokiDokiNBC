@@ -48,11 +48,11 @@ public class EnemyAnimationController : EnemyAnimation
     private void Dead()
     {
         _enemy.isDead = true;
-        animator.SetTrigger(isDead);
         foreach (Collider2D component in transform.GetComponentsInChildren<Collider2D>())
         {
             component.enabled = false;
         }
+        animator.SetTrigger(isDead);
     }
     public void Disappear()
     {
