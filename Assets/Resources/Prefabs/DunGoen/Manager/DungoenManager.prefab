@@ -663,6 +663,7 @@ MonoBehaviour:
   _camera: {fileID: 0}
   cameraWidth: 0
   cameraHeight: 0
+  boss: {fileID: 1490260904452739942, guid: be3abf9eb8cf742c886fd7cb8b7ec529, type: 3}
 --- !u!114 &8821290842321878402
 MonoBehaviour:
   m_ObjectHideFlags: 0

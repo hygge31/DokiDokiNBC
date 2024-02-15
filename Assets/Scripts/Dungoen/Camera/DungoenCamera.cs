@@ -43,6 +43,21 @@ public class DungoenCamera : MonoBehaviour
 
     }
 
+    public void SetCamLimit(RoomDataSO roomData)
+    {
+
+        center = Vector2.zero;
+        int width = roomData.width;
+        int height = roomData.height;
+
+        Vector2 minCamLimit = new Vector2(center.x - width / 2, center.y - height / 2) + new Vector2(DunGoenManager.Instance.cameraWidth, DunGoenManager.Instance.cameraHeight);
+        Vector2 maxCamLimit = new Vector2(center.x + width / 2, center.y + height / 2) - new Vector2(DunGoenManager.Instance.cameraWidth, DunGoenManager.Instance.cameraHeight);
+
+
+        this.minCamLimit = minCamLimit;
+        this.maxCamLimit = maxCamLimit;
+
+    }
 
 
 

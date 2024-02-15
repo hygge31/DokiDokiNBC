@@ -4,5 +4,5 @@ using UnityEngine;
 
 public class GameManager
 {
-    
+    public int day = 4;
 }
