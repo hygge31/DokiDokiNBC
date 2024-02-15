@@ -8,8 +8,7 @@ public class Define
     {        
         Weapon_None,
         Weapon_Normal,
-        Weapon_Missile,
-        Weapon_Turret,
+        Weapon_Missile,        
         Weapon_Thunder,
     }
 

@@ -27,7 +27,7 @@ public class UI_StatusPopup : UI_Popup
             $"체력 : {stat.Hp}\n" +
             $"무기 : {Managers.Attack.CurrentSO.displayName}\n" +
             $"공격력 : {stat.A_Atk}\n" +
-            $"공격 속도 : {stat.A_FireRate}\n" +
+            $"공격 속도 : {stat.A_FireRate:F2}\n" +
             $"이동 속도 : {stat.A_MoveSpeed}\n" +
             $"다중 사격 : {stat.A_AddBullet}\n" +
             $"관통 : {stat.A_AddBullet}\n";

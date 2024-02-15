@@ -20,20 +20,49 @@ public class UI_Room : UI_Scene
         Clock_Image,
     }
 
+    enum Images
+    {
+        Blind,
+    }
+
     protected override void Init()
     {
         base.Init();
 
-        BindUIEventHandler(typeof(Pointer));   
+        BindUIEventHandler(typeof(Pointer));
         BindAnimator(typeof(Animator));
+        BindImage(typeof(Images));
 
-        GetUIEventHandler((int)Pointer.Bed_Pointer).OnEnterHandler += BedEnter;        
+        GetUIEventHandler((int)Pointer.Bed_Pointer).OnEnterHandler += BedEnter;
         GetUIEventHandler((int)Pointer.Bed_Pointer).OnExitHandler += BedExit;
         GetUIEventHandler((int)Pointer.Bed_Pointer).OnClickHandler += BedClick;
 
         GetUIEventHandler((int)Pointer.PC_Pointer).OnEnterHandler += PCEnter;
         GetUIEventHandler((int)Pointer.PC_Pointer).OnExitHandler += PCExit;
         GetUIEventHandler((int)Pointer.PC_Pointer).OnClickHandler += PCClick;
+
+        StartCoroutine(BlindFadeOut());
+    }
+
+    private IEnumerator BlindFadeOut()
+    {
+        float current = 0;
+        float percent = 0;
+        float time = 1.5f;
+
+        Image blind = GetImage((int)Images.Blind);
+        Color color = blind.color;        
+
+        while (percent < 1)
+        {
+            current += Time.deltaTime;
+            percent = current / time;
+
+            color.a = Mathf.Lerp(1, 0, percent);
+            blind.color = color;
+
+            yield return null;
+        }
     }
 
     private void BedEnter(PointerEventData data) => StartCoroutine(HighLight((int)Pointer.Bed_Pointer, 1.1f, true));
@@ -42,9 +71,6 @@ public class UI_Room : UI_Scene
     {
         if (Managers.GameManager.IsPCPowerOff)
             Managers.Scene.LoadScene(Define.Scenes.Dungeon);
-
-
-
     }
 
     private void PCEnter(PointerEventData data) => StartCoroutine(HighLight((int)Pointer.PC_Pointer, 1.1f, true));
@@ -54,10 +80,15 @@ public class UI_Room : UI_Scene
         GetAnimator((int)Animator.Clock_Image).SetTrigger("UsePC");
         StartCoroutine(HighLight((int)Pointer.PC_Pointer, 1, false));
         if (!Managers.GameManager.IsPCPowerOff)
-            Managers.UI.ShowPopupUI<UI_Shop>();
+        {
+            if (Managers.GameManager.day == 5)
+                Managers.UI.ShowPopupUI<UI_EndingShop>();
+            else
+                Managers.UI.ShowPopupUI<UI_Shop>();
+        }
         else
             Managers.UI.ShowPopupUI<UI_CanNotUsePcPopup>();
-    } 
+    }
 
     private IEnumerator HighLight(int typeIndex, float endSize, bool active)
     {

@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class UI_Shop : UI_Popup
 {
-    UI_ShopAlertPopup _alertPopup = null;
+    UI_Popup _alertPopup = null;
 
     private UI_Popup currentShowMenu = null;
     private PlayerStatManager playerStatManager = null;
@@ -16,8 +16,7 @@ public class UI_Shop : UI_Popup
         Status,
         Upgrade,
         Skin,
-        Boss,
-        Ending,
+        Boss,        
     }
 
     enum Texts
@@ -47,7 +46,7 @@ public class UI_Shop : UI_Popup
         base.Init();
 
         if(Managers.GameManager.day == 4)
-            currentState = State.Boss;
+            currentState = State.Boss;        
 
         BindText(typeof(Texts));
         BindButton(typeof(Buttons));
@@ -61,6 +60,8 @@ public class UI_Shop : UI_Popup
         GetComponent<UI_InputActionHandler>().OnEscInvoke += ShowAndHideAlertPopup;
         GetComponent<UI_InputActionHandler>().OnEnterInvoke += ChangeState;
 
+        ChangeState();
+
         playerStatManager = Managers.Player;
     }
 
@@ -70,10 +71,8 @@ public class UI_Shop : UI_Popup
         {
             switch (currentState)
             {
-                case State.Boss:
-                    _alertPopup = Managers.UI.ShowPopupUI<UI_ShopAlertPopup>();
-                    break;
-                case State.Ending:
+                case State.Boss:                                    
+                    _alertPopup = Managers.UI.ShowPopupUI<UI_CanNotClosePcPopup>();
                     break;
                 default:
                     _alertPopup = Managers.UI.ShowPopupUI<UI_ShopAlertPopup>();
@@ -93,6 +92,9 @@ public class UI_Shop : UI_Popup
         string inputCommand = input.text;
         Text commandText = GetText((int)Texts.Command_Text);
         Text menuText = GetText((int)Texts.Menu_Text);
+
+        if(Managers.GameManager.day == 4)
+            commandText.text = MainCommands();
 
         if (input.text == "")
         {
@@ -195,24 +197,14 @@ public class UI_Shop : UI_Popup
                 }
                 break;
             case State.Boss:
-                if (inputCommand == "과제제출")
+                if (inputCommand == "과제 제출")
                 {
                     alertText.text = "";
+                    StartCoroutine(ChangeSceneRoutine());                    
                 }
                 else
                 {
                     alertText.text = "잘못된 입력입니다.";
-                    alertText.color = Color.red;
-                }
-                break;
-            case State.Ending:
-                if (inputCommand == "오직 한효승만")
-                {
-
-                }
-                else
-                {
-                    alertText.text = "오직 한효승만..";
                     alertText.color = Color.red;
                 }
                 break;
@@ -221,18 +213,31 @@ public class UI_Shop : UI_Popup
         input.text = "";
     }
 
+    private IEnumerator ChangeSceneRoutine()
+    {
+
+        yield return new WaitForSeconds(2);
+        Managers.Scene.LoadScene(Define.Scenes.Dungeon);
+    }
+
     private void BackToMainShop(Text command, Text menu)
     {
         alertText.text = "";
         command.text = MainCommands();
         menu.text = MenuName("메인");
-        Managers.UI.ClosePopupUI(currentShowMenu);
+        if (currentShowMenu != null)
+            Managers.UI.ClosePopupUI(currentShowMenu);
         currentState = State.Main;
     }
 
     private void ApplyUpgrade(int transform, string input)
     {
-        Managers.Player.Upgrade(input);
+        if(Managers.Player.Upgrade(input) == false)
+        {
+            alertText.text = "조각이 부족합니다.";
+            alertText.color = Color.red;
+            return;
+        }
 
         UI_UpgradePopup upMenu = currentShowMenu as UI_UpgradePopup;
         if (upMenu != null)
@@ -248,6 +253,13 @@ public class UI_Shop : UI_Popup
 
     private string MainCommands()
     {
+        if(Managers.GameManager.day == 4)
+        {
+            return "명령어 목록\n" +
+            "\n" +
+            "[과제 제출]";
+        }
+
         return "명령어 목록\n" +
             "\n" +
             "[상태]\n[강화]\n[코스튬]";
@@ -265,9 +277,9 @@ public class UI_Shop : UI_Popup
         return "명령어 목록\n" +
             "\n" +
             "번호를 입력해 강화 스탯 선택\n" +
-            "[1] 공격력\n" +
-            "[2] 공격속도\n" +
-            "[3] 이동속도\n" +
+            "[1] 공격력    -  50 조각\n" +
+            "[2] 공격속도  -  25 조각\n" +
+            "[3] 이동속도  -  100 조각\n" +
             "\n" +
             "[뒤로]";
     }

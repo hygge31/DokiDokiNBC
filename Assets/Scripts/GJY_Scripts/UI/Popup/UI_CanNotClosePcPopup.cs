@@ -32,11 +32,10 @@ public class UI_CanNotClosePcPopup : UI_Popup
     private void OlnyHan()
     {
         Text warning = GetText((int)Texts.ExitWarning_Text);
-        warning.text = "오직 한효승만..오직 한효승만..오직 한효승만..오직 한효승만..오직 한효승만..오직 한효승만..오직 한효승만..오직 한효승만..";
-        warning.color = Color.red;
+        warning.text = "오직 한효승만..오직 한효승만..오직 한효승만..오직 한효승만..오직 한효승만..오직 한효승만..오직 한효승만..오직 한효승만..";        
 
         Text close = GetText((int)Texts.Close_Text);
-        close.text = "오직 한효승만..오직 한효승만..오직 한효승만..오직 한효승만..오직 한효승만..오직 한효승만..오직 한효승만..오직 한효승만..";
-        close.color = Color.red;
+        close.text = "오직 한효승만..오직 한효승만..오직 한효승만..오직 한효승만..오직 한효승만..오직 한효승만..오직 한효승만..오직 한효승만..\n" +
+            "오직 한효승만..오직 한효승만..오직 한효승만..오직 한효승만..오직 한효승만..오직 한효승만..오직 한효승만..오직 한효승만..";        
     }
 }
