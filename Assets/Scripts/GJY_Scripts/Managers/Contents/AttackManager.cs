@@ -25,10 +25,7 @@ public class AttackManager
                 break;
             case Define.Weapons.Weapon_Missile:
                 currentWeapon = new WeaponMissile();
-                break;
-            case Define.Weapons.Weapon_Turret:
-                currentWeapon = new WeaponTurret();
-                break;
+                break;            
             case Define.Weapons.Weapon_Thunder:
                 currentWeapon = new WeaponThunder();
                 break;

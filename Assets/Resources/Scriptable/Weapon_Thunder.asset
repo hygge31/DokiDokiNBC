@@ -23,5 +23,5 @@ MonoBehaviour:
   bulletSpeed: 0
   addBullet: 0
   pierceCount: 0
-  weaponType: 4
+  weaponType: 3
   duration: 3

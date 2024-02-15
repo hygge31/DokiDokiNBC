@@ -10,7 +10,12 @@ public class UI_UpgradePopup : UI_Popup
     {
         Atk_Images,
         FireRate_Images,
-        MoveSpeed_Images,
+        MoveSpeed_Images,        
+    }
+
+    enum Texts
+    {
+        RemainCode_Text,
     }
 
     protected override void Init()
@@ -18,6 +23,9 @@ public class UI_UpgradePopup : UI_Popup
         base.Init();
 
         Bind<Transform>(typeof(UpgradeTransforms));
+        BindText(typeof(Texts));
+
+        GetText((int)Texts.RemainCode_Text).text = $"남은 코드 조각 : {Managers.GameManager.CodePiece}";
     }
 
     public void LoadSubImages(int atk, int fireRate, int moveSpd)

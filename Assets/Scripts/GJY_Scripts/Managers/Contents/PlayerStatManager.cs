@@ -1,9 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using static Define;
 
 public class PlayerStatManager
 {
@@ -123,19 +121,30 @@ public class PlayerStatManager
         OnWeaponChange?.Invoke();
     }
 
-    public void Upgrade(string input)
+    public bool Upgrade(string input)
     {
+        int codePieces = Managers.GameManager.CodePiece;
+
         switch (input)
         {
             case "1":
+                if (codePieces < 50)
+                    return false;
+
                 Atk += 0.5f;
                 upgrade_Atk++;
                 break;
             case "2":
+                if (codePieces < 25)
+                    return false;
+
                 FireRate -= 0.1f;
                 upgrade_FireRate++;
                 break;
             case "3":
+                if (codePieces < 100)
+                    return false;
+
                 MoveSpeed += 0.5f;
                 upgrade_MoveSpeed++;
                 break;
@@ -144,6 +153,8 @@ public class PlayerStatManager
         AppliedStatCalculator();
 
         OnUpgradeFromShop?.Invoke();
+
+        return true;
     }
 
     public void GetDamaged()
