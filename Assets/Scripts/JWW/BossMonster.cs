@@ -19,8 +19,11 @@ public class BossMonster : MonoBehaviour
     public float moveSpeed = 5f;
     public LayerMask levelLayerMask;
 
-    public float attackCooldown = 2f;//쿨다운
+    public float attackCooldown = 2f;//공격 쿨다운
     private float nextAttackTime = 0f;//다음 공격 시간
+
+    public float moveCooldown = 4f;//이동 쿨다운
+    private float nextMoveTime = 0f;//다음 이동 시간
     private float bulletSpeed = 5f;
 
     [SerializeField]
@@ -37,6 +40,7 @@ public class BossMonster : MonoBehaviour
         bossHealth = maxHealth;
         _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         nextAttackTime = Time.time;
+        nextMoveTime = Time.time;
         target = GameObject.FindWithTag("Player").transform;
     }
     void Update()
@@ -51,6 +55,14 @@ public class BossMonster : MonoBehaviour
             {
                 FlipSprite();
                 RotateFirePoint();
+               
+                if (Time.time >= nextMoveTime)
+                {
+                    moveDirection = new Vector2(Random.Range(0,360),Random.Range(0,360)).normalized;
+                    _rigidbody2D.velocity = moveDirection * moveSpeed;
+                    nextMoveTime = Time.time + moveCooldown;
+                }
+
                 transform.right = moveDirection;
                 _rigidbody2D.velocity = moveDirection * moveSpeed;
 
@@ -189,7 +201,7 @@ public class BossMonster : MonoBehaviour
     void OnCollisionEnter2D(Collision2D collision)
     {
         // 레벨과 충돌한 경우
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Level"))
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Level") || collision.gameObject.tag == ("Player") || collision.gameObject.tag == ("Monster"))
         {
             // 벽의 법선 벡터를 가져옴
             Vector3 wallNormal = collision.contacts[0].normal;

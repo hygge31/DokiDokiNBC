@@ -274,6 +274,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1024
   attackCooldown: 2
+  moveCooldown: 5
   bossHealth: 1000
 --- !u!58 &3571224605019623485
 CircleCollider2D:
