@@ -55,6 +55,7 @@ public class UI_Perk : UI_Base
 
     private void ShowItemInfo(PointerEventData data)
     {
+        Debug.Log("갑자기 안 되네?");
         _nameText.text = $"{_item.displayName}";
         _infoText.text = $"{_item.displayDesc}";
     }
