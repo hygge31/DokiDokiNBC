@@ -37,7 +37,7 @@ Transform:
   m_Children:
   - {fileID: 3531909300291598732}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6615684641996809254
 MonoBehaviour:
@@ -145,6 +145,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5df80de71b90ee2468b3135b907980af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitClip: {fileID: 8300000, guid: 07b6d7c7272cbfa4b850b16b1cdb1e9f, type: 3}
+  deathClip: {fileID: 8300000, guid: c161f84fcc3a375428648e047f90884c, type: 3}
 --- !u!50 &5900570912584830568
 Rigidbody2D:
   serializedVersion: 4
