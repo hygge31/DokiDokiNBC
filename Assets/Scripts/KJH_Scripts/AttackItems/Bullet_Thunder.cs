@@ -13,6 +13,8 @@ public class Bullet_Thunder : Bullet
     private Vector2 attackDirection;
     private Vector3 newPosition;
 
+    [SerializeField] private AudioClip fireClip;
+
 
     private void Awake()
     {
@@ -71,6 +73,7 @@ public class Bullet_Thunder : Bullet
 
     private void OnStrike()
     {
+        SoundManager.Instance.PlayClip(fireClip);
         circleCollider.enabled = true;
     }
 

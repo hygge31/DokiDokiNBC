@@ -120,7 +120,7 @@ Transform:
   - {fileID: 4705715659620359451}
   - {fileID: 493624674323039471}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1937090557625430826
 MonoBehaviour:
@@ -150,6 +150,7 @@ MonoBehaviour:
   targetLayer:
     serializedVersion: 2
     m_Bits: 256
+  fireClip: {fileID: 8300000, guid: a945e2e91e1b10c4b9d92b06e023e014, type: 3}
 --- !u!50 &4053712438463304408
 Rigidbody2D:
   serializedVersion: 4

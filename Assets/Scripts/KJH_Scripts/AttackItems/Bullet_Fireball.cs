@@ -13,6 +13,8 @@ public class Bullet_Fireball : Bullet
     private float aliveTime = 0f;
     
     private Vector2 attackDirection;
+    [SerializeField] private AudioClip fireballClip;
+    [SerializeField] private AudioClip explodeClip;
 
     private bool isHit = false;
 
@@ -42,7 +44,8 @@ public class Bullet_Fireball : Bullet
 
         transform.position = spawnPos;
         transform.rotation = PlayerAttackController.Instance.rotation;
-        attackDirection = dir;        
+        attackDirection = dir;
+        SoundManager.Instance.PlayClip(fireballClip);
     }
 
     private void OnFire(Vector2 dir)
@@ -69,6 +72,7 @@ public class Bullet_Fireball : Bullet
             isHit = true;
             if (isHit)
             {
+                SoundManager.Instance.PlayClip(explodeClip);
                 animator.SetTrigger("Explode");
             }
         }

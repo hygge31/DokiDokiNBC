@@ -10,14 +10,21 @@ public class PlayerController : MonoBehaviour
     private Animator playerAnimator;
     private Animator headAnimator;
     private Animator bodyAnimator;
+    private BoxCollider2D boxCollider2D;
 
     public static PlayerController instance;
     private PlayerStatManager playerStatManager;
+
+    [SerializeField] private AudioClip hitClip;
+    [SerializeField] private AudioClip deathClip;
+
+    private bool IsDead = false;
 
     private void Awake()
     {
         instance = this;
         _rigidbody = GetComponent<Rigidbody2D>();
+        boxCollider2D = GetComponent<BoxCollider2D>();
         playerStatManager = Managers.Player;
 
         // 자식 오브젝트에서 Animator 컴포넌트를 찾아서 가져옴
@@ -52,7 +59,12 @@ public class PlayerController : MonoBehaviour
     {
         if (playerStatManager.IsDead)
         {
-            PlayerDied();
+            if (!IsDead)
+            {
+                PlayerDied();
+                IsDead = true;
+                SoundManager.Instance.PlayClip(deathClip);
+            }
             return;
         }
         Move();
@@ -131,11 +143,14 @@ public class PlayerController : MonoBehaviour
 
     private void PlayerHit(int prevHp, int curHp)
     {
+        SoundManager.Instance.PlayClip(hitClip);
         playerAnimator.SetTrigger("IsHit");
     }
 
     private void PlayerDied()
     {
+        boxCollider2D.enabled = false;
+        _rigidbody.velocity = Vector3.zero;
         playerAnimator.SetTrigger("IsDead");
     }
 }
