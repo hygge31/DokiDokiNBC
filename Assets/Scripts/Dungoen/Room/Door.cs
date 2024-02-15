@@ -24,6 +24,7 @@ public class Door : MonoBehaviour
     public Color curColor;
 
     public ParticleSystem smokeEffect;
+    public ParticleSystem smokeEffect2;
 
     private void Awake()
     {
@@ -76,6 +77,7 @@ public class Door : MonoBehaviour
     {
         StartCoroutine(AppearanceDoorCo());
         smokeEffect.Play();
+        smokeEffect2.Play();
         LerpCor(1);
         
     }
@@ -99,6 +101,7 @@ public class Door : MonoBehaviour
     public void ExitDoor()
     {
         _collider.enabled = false;
+        smokeEffect2.Stop();
         LerpCor(0);
         StartCoroutine(ExitDoorCo());
 
