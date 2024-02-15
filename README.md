@@ -1,6 +1,8 @@
 # DokiDokiNBC
 Unity 숙련 주차 팀 과제
 ## 🙌 안녕하세요. DokiDokiNBC를 만든 육감으로 코딩하조입니다!
+<img src="https://github.com/JY-LemongO/DokiDokiNBC/assets/54103715/5a2441d1-a4b5-41a6-82de-7766f911b068" width="500" height="500">
+
 ## 프로젝트 소개
 악몽 속에서 12시간 캠프 일정을 소화하며 코드 조각을 모으고, 퇴실 버튼을 찾아 던전을 클리어 해 나가자!
 
@@ -32,3 +34,5 @@ Unity 숙련 주차 팀 과제
 
     ★★ : 아티팩트 및 효과
 ---
+
+
