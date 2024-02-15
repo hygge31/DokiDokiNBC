@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface IWeapon
 {
-    void Attack(Vector2 origin, Vector2 dir);
+    void Attack(PlayerStatManager playerStat, Vector2 origin, Vector2 dir);
 }

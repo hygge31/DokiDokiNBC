@@ -5,16 +5,12 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     // ### Stats
-    public float Atk { get; protected set; } // 공격력
-    public float FireRate { get; protected set; } // 발사속도
+    public float Atk { get; protected set; } // 공격력    
     public float TravelSpeed { get; protected set; } // 이동속도
 
-    public Bullet(float atk, float fireRate, float travelSpeed)
+    public virtual void Setup(Vector3 spawnPos, Vector2 dir, float atk, float travelSpeed, float duration) 
     {
-        Atk = atk;
-        FireRate = fireRate;
+        Atk = atk;        
         TravelSpeed = travelSpeed;
     }
-
-    public virtual void Setup() { }
 }

@@ -3,11 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using static Define;
 
 public class PlayerStatManager
 {
     public Action OnDead;
     public Action OnPlayerSetup;
+    public Action OnWeaponChange;
     public Action<string, int> OnPerkSetup;
     public Action<int, int> OnHealing;
     public Action<int, int> OnGetDamaged;
@@ -15,11 +17,26 @@ public class PlayerStatManager
 
     // ### Stats
     public int Hp { get; private set; }
+
     public float Atk { get; private set; }
     public float FireRate { get; private set; }
-    public float MoveSpeed { get; private set; }
+    public float MoveSpeed { get; private set; }    
     public int AddBullet { get; private set; }
     public int PierceCount { get; private set; }
+
+    // ### Applied Stats    
+    public float A_Atk { get; private set; }
+    public float A_FireRate { get; private set; }    
+    public int A_AddBullet { get; private set; }
+    public int A_PierceCount { get; private set; }
+
+    // ### Weapon Stats    
+    public float W_Atk { get; private set; }
+    public float W_FireRate { get; private set; }    
+    public float W_BulletSpeed { get; private set; }
+    public int W_AddBullet { get; private set; }
+    public int W_PierceCount { get; private set; }
+    public float W_Duration { get; private set; }    
 
     public bool IsDead { get; private set; } = false;
 
@@ -30,16 +47,18 @@ public class PlayerStatManager
         Hp = 10;
         MoveSpeed = 5;
         Atk = 1;
-        FireRate = 1;
+        FireRate = 1;        
         AddBullet = 0;
         PierceCount = 0;
+        
+        Managers.Attack.OnWeaponSetup += WeaponStatApply;        
     }
 
     public void PlayerSetup()
     {
         // To Do - 플레이어 퍽을 받아서 적용 시키기.        
 
-        string[] keys = Enum.GetNames(typeof(Define.Perks));        
+        string[] keys = Enum.GetNames(typeof(Define.Perks));
         for (int i = 0; i < keys.Length; i++)
         {
             if (_perkDict.TryGetValue(keys[i], out int value))
@@ -47,6 +66,7 @@ public class PlayerStatManager
         }
 
         OnPlayerSetup?.Invoke();
+        Managers.Attack.OnChangeWeapon += WeaponStatApply;
     }
 
     public void Healing()
@@ -54,6 +74,18 @@ public class PlayerStatManager
         int prevHp = Hp;
         Hp++;
         OnHealing?.Invoke(prevHp, Hp);
+    }
+
+    private void WeaponStatApply(Item_SO weapon)
+    {        
+        W_FireRate = weapon.fireRate;
+        W_Atk = weapon.atk;
+        W_BulletSpeed = weapon.bulletSpeed;
+        W_AddBullet = weapon.addBullet;
+        W_PierceCount = weapon.pierceCount;
+        W_Duration = weapon.duration;
+
+        AppliedStatCalculator();
     }
 
     public void ApplyPerkStat(Item_SO item)
@@ -64,14 +96,26 @@ public class PlayerStatManager
             _perkDict.Add(item.name, 1);
 
         Atk += item.atk;
-        FireRate += item.fireRate;        
+        FireRate += item.fireRate;
         AddBullet += item.addBullet;
         PierceCount += item.pierceCount;
-        
-        if (item.name == Define.Perks.Item_Injector.ToString() && _perkDict.ContainsKey(item.name) == false)
+
+        if (item.name == Perks.Item_Injector.ToString() && _perkDict.GetValueOrDefault(item.name) == 1)
             MoveSpeed *= item.moveSpeed;
 
+        AppliedStatCalculator();
+
         OnApplyPerkStat?.Invoke(item);
+    }
+
+    private void AppliedStatCalculator()
+    {
+        A_FireRate = FireRate * W_FireRate;
+        A_Atk = Atk * W_Atk;        
+        A_AddBullet = AddBullet + W_AddBullet;
+        A_PierceCount = PierceCount + W_PierceCount;
+
+        OnWeaponChange?.Invoke();
     }
 
     public void GetDamaged()
@@ -102,6 +146,6 @@ public class PlayerStatManager
         OnPerkSetup = null;
         OnHealing = null;
         OnGetDamaged = null;
-        OnApplyPerkStat = null;        
+        OnApplyPerkStat = null;
     }
 }

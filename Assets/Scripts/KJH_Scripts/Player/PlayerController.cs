@@ -26,9 +26,21 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        // Temp
+
         if(Input.GetKeyUp(KeyCode.Escape))
         {
             Managers.Scene.LoadScene(Define.Scenes.Main);
+        }
+
+        if (Input.GetKeyUp(KeyCode.M))
+        {
+            Debug.Log($"A_AddBullet {playerStatManager.A_AddBullet}");
+            Debug.Log($"A_Atk {playerStatManager.A_Atk}");
+            Debug.Log($"A_FireRate {playerStatManager.A_FireRate}");
+            Debug.Log($"A_PierceCount {playerStatManager.A_PierceCount}");
+            Debug.Log($"W_Duration {playerStatManager.W_Duration}");
+            Debug.Log($"W_FireRate {playerStatManager.W_FireRate}");
         }
     }
 

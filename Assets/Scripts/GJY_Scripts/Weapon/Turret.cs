@@ -28,6 +28,6 @@ public class Turret : MonoBehaviour
     private void ShootBullet()
     {
         Bullet_Turret beam = Managers.RM.Instantiate("Projectiles/Bullet_Turret").GetComponent<Bullet_Turret>();
-        beam.Setup();
+        
     }
 }

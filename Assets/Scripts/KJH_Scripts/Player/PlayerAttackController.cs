@@ -79,12 +79,12 @@ public class PlayerAttackController : MonoBehaviour
     private void HandleAttackDelay()
     {
 
-        if (timeSinceLastAttack <= playerStatManager.FireRate)
+        if (timeSinceLastAttack <= playerStatManager.A_FireRate)
         {
             timeSinceLastAttack += Time.deltaTime;
         }
-        if (IsAttacking && timeSinceLastAttack > playerStatManager.FireRate)
-        {
+        if (IsAttacking && timeSinceLastAttack > playerStatManager.A_FireRate)
+        {            
             timeSinceLastAttack = 0;
             SetAttackDirection();
             Managers.Attack.UseWeapon(transform.position, attackDirection);
