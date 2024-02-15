@@ -149,6 +149,10 @@ public class RoomData
             {
                 DunGoenManager.Instance.CallOnActivePortal();
             }
+            else
+            {
+                //중앙에 아이템 소환. //todo
+            }
 
             clear = true;
             DunGoenManager.Instance.DungoenAllDoorAppear();

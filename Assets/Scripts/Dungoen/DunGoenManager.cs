@@ -32,6 +32,9 @@ public class DunGoenManager : MonoBehaviour
     public float cameraWidth;
     public float cameraHeight;
 
+
+    [Header("Boss")]
+    public Boss boss;
     
     public event Action OnChangeMinimap;
     public event Action<RoomData> OnMoveToDungoenRoom;
@@ -42,21 +45,35 @@ public class DunGoenManager : MonoBehaviour
         Instance = this;
 
         _camera = Camera.main;
-        Instantiate(minimapCamera);
-        Instantiate(minimapUi);
-        Instantiate(playerTransform);
-
+        
 
         cameraWidth = _camera.orthographicSize * _camera.aspect - 1;
         cameraHeight = _camera.orthographicSize -2;
 
+
+        Instantiate(playerTransform);
     }
 
     private void Start()
     {
-        CreateDunGoen();
-        DungoenAllDoorAppear();
-        CallOnMoveToDungoenRoom(dungoenRoomDataList[0]);
+
+        if(Managers.GameManager.day >= 4)
+        {
+            Instantiate(boss);
+            _camera.GetComponent<DungoenCamera>().SetCamLimit(boss.roomData);
+        }
+        else
+        {
+            
+            Instantiate(minimapCamera);
+            Instantiate(minimapUi);
+
+            CreateDunGoen();
+            DungoenAllDoorAppear();
+            CallOnMoveToDungoenRoom(dungoenRoomDataList[0]);
+        }
+
+        
         
     }
 
