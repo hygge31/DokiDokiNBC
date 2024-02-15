@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
     private Vector2 curMovementInput;
 
     private Rigidbody2D _rigidbody;
+    private Animator playerAnimator;
     private Animator headAnimator;
     private Animator bodyAnimator;
 
@@ -20,8 +21,11 @@ public class PlayerController : MonoBehaviour
         playerStatManager = Managers.Player;
 
         // 자식 오브젝트에서 Animator 컴포넌트를 찾아서 가져옴
+        playerAnimator = GetComponent<Animator>();
         headAnimator = GameObject.FindGameObjectWithTag("Head").GetComponent<Animator>();
         bodyAnimator = GameObject.FindGameObjectWithTag("Body").GetComponent<Animator>();
+
+        Managers.Player.OnGetDamaged += PlayerHit;
     }
 
     private void Update()
@@ -47,8 +51,10 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         if (playerStatManager.IsDead)
+        {
+            PlayerDied();
             return;
-
+        }
         Move();
     }
 
@@ -121,5 +127,15 @@ public class PlayerController : MonoBehaviour
         {
             curMovementInput = Vector2.zero;
         }
+    }
+
+    private void PlayerHit(int prevHp, int curHp)
+    {
+        playerAnimator.SetTrigger("IsHit");
+    }
+
+    private void PlayerDied()
+    {
+        playerAnimator.SetTrigger("IsDead");
     }
 }
