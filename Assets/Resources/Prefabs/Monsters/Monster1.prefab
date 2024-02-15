@@ -342,7 +342,7 @@ Transform:
   - {fileID: 6468129702284203213}
   - {fileID: 2789001952975832666}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &807963414481334914
 Rigidbody2D:
@@ -393,6 +393,7 @@ MonoBehaviour:
   characterStatsHandler: {fileID: 1156409333619909127}
   isContect: 0
   attackClip: {fileID: 8300000, guid: 7d1100fe5d35d8041acbe8c04756d0a7, type: 3}
+  deathClip: {fileID: 8300000, guid: f9eaca5d74e51b24f9bac1364197f852, type: 3}
 --- !u!114 &4487118761625968994
 MonoBehaviour:
   m_ObjectHideFlags: 0

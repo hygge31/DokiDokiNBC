@@ -20,6 +20,7 @@ public class Enemy1 : EnemyController
     public bool isContect = false;
 
     public AudioClip attackClip;
+    public AudioClip deathClip;
 
     protected override void Awake()
     {

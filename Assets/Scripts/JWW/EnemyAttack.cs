@@ -25,6 +25,10 @@ public class EnemyAttack : MonoBehaviour
     {
         SoundManager.Instance.PlayClip(enemyController?.attackClip);
     }
+    public void PlayDeathSound()
+    {
+        SoundManager.Instance.PlayClip(enemyController?.deathClip);
+    }
     public void EndOfAttack()
     {
         enemyController.isAttacking = false;

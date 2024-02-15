@@ -78,6 +78,7 @@ GameObject:
   - component: {fileID: 7347318454954805768}
   - component: {fileID: 8718574896676578681}
   - component: {fileID: 264076861398658718}
+  - component: {fileID: 428321783635549677}
   - component: {fileID: 6735943800077416700}
   m_Layer: 8
   m_Name: ManiSprite
@@ -174,6 +175,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &428321783635549677
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5989790823982943986}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c881e0ae2d3aa04db252942a8c55859, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &6735943800077416700
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -254,7 +267,7 @@ Transform:
   - {fileID: 1008706240104965605}
   - {fileID: 160795332481870355}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5774424575550102455
 MonoBehaviour:
@@ -270,6 +283,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 7319108262126650427, guid: 36479a0ad9ac1c14ebded91378e47c8c, type: 3}
   firePoint: {fileID: 1008706240104965605}
+  deathClip: {fileID: 8300000, guid: dfb022c7500236346a810d434a9696ba, type: 3}
+  attackClip: {fileID: 8300000, guid: 38c9b60058913fb48ae5e7a905fcdff9, type: 3}
   moveSpeed: 5
   levelLayerMask:
     serializedVersion: 2
@@ -365,7 +380,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseStats:
-    maxHealth: 1000
+    maxHealth: 5
     atk: 1
     fireRate: 0
     moveSpeed: 5

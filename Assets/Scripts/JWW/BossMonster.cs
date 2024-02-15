@@ -17,6 +17,9 @@ public class BossMonster : MonoBehaviour
     private HealthSystem _healthSystem;
     private Vector2 moveDirection;
 
+    public AudioClip deathClip;
+    public AudioClip attackClip;
+
     public float moveSpeed = 5f;
     public LayerMask levelLayerMask;
 
@@ -93,24 +96,28 @@ public class BossMonster : MonoBehaviour
     private void ExecuteQuadrupleAttack()
     {
         ExecuteRandomAttack(3,4);
+        SoundManager.Instance.PlayClip(attackClip);
         Invoke("ExecuteTripleAttack",attackCooldown/6);
     }
 
     private void ExecuteTripleAttack()
     {
         ExecuteRandomAttack(4, 6);
+        SoundManager.Instance.PlayClip(attackClip);
         Invoke("ExecuteDoubleAttack", attackCooldown/4);
     }
 
     private void ExecuteDoubleAttack()
     {
         ExecuteRandomAttack(3, 4);
+        SoundManager.Instance.PlayClip(attackClip);
         Invoke("ExecuteSingleAttack", attackCooldown/5);
     }
 
     private void ExecuteSingleAttack()
     {
         ExecuteRandomAttack(1, 3);//1 ~ 2
+        SoundManager.Instance.PlayClip(attackClip);
     }
 
     void ExecuteRandomAttack(int min,int max)//랜덤 공격
