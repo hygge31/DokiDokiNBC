@@ -419,7 +419,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseStats:
-    maxHealth: 10
+    maxHealth: 20
     atk: 0
     fireRate: 0
     moveSpeed: 3

@@ -419,10 +419,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseStats:
-    maxHealth: 20
+    maxHealth: 10
     atk: 0
     fireRate: 0
-    moveSpeed: 4
+    moveSpeed: 5
   statsModifiers: []
 --- !u!114 &7341153884454401248
 MonoBehaviour:
