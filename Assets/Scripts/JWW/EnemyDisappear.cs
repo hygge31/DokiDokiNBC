@@ -8,11 +8,11 @@ public class EnemyDisappear : MonoBehaviour
 
     public void Disappear()
     {
-        //foreach (Behaviour component in transform.parent.GetComponentsInChildren<Behaviour>())
-        //{
-        //    component.enabled = false;
-        //}
-        DunGoenManager.Instance.DieMonster();
+        foreach (SpriteRenderer component in transform.parent.GetComponentsInChildren<SpriteRenderer>())
+        {
+            component.enabled = false;
+        }
+        //DunGoenManager.Instance.DieMonster();
 
         StartCoroutine(DropRoutine());        
     }
