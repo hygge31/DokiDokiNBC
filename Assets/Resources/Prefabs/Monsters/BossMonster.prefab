@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 160795332481870355}
   - component: {fileID: 8753561645129023249}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: MonsterHitBox
-  m_TagString: MonsterHitBox
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -79,7 +79,7 @@ GameObject:
   - component: {fileID: 8718574896676578681}
   - component: {fileID: 264076861398658718}
   - component: {fileID: 6735943800077416700}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ManiSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -195,7 +195,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1008706240104965605}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: FirePoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -230,7 +230,9 @@ GameObject:
   - component: {fileID: 3571224605019623485}
   - component: {fileID: 5387018439046772758}
   - component: {fileID: 7174670704630391968}
-  m_Layer: 0
+  - component: {fileID: 5759054052935020696}
+  - component: {fileID: 7097801050969185284}
+  m_Layer: 8
   m_Name: BossMonster
   m_TagString: Monster
   m_Icon: {fileID: 0}
@@ -373,3 +375,34 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &5759054052935020696
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7843041995560236409}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd56044fdc4b6f949be926c37eb192cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthChangeDelay: 0
+--- !u!114 &7097801050969185284
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7843041995560236409}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c305f54809eb9f246939d0e2700d2c6b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseStats:
+    maxHealth: 1000
+    atk: 1
+    fireRate: 0
+    moveSpeed: 5
+  statsModifiers: []
