@@ -220,7 +220,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetLayer:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 1280
   fireballClip: {fileID: 8300000, guid: e930cbe9ccb6a1844a538a852fd011c0, type: 3}
   explodeClip: {fileID: 8300000, guid: 5718c83c6e86f95499268e8d029d4a01, type: 3}
 --- !u!50 &-4352670510734332074

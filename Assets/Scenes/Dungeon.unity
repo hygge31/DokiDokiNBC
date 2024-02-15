@@ -199,14 +199,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 54377252959614293, guid: a3f25315f56df4dc89586cffa4fe2ba9, type: 3}
-      propertyPath: m_Layer
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 998919081308855484, guid: a3f25315f56df4dc89586cffa4fe2ba9, type: 3}
-      propertyPath: m_RaycastTarget
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7414301242221178534, guid: a3f25315f56df4dc89586cffa4fe2ba9, type: 3}
       propertyPath: m_Name
       value: DungoenManager
@@ -255,10 +247,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7673621758566582235, guid: a3f25315f56df4dc89586cffa4fe2ba9, type: 3}
-      propertyPath: soundManger
-      value: 
-      objectReference: {fileID: 8161508909336684567, guid: 81a9a194a334242e68bab755abb89ddf, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

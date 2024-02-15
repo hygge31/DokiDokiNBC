@@ -165,7 +165,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetLayer:
     serializedVersion: 2
-    m_Bits: 4352
+    m_Bits: 1280
   curve:
     serializedVersion: 2
     m_Curve:
