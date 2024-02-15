@@ -9,7 +9,7 @@ public class WeaponMissile : IWeapon
         for(int i = 0; i< 10; i++)
         {
             Bullet_Missile missile = Managers.RM.Instantiate("Projectiles/Bullet_Missile").GetComponent<Bullet_Missile>();
-            missile.Setup(origin, dir, playerStat.A_Atk, playerStat.W_BulletSpeed, playerStat.W_Duration);
+            missile.Setup(origin, dir, playerStat.A_Atk, playerStat.W_BulletSpeed, playerStat.W_Duration, playerStat.A_PierceCount);
         }        
     }
 }

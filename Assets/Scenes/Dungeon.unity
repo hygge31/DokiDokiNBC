@@ -199,6 +199,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 54377252959614293, guid: a3f25315f56df4dc89586cffa4fe2ba9, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 7414301242221178534, guid: a3f25315f56df4dc89586cffa4fe2ba9, type: 3}
       propertyPath: m_Name
       value: DungoenManager

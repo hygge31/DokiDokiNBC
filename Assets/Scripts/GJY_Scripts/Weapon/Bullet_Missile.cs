@@ -3,14 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Bullet_Missile : Bullet
-{
-    [SerializeField] LayerMask targetLayer;
-    [SerializeField] AnimationCurve curve;
-
-    private float _atk;
-    private float _speed;
-    private float _activeTime;
-    private int _pierceCount;
+{    
+    [SerializeField] AnimationCurve curve;    
 
     private bool _isLockOn = false;    
 
@@ -27,7 +21,7 @@ public class Bullet_Missile : Bullet
     private void Update()
     {
         currentActive += Time.deltaTime;
-        if(currentActive >= _activeTime)
+        if(currentActive >= Duration)
             Clear();
     }
 
@@ -50,36 +44,31 @@ public class Bullet_Missile : Bullet
                 Vector3 targetDir = (_target.position - transform.position).normalized;
 
                 Quaternion targetRot = Quaternion.LookRotation(Vector3.forward, targetDir);
-                transform.rotation = Quaternion.Slerp(transform.rotation, targetRot, _speed * Time.deltaTime);
+                transform.rotation = Quaternion.Slerp(transform.rotation, targetRot, TravelSpeed * Time.deltaTime);
 
-                _rigid.velocity = transform.up * _speed;
+                _rigid.velocity = transform.up * TravelSpeed;
             }
             else
             {
                 if (_target != null)
                     _target = null;
-                _rigid.velocity = transform.up * _speed;
+                _rigid.velocity = transform.up * TravelSpeed;
             }
         }
         else
         {
-            _rigid.velocity = transform.up * _speed;
+            _rigid.velocity = transform.up * TravelSpeed;
         }
     }
 
-    public override void Setup(Vector3 spawnPos, Vector2 dir, float atk, float travelSpeed, float duration)
+    public override void Setup(Vector3 spawnPos, Vector2 dir, float atk, float travelSpeed, float duration, int pierceCount)
     {
-        base.Setup(spawnPos, dir, atk, travelSpeed, duration);
+        base.Setup(spawnPos, dir, atk, travelSpeed, duration, pierceCount);
 
         currentActive = 0;
 
         transform.rotation = Quaternion.Euler(0, 0, Random.Range(0, 360));
-        transform.position = spawnPos + transform.up * 0.5f;
-
-        _atk = atk;
-        _speed = travelSpeed;
-        _activeTime = duration;
-        //_pierceCount = pierceCount;
+        transform.position = spawnPos + transform.up * 0.5f;        
 
         StartCoroutine(LockOnTargetRoutine());
     }
@@ -96,7 +85,7 @@ public class Bullet_Missile : Bullet
             current += Time.deltaTime;
             percent = current / 1f;
 
-            _rigid.velocity = Vector2.Lerp(startSpeed, transform.up * _speed, curve.Evaluate(percent));
+            _rigid.velocity = Vector2.Lerp(startSpeed, transform.up * TravelSpeed, curve.Evaluate(percent));
 
             yield return null;
         }
@@ -110,9 +99,14 @@ public class Bullet_Missile : Bullet
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Monster"))
+        if (targetLayer == (targetLayer | (1 << collision.gameObject.layer)))
         {
-            // To - Do 적에게 데미지 및 사라지기
+            HealthSystem healthSystem = collision.GetComponentInParent<HealthSystem>();
+            if (healthSystem != null)
+            {
+                healthSystem.ChangeHealth(-Atk);
+            }
+
             Clear();
         }        
     }    

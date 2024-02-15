@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Bullet_Turret : Bullet
 {
-    public override void Setup(Vector3 spawnPos, Vector2 dir, float atk, float travelSpeed, float duration)
+    public override void Setup(Vector3 spawnPos, Vector2 dir, float atk, float travelSpeed, float duration, int pierceCount)
     {
-        base.Setup(spawnPos, dir, atk, travelSpeed, duration);
+        base.Setup(spawnPos, dir, atk, travelSpeed, duration, pierceCount);
 
 
     }
