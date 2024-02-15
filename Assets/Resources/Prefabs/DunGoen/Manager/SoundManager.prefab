@@ -48,7 +48,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   soundEffectVolume: 0.3
   musicVolume: 0.5
-  clip: {fileID: 8300000, guid: bbe6b50bea063420d885e3eda6b2d128, type: 3}
+  clip: {fileID: 8300000, guid: 5c484d37381474a9bb84d0a75b52b9e4, type: 3}
 --- !u!114 &7082830587148174554
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -75,7 +75,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: bbe6b50bea063420d885e3eda6b2d128, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 5c484d37381474a9bb84d0a75b52b9e4, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
