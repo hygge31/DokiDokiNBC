@@ -8,6 +8,8 @@ public class UI_Hud : UI_Scene
     private Stack<Image> _hpImages = new Stack<Image>();    
     private PlayerStatManager _playerStatManager;
 
+    private UI_Popup curPopup = null;
+
     enum Transforms
     {
         HPImages_Panel,
@@ -43,6 +45,7 @@ public class UI_Hud : UI_Scene
         Managers.Player.OnHealing += HPImageControl;
         Managers.Player.OnGetDamaged += HPImageControl;
         Managers.Player.OnWeaponChange += UpdateTexts;
+        Managers.Player.OnDead += DeadPopup;
 
         Managers.Attack.OnWeaponSetup += WeaponSetup;
         Managers.Attack.OnChangeWeapon += GetWeapon;
@@ -52,6 +55,21 @@ public class UI_Hud : UI_Scene
         GetText((int)Texts.CodePiece_Text).text = $"{Managers.GameManager.CodePiece}";
 
         _playerStatManager = Managers.Player;
+
+        GetComponent<UI_InputActionHandler>().OnEscInvoke += ShowAndHidePopup;
+    }
+
+    private void DeadPopup()
+    {
+        Managers.UI.ShowPopupUI<UI_DeathPopup>();
+    }
+
+    private void ShowAndHidePopup()
+    {
+        if (curPopup == null)
+            curPopup = Managers.UI.ShowPopupUI<UI_GiveUpPopup>();
+        else
+            Managers.UI.ClosePopupUI(curPopup);
     }
 
     private void PlayerSetup()
