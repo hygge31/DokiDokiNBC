@@ -32,14 +32,16 @@ public class Boss : MonoBehaviour
     {
         yield return new WaitForSeconds(1f);
         BossMonster boss = Instantiate(boosObj, spawnPot.position, Quaternion.identity).GetComponent<BossMonster>();
-        float curhealth = boss.bossHealth;
+        HealthSystem bossHelathSystem = boss.GetComponent<HealthSystem>();
+        float curhealth = bossHelathSystem.CurrentHealth;
+        //float curhealth = boss.bossHealth;
 
-        while(boss.bossHealth > 0)
+        while (bossHelathSystem.CurrentHealth > 0)
         {
-            if(boss.bossHealth != curhealth)
+            if(bossHelathSystem.CurrentHealth != curhealth)
             {
-                curhealth = boss.bossHealth;
-                fill.fillAmount = curhealth / 100;
+                curhealth = bossHelathSystem.CurrentHealth;
+                fill.fillAmount = curhealth / bossHelathSystem.MaxHealth;
             }
 
             yield return new WaitForSeconds(0.1f);

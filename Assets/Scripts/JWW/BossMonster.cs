@@ -28,9 +28,7 @@ public class BossMonster : MonoBehaviour
     private float bulletSpeed = 5f;
 
     [SerializeField]
-    public float bossHealth = 1000f; // 보스의 최대 체력
-    private float maxHealth = 1000f;
-    private float healthPercentage;//보스 퍼센테이지
+    private float healthPercentage = 100f;//보스 퍼센테이지
     private bool isDead = false;
 
     private void Awake()
@@ -39,7 +37,6 @@ public class BossMonster : MonoBehaviour
         _animator = GetComponentInChildren<Animator>();
         _rigidbody2D = GetComponent<Rigidbody2D>();
         moveDirection = transform.right;
-        bossHealth = maxHealth;
         _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         nextAttackTime = Time.time;
         nextMoveTime = Time.time;
@@ -47,54 +44,48 @@ public class BossMonster : MonoBehaviour
     }
     private void Start()
     {
-        bossHealth = 1000;//_healthSystem.CurrentHealth;
+        _healthSystem.OnDeath += Dead;
     }
     void Update()
     {
-        healthPercentage = (bossHealth / maxHealth) * 100f;
+        healthPercentage = (_healthSystem.CurrentHealth / _healthSystem.MaxHealth) * 100f;
         if (!isDead)
         {
-            if (healthPercentage <= 0)
-                Dead();
-
-            if (!isDead)
-            {
-                FlipSprite();
-                RotateFirePoint();
+            FlipSprite();
+            RotateFirePoint();
                
-                if (Time.time >= nextMoveTime)
-                {
-                    moveDirection = new Vector2(Random.Range(0,360),Random.Range(0,360)).normalized;
-                    _rigidbody2D.velocity = moveDirection * moveSpeed;
-                    nextMoveTime = Time.time + moveCooldown;
-                }
-
-                transform.right = moveDirection;
+            if (Time.time >= nextMoveTime)
+            {
+                moveDirection = new Vector2(Random.Range(0,360),Random.Range(0,360)).normalized;
                 _rigidbody2D.velocity = moveDirection * moveSpeed;
+                nextMoveTime = Time.time + moveCooldown;
+            }
 
-                if (Time.time >= nextAttackTime)
+            transform.right = moveDirection;
+            _rigidbody2D.velocity = moveDirection * moveSpeed;
+
+            if (Time.time >= nextAttackTime)
+            {
+                if (healthPercentage >= 70f)
                 {
-                    if (healthPercentage >= 70f)
-                    {
-                        ExecuteSingleAttack();
-                    }
-                    else if (healthPercentage >= 40f && healthPercentage < 70f)
-                    {
-                        attackCooldown = 3f;
-                        ExecuteDoubleAttack();
-                    }
-                    else if (healthPercentage >= 20f && healthPercentage < 40f)
-                    {
-                        attackCooldown = 5f;
-                        ExecuteTripleAttack();
-                    }
-                    else if (healthPercentage > 0f && healthPercentage < 20f)
-                    {
-                        attackCooldown = 7f;
-                        ExecuteQuadrupleAttack();
-                    }
-                    nextAttackTime = Time.time + attackCooldown;
+                    ExecuteSingleAttack();
                 }
+                else if (healthPercentage >= 40f && healthPercentage < 70f)
+                {
+                    attackCooldown = 3f;
+                    ExecuteDoubleAttack();
+                }
+                else if (healthPercentage >= 20f && healthPercentage < 40f)
+                {
+                    attackCooldown = 5f;
+                    ExecuteTripleAttack();
+                }
+                else if (healthPercentage > 0f && healthPercentage < 20f)
+                {
+                    attackCooldown = 7f;
+                    ExecuteQuadrupleAttack();
+                }
+                nextAttackTime = Time.time + attackCooldown;
             }
         }
     }
