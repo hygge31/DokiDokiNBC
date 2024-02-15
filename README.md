@@ -75,20 +75,36 @@ Unity 숙련 주차 팀 과제
 
     - 보스 공격 패턴
       
-        - 패턴 1 : 총알 1개 발사 
+        - 패턴 1 : 
      
           보스가 바라보는 곳으로 총알을 한 개 발사한다.
           
           ![화면 캡처 2024-02-16 031254](https://github.com/JY-LemongO/DokiDokiNBC/assets/54103715/3326764c-92ab-4cad-963d-67ce947418ea)
           
-        - 패턴 2 : 총알 5개 발사
+        - 패턴 2 : 
           
           보스가 바라보는 곳으로 총알을 다섯 개 발사한다.
   
           ![화면 캡처 2024-02-16 031631](https://github.com/JY-LemongO/DokiDokiNBC/assets/54103715/a331679f-ddc6-44f3-8f3f-7864357a71cf)
 
-
         - 패턴 3 : 
+     
+          보스에서 360도로 뻗어 나가는 총알 발사
+
+          ![화면 캡처 2024-02-16 032318](https://github.com/JY-LemongO/DokiDokiNBC/assets/54103715/9fd14833-4754-4b59-8807-fe877c94edf6)
+
+        - 패턴 4 :
+     
+          보스가 총알 두 개를 앞쪽으로 발사하고 2초 뒤에 패턴 3모양처럼 퍼진다.
+
+          ![화면 캡처 2024-02-16 033026](https://github.com/JY-LemongO/DokiDokiNBC/assets/54103715/947faa02-854b-4649-94a7-83fd27a78fe2)
+
+        - 패턴 5 :
+     
+          보스가 플레이어를 몇 초간 추적하는 총알 다섯 개를 발사한다.
+
+          ![화면 캡처 2024-02-16 032523](https://github.com/JY-LemongO/DokiDokiNBC/assets/54103715/56ce9243-0bdb-40e3-a354-d974bc2fe07b)
+        
 7. **퍼마데스 (Permadeath) 시스템** (난이도: ★★☆☆☆)
     
     - 설명
