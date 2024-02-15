@@ -7,6 +7,9 @@ public class UI_Shop : UI_Popup
 {
     UI_ShopAlertPopup _alertPopup = null;
 
+    private UI_Popup currentShowMenu = null;
+    private PlayerStatManager playerStatManager = null;
+
     enum State
     {
         Main,
@@ -14,6 +17,7 @@ public class UI_Shop : UI_Popup
         Upgrade,
         Skin,
         Boss,
+        Ending,
     }
 
     enum Texts
@@ -54,6 +58,8 @@ public class UI_Shop : UI_Popup
         GetComponent<UI_InputActionHandler>().OnEscInvoke += ShowAndHideAlertPopup;
         GetComponent<UI_InputActionHandler>().OnEnterInvoke += FocusInputField;
         GetComponent<UI_InputActionHandler>().OnEnterInvoke += ChangeState;
+
+        playerStatManager = Managers.Player;
     }
 
     private void ShowAndHideAlertPopup()
@@ -65,17 +71,19 @@ public class UI_Shop : UI_Popup
     }
 
     private void FocusInputField()
-    {        
-        
+    {
+
     }
 
+    // 만든 사람이 봐도 마음에 안드네~~
     private void ChangeState()
     {
         alertText.color = Color.white;
         string inputCommand = input.text;
         Text commandText = GetText((int)Texts.Command_Text);
+        Text menuText = GetText((int)Texts.Menu_Text);
 
-        if(input.text == "")
+        if (input.text == "")
         {
             input.Select();
             input.ActivateInputField();
@@ -88,34 +96,44 @@ public class UI_Shop : UI_Popup
             case State.Main:
                 if (inputCommand == "상태")
                 {
+                    alertText.text = "";
                     commandText.text = StatusCommands();
-                }                    
+                    menuText.text = MenuName("상태");
+                    currentShowMenu = Managers.UI.ShowPopupUI<UI_StatusPopup>();
+                    currentState = State.Status;
+                }
                 else if (inputCommand == "강화")
                 {
+                    alertText.text = "";
                     commandText.text = UpgradeCommands();
-                }                    
+                    menuText.text = MenuName("강화");
+                    UI_UpgradePopup upMenu = Managers.UI.ShowPopupUI<UI_UpgradePopup>();
+                    upMenu.LoadSubImages(playerStatManager.upgrade_Atk, playerStatManager.upgrade_FireRate, playerStatManager.upgrade_MoveSpeed);
+                    currentShowMenu = upMenu;
+                    currentState = State.Upgrade;
+                }
                 else if (inputCommand == "코스튬")
                 {
+                    alertText.text = "";
                     commandText.text = SkinCommands();
-                }                    
+                    menuText.text = MenuName("코스튬");
+                    // 코스튬 팝업
+                    currentState = State.Skin;
+                }
                 else
                 {
                     alertText.text = "잘못된 입력입니다.";
                     alertText.color = Color.red;
-                }                    
+                }
                 break;
             case State.Status:
-                if (inputCommand == "상태")
+                if (inputCommand == "뒤로")
                 {
-                    commandText.text = StatusCommands();
-                }
-                else if (inputCommand == "강화")
-                {
-                    commandText.text = UpgradeCommands();
-                }
-                else if (inputCommand == "코스튬")
-                {
-                    commandText.text = UpgradeCommands();
+                    alertText.text = "";
+                    commandText.text = MainCommands();
+                    menuText.text = MenuName("메인");
+                    Managers.UI.ClosePopupUI(currentShowMenu);
+                    currentState = State.Main;
                 }
                 else
                 {
@@ -124,17 +142,37 @@ public class UI_Shop : UI_Popup
                 }
                 break;
             case State.Upgrade:
-                if (inputCommand == "상태")
+                if (inputCommand == "1")
                 {
-                    commandText.text = StatusCommands();
+                    alertText.text = "";
+                    if (playerStatManager.upgrade_Atk == 5)
+                        break;
+
+                    ApplyUpgrade((int)UI_UpgradePopup.UpgradeTransforms.Atk_Images, inputCommand);                    
                 }
-                else if (inputCommand == "강화")
+                else if (inputCommand == "2")
                 {
-                    commandText.text = UpgradeCommands();
+                    alertText.text = "";
+                    if (playerStatManager.upgrade_FireRate == 5)
+                        break;
+
+                    ApplyUpgrade((int)UI_UpgradePopup.UpgradeTransforms.FireRate_Images, inputCommand);
                 }
-                else if (inputCommand == "코스튬")
+                else if (inputCommand == "3")
                 {
-                    commandText.text = UpgradeCommands();
+                    alertText.text = "";
+                    if (playerStatManager.upgrade_MoveSpeed == 5)
+                        break;
+
+                    ApplyUpgrade((int)UI_UpgradePopup.UpgradeTransforms.MoveSpeed_Images, inputCommand);
+                }
+                else if (inputCommand == "뒤로")
+                {
+                    alertText.text = "";
+                    commandText.text = MainCommands();
+                    menuText.text = MenuName("메인");
+                    Managers.UI.ClosePopupUI(currentShowMenu);
+                    currentState = State.Main;
                 }
                 else
                 {
@@ -145,15 +183,15 @@ public class UI_Shop : UI_Popup
             case State.Skin:
                 if (inputCommand == "상태")
                 {
-                    commandText.text = StatusCommands();
+                    alertText.text = "";
                 }
                 else if (inputCommand == "강화")
                 {
-                    commandText.text = UpgradeCommands();
+                    alertText.text = "";
                 }
                 else if (inputCommand == "코스튬")
                 {
-                    commandText.text = UpgradeCommands();
+                    alertText.text = "";
                 }
                 else
                 {
@@ -161,9 +199,55 @@ public class UI_Shop : UI_Popup
                     alertText.color = Color.red;
                 }
                 break;
+            case State.Boss:
+                if (inputCommand == "과제")
+                {
+                    alertText.text = "";
+                }
+                else if (inputCommand == "강화")
+                {
+                    alertText.text = "";
+                }
+                else if (inputCommand == "코스튬")
+                {
+                    alertText.text = "";
+                }
+                else
+                {
+                    alertText.text = "잘못된 입력입니다.";
+                    alertText.color = Color.red;
+                }
+                break;
+            case State.Ending:
+                if (inputCommand == "오직 한효승만")
+                {
+
+                }
+                else
+                {
+                    alertText.text = "오직 한효승만..";
+                    alertText.color = Color.red;
+                }
+                break;
         }
 
         input.text = "";
+    }
+
+    private void ApplyUpgrade(int transform, string input)
+    {
+        Managers.Player.Upgrade(input);
+
+        UI_UpgradePopup upMenu = currentShowMenu as UI_UpgradePopup;
+        if (upMenu != null)
+            upMenu.MakeSubImage(transform);
+    }
+
+    private string MenuName(string name)
+    {
+        string text = $"현재 메뉴\n\n  [{name}]";
+
+        return text;
     }
 
     private string MainCommands()
@@ -175,34 +259,26 @@ public class UI_Shop : UI_Popup
 
     private string StatusCommands()
     {
-        return "번호를 입력해 강화 스탯 선택\n" +
-            "[1] 공격력\n" +
-            "[2] 공격속도\n" +
-            "[3] 이동속도\n" +
-            "[4] 관통 수\n" +
+        return "명령어 목록\n" +
             "\n" +
             "[뒤로]";
     }
 
     private string UpgradeCommands()
     {
-        return "번호를 입력해 강화 스탯 선택\n" +
+        return "명령어 목록\n" +
+            "\n" +
+            "번호를 입력해 강화 스탯 선택\n" +
             "[1] 공격력\n" +
             "[2] 공격속도\n" +
             "[3] 이동속도\n" +
-            "[4] 관통 수\n" +
             "\n" +
             "[뒤로]";
     }
 
     private string SkinCommands()
     {
-        return "번호를 입력해 강화 스탯 선택\n" +
-            "[1] 공격력\n" +
-            "[2] 공격속도\n" +
-            "[3] 이동속도\n" +
-            "[4] 관통 수\n" +
-            "\n" +
+        return "명령어 목록\n" +
             "[뒤로]";
     }
 }

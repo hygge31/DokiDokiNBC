@@ -10,12 +10,16 @@ public class GameManager
     public int day = 3;
 
     public int CodePiece { get; private set; } = 0;
+    public bool IsPCPowerOff { get; private set; } = false;
 
     public void GetCodePiece()
     {
         CodePiece++;
         OnGetCodePiece?.Invoke();
     }
+
+    public void PCOff() => IsPCPowerOff = true;
+    public void PCOn() => IsPCPowerOff = false;
 
     public void Clear()
     {
