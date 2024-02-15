@@ -1273,10 +1273,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: BossMonster
       objectReference: {fileID: 0}
-    - target: {fileID: 7843041995560236409, guid: dadc7020cddea2344bb8c2d150b44f5e, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8740021103913884113, guid: dadc7020cddea2344bb8c2d150b44f5e, type: 3}
       propertyPath: m_RootOrder
       value: 4
