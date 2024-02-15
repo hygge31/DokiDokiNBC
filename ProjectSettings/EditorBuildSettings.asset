@@ -6,18 +6,15 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/Title.unity
+    guid: 1abc768076276dc4c892fe33e762116b
+  - enabled: 1
     path: Assets/Scenes/Main.unity
     guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 1
-    path: Assets/Scenes/GJY.unity
-    guid: c3bb774655014a5449fb8b83bc01d06c
-  - enabled: 1
-    path: Assets/Scenes/GJY2.unity
-    guid: 79b2315aae322bd4f8ba6f9397506703
   - enabled: 1
     path: Assets/Scenes/Dungeon.unity
     guid: ca83d36f6f0719342858ba0f9ade7f09
   - enabled: 1
-    path: Assets/Scenes/KJH.unity
-    guid: 4b06b352f1c22b04c84c692fc8958b6f
+    path: Assets/Scenes/Ending.unity
+    guid: 3c008cbd8cf38374894019955ac345ac
   m_configObjects: {}

@@ -57,7 +57,7 @@ public class UI_EndingShop : UI_Popup
         if (inputString == "오직 한효승만")
         {
             Managers.GameManager.day++;
-            Managers.Scene.LoadScene(Define.Scenes.Main);
+            Managers.Scene.LoadScene(Define.Scenes.Ending);
         }
         else
         {

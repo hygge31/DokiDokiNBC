@@ -27,6 +27,7 @@ public class Define
         Title,
         Main,
         Dungeon,
+        Ending,
     }
 
     public enum TestScenes
