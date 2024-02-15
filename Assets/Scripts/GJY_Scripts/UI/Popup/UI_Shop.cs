@@ -36,6 +36,11 @@ public class UI_Shop : UI_Popup
         User_Input,
     }
 
+    enum Images
+    {
+        Blind,
+    }
+
     State currentState = State.Main;
 
     InputField input;
@@ -51,6 +56,7 @@ public class UI_Shop : UI_Popup
         BindText(typeof(Texts));
         BindButton(typeof(Buttons));
         BindInputField(typeof(InputFields));
+        BindImage(typeof(Images));
 
         GetButton((int)Buttons.Exit_Btn).onClick.AddListener(ShowAndHideAlertPopup);
 
@@ -215,8 +221,23 @@ public class UI_Shop : UI_Popup
 
     private IEnumerator ChangeSceneRoutine()
     {
+        float current = 0;
+        float percent = 0;
 
-        yield return new WaitForSeconds(2);
+        Image image = GetImage((int)Images.Blind);
+        Color color = image.color;
+
+        while (percent < 1)
+        {
+            current += Time.deltaTime;
+            percent = current / 2;
+
+            color.a = Mathf.Lerp(0, 1, percent);
+            image.color = color;
+
+            yield return null;
+        }        
+
         Managers.Scene.LoadScene(Define.Scenes.Dungeon);
     }
 

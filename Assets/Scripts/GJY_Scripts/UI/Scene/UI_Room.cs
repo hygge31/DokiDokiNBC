@@ -23,6 +23,7 @@ public class UI_Room : UI_Scene
     enum Images
     {
         Blind,
+        BG,
     }
 
     protected override void Init()
@@ -36,6 +37,13 @@ public class UI_Room : UI_Scene
         GetUIEventHandler((int)Pointer.Bed_Pointer).OnEnterHandler += BedEnter;
         GetUIEventHandler((int)Pointer.Bed_Pointer).OnExitHandler += BedExit;
         GetUIEventHandler((int)Pointer.Bed_Pointer).OnClickHandler += BedClick;
+
+        if(Managers.GameManager.day == 5)
+        {
+            GetUIEventHandler((int)Pointer.Bed_Pointer).gameObject.SetActive(false);
+            GetImage((int)Images.BG).sprite = Resources.Load<Sprite>("Sprites/UI/OnlyHan");
+            GetAnimator((int)Animator.Clock_Image).Play("DigitalClock_404");
+        }            
 
         GetUIEventHandler((int)Pointer.PC_Pointer).OnEnterHandler += PCEnter;
         GetUIEventHandler((int)Pointer.PC_Pointer).OnExitHandler += PCExit;
