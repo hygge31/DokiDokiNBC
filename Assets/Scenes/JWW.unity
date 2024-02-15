@@ -1499,11 +1499,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3393283884584196338, guid: 8d43abc5d9b64b341a1eb672d22253b3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.82
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3393283884584196338, guid: 8d43abc5d9b64b341a1eb672d22253b3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.97
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3393283884584196338, guid: 8d43abc5d9b64b341a1eb672d22253b3, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1554,10 +1554,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 5387018439046772758, guid: dadc7020cddea2344bb8c2d150b44f5e, type: 3}
-      propertyPath: m_Mass
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: 7843041995560236409, guid: dadc7020cddea2344bb8c2d150b44f5e, type: 3}
       propertyPath: m_Name
       value: BossMonster
@@ -1625,11 +1621,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 763274055791467755, guid: bf4b1eceb6c4dd24fa38cf3f4211ae75, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.86
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 763274055791467755, guid: bf4b1eceb6c4dd24fa38cf3f4211ae75, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.49
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 763274055791467755, guid: bf4b1eceb6c4dd24fa38cf3f4211ae75, type: 3}
       propertyPath: m_LocalPosition.z
