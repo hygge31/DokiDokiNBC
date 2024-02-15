@@ -71,7 +71,7 @@ public class Item_CodePiece : DropItem
     {        
         base.InteractWithPlayer();
 
-        // To Do - 아이템이 닿으면 재화가 올라가는 Action 호출
+        Managers.GameManager.GetCodePiece();
         Clear();
     }
 

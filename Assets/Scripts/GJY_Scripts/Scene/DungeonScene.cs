@@ -10,7 +10,8 @@ public class DungeonScene : BaseScene
 
         SceneType = Define.Scenes.Dungeon;
         Managers.UI.ShowSceneUI<UI_Hud>();
+        Managers.UI.ShowPopupUI<UI_ShowDayPopup>();
         Managers.Player.PlayerSetup();
-        Managers.Attack.WeaponSetup();                
+        Managers.Attack.WeaponSetup();        
     }    
 }

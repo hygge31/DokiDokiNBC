@@ -17,9 +17,11 @@ MonoBehaviour:
   displayDesc: "\uAE30\uBCF8\uACF5\uACA9"
   isWeapon: 1
   isStackable: 0
-  atk: 2
+  atk: 5
   fireRate: 1
   moveSpeed: 0
+  bulletSpeed: 10
   addBullet: 0
   pierceCount: 0
   weaponType: 1
+  duration: 5

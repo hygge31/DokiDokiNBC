@@ -61,6 +61,7 @@ public class Managers : MonoBehaviour
         UI.Clear();
         Player.Clear();
         Attack.Clear();
+        GameManager.Clear();
         Pool.Clear();
     }
 }

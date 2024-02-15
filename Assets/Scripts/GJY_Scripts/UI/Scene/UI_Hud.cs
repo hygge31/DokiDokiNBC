@@ -47,6 +47,10 @@ public class UI_Hud : UI_Scene
         Managers.Attack.OnWeaponSetup += WeaponSetup;
         Managers.Attack.OnChangeWeapon += GetWeapon;
 
+        Managers.GameManager.OnGetCodePiece += GetCodePiece;
+
+        GetText((int)Texts.CodePiece_Text).text = $"{Managers.GameManager.CodePiece}";
+
         _playerStatManager = Managers.Player;
     }
 
@@ -118,7 +122,7 @@ public class UI_Hud : UI_Scene
 
     private void GetCodePiece()
     {
-        GetText((int)Texts.CodePiece_Text);
+        GetText((int)Texts.CodePiece_Text).text = $"{Managers.GameManager.CodePiece}";
     }
 
     private void UpdateTexts()
