@@ -32,8 +32,10 @@ public class Portal : MonoBehaviour
 
     IEnumerator ClosePotalCo()
     {
+        Managers.GameManager.day++;
+        Debug.Log(Managers.GameManager.day);
         animator.SetTrigger("Close");
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(1.3f);
         SceneManager.LoadScene("Main");
     }
 

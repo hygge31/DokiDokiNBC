@@ -13,7 +13,7 @@ public class BossMonster : MonoBehaviour
     private float bulletSpeed = 5f;
 
     [SerializeField]
-    private float bossHealth = 100f; // 보스의 최대 체력
+    public float bossHealth = 100f; // 보스의 최대 체력
     private float maxHealth = 100f;
     private float healthPercentage;//보스 퍼센테이지
 
