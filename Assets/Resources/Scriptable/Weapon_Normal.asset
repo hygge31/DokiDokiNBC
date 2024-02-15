@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: Weapon_Normal
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: e3228bc4b8f55e64e81c80a9e00bc710, type: 3}
-  displayName: "\uAE30\uBCF8\uBB34\uAE30"
-  displayDesc: "\uAE30\uBCF8\uACF5\uACA9"
+  displayName: "\uD30C\uC774\uC5B4 \uBCFC"
+  displayDesc: "\uBC14\uB77C\uBCF4\uB294 \uBC29\uD5A5\uC73C\uB85C \uD30C\uC774\uC5B4
+    \uBCFC\uC744 \uB358\uC9C4\uB2E4"
   isWeapon: 1
   isStackable: 0
   atk: 5

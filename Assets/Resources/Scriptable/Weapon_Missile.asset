@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Weapon_Missile
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 4f3b651114b5268489c1b2cc30f9ee19, type: 3}
-  displayName: "\uBBF8\uC0AC\uC77C\uD3EC\uB4DC"
-  displayDesc: "\uC790\uB3D9\uCD94\uC801 \uBBF8\uC0AC\uC77C \uBC1C\uC0AC"
+  displayName: "\uBBF8\uC0AC\uC77C \uD3EC\uB4DC"
+  displayDesc: "\uC790\uB3D9\uCD94\uC801 \uBBF8\uC0AC\uC77C\uC744 \uBC1C\uC0AC"
   isWeapon: 1
   isStackable: 0
   atk: 2
