@@ -130,7 +130,7 @@ public class UI_Hud : UI_Scene
         GetText((int)Texts.CodePiece_Text); // To Do - 가지고 있는 코드조각 표기
         GetText((int)Texts.Atk_Text).text = $"{_playerStatManager.A_Atk}";
         GetText((int)Texts.FireRate_Text).text = $"{_playerStatManager.A_FireRate:F2}";
-        GetText((int)Texts.MoveSpeed_Text).text = $"{_playerStatManager.MoveSpeed}";
+        GetText((int)Texts.MoveSpeed_Text).text = $"{_playerStatManager.A_MoveSpeed}";
         GetText((int)Texts.AddBullet_Text).text = $"{_playerStatManager.A_AddBullet}";
         GetText((int)Texts.Pierce_Text).text = $"{_playerStatManager.A_PierceCount}";
     }

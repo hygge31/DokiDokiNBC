@@ -105,9 +105,7 @@ public class PlayerStatManager
         FireRate += item.fireRate;
         AddBullet += item.addBullet;
         PierceCount += item.pierceCount;
-
-        if (item.name == Perks.Item_Injector.ToString() && _perkDict.GetValueOrDefault(item.name) == 1)
-            A_MoveSpeed = MoveSpeed * item.moveSpeed;
+        A_MoveSpeed = MoveSpeed * item.moveSpeed;
 
         AppliedStatCalculator();
 
@@ -179,5 +177,5 @@ public class PlayerStatManager
         OnApplyPerkStat = null;
         OnUpgradeFromShop = null;
         OnWeaponChange = null;
-}
+    }
 }

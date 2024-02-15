@@ -203,6 +203,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 12
       objectReference: {fileID: 0}
+    - target: {fileID: 998919081308855484, guid: a3f25315f56df4dc89586cffa4fe2ba9, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7414301242221178534, guid: a3f25315f56df4dc89586cffa4fe2ba9, type: 3}
       propertyPath: m_Name
       value: DungoenManager

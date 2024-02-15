@@ -61,7 +61,7 @@ public class PlayerController : MonoBehaviour
     private void Move()
     {
         Vector3 dir = transform.up * curMovementInput.y + transform.right * curMovementInput.x;
-        dir *= playerStatManager.MoveSpeed;
+        dir *= playerStatManager.A_MoveSpeed;
 
         _rigidbody.velocity = dir;
 
