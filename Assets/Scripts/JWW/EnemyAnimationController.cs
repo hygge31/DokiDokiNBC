@@ -53,7 +53,7 @@ public class EnemyAnimationController : EnemyAnimation
             component.enabled = false;
         }
         animator.SetTrigger(isDead);
-        Destroy(gameObject,2f);
+        Destroy(gameObject,4f);
     }
     //public void Disappear()
     //{

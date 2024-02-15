@@ -12,8 +12,7 @@ public class EnemyDisappear : MonoBehaviour
         {
             component.enabled = false;
         }
-        StartCoroutine(DropRoutine());
-        Destroy(transform.parent.gameObject);
+        StartCoroutine(DropRoutine());        
     }
 
     private IEnumerator DropRoutine()
@@ -29,5 +28,6 @@ public class EnemyDisappear : MonoBehaviour
         Managers.Drop.DropPerk(transform);
 
         DunGoenManager.Instance.DieMonster();
+        Destroy(transform.parent.gameObject);
     }
 }
