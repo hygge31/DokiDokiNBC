@@ -35,7 +35,7 @@ Transform:
   - {fileID: 8075910068866830362}
   - {fileID: 4413989873465536515}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2953799599180134690
 MonoBehaviour:
@@ -53,6 +53,7 @@ MonoBehaviour:
   - {fileID: 6906347117895274263}
   - {fileID: 6018623782579510646}
   mainSprite: {fileID: 5272406172016820498}
+  portalOpenClip: {fileID: 8300000, guid: 385461ef92b5147ddac5644cc7cc2903, type: 3}
 --- !u!61 &3761975526610390716
 BoxCollider2D:
   m_ObjectHideFlags: 0

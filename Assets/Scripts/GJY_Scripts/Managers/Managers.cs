@@ -26,10 +26,12 @@ public class Managers : MonoBehaviour
     SceneManagerEx _sceneManager = new SceneManagerEx();
     UIManaer _uiManager = new UIManaer();
 
+
     public static PoolManager Pool => Instance?._poolManager;
     public static ResourceManager RM => Instance?._resource;
     public static SceneManagerEx Scene => Instance?._sceneManager;
     public static UIManaer UI => Instance?._uiManager;
+
     #endregion
 
     private void Awake()

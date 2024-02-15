@@ -151,7 +151,7 @@ public class RoomData
             }
             else
             {
-                Managers.Drop.DropWeapon(DunGoenManager.Instance.minimapSpriteList[roomNumber].transform);
+                DunGoenManager.Instance.CreateItem(DunGoenManager.Instance.minimapSpriteList[roomNumber].transform);
             }
 
             clear = true;

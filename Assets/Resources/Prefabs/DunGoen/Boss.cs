@@ -14,9 +14,13 @@ public class Boss : MonoBehaviour
     public Transform playerSpawnPot;
 
     public Image fill;
+
+
+    public AudioClip bossMusic;
     
     private void Start()
     {
+        SoundManager.Instance.ChangeBackGroundMusic(bossMusic,0.2f);
         StartCoroutine(BossAppearCo());
     }
 

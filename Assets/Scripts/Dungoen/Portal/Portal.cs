@@ -9,6 +9,8 @@ public class Portal : MonoBehaviour
     public ParticleSystem[] portalEffect;
     public SpriteRenderer mainSprite;
 
+    public AudioClip portalOpenClip;
+
     Animator animator;
 
     private void Awake()
@@ -23,6 +25,7 @@ public class Portal : MonoBehaviour
     public void PotalOn()
     {
         _collider.enabled = true;
+        SoundManager.Instance.PlayClip(portalOpenClip);
         mainSprite.color = Color.blue;
         for (int i = 0; i < portalEffect.Length; i++)
         {
@@ -36,6 +39,7 @@ public class Portal : MonoBehaviour
     {
         Managers.GameManager.day++;
         Debug.Log(Managers.GameManager.day);
+        SoundManager.Instance.PlayClip(portalOpenClip);
         animator.SetTrigger("Close");
         
         yield return new WaitForSeconds(1f);

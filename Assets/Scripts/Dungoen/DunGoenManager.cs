@@ -40,6 +40,11 @@ public class DunGoenManager : MonoBehaviour
     public Image panelImg;
     Color orgColor;
 
+
+    [Header("Audio")]
+    public AudioClip dungoenBgm;
+    public AudioClip doorAudio;
+
     public event Action OnChangeMinimap;
     public event Action<RoomData> OnMoveToDungoenRoom;
     public event Action OnActivePortal;
@@ -69,7 +74,8 @@ public class DunGoenManager : MonoBehaviour
         }
         else
         {
-            
+            SoundManager.Instance.ChangeBackGroundMusic(dungoenBgm,0.3f);
+
             Instantiate(minimapCamera);
             Instantiate(minimapUi);
 
@@ -141,6 +147,8 @@ public class DunGoenManager : MonoBehaviour
 
     public void DungoenAllDoorAppear()
     {
+        SoundManager.Instance.PlayClip(doorAudio);
+
         foreach (RoomData room in dungoenRoomDataList)
         {
             room.AppearAllDoor();
@@ -223,6 +231,14 @@ public class DunGoenManager : MonoBehaviour
         }
     }
 
+    public void CreateItem(Transform pot)
+    {
+        System.Random random = new System.Random();
+        string[] itemNames = Enum.GetNames(typeof(Define.Weapons));
+        Item_SO itemSO = Resources.Load<Item_SO>($"Scriptable/{itemNames[random.Next(1, itemNames.Length)]}");
 
+        Item_Weapon weapon = Managers.RM.Instantiate($"Items/Item_Weapon").GetComponent<Item_Weapon>();
+        weapon.Setup(itemSO, pot);
+    }
 
 }
