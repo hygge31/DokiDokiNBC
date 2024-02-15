@@ -38,7 +38,14 @@ public class UI_Room : UI_Scene
 
     private void BedEnter(PointerEventData data) => StartCoroutine(HighLight((int)Pointer.Bed_Pointer, 1.1f, true));
     private void BedExit(PointerEventData data) => StartCoroutine(HighLight((int)Pointer.Bed_Pointer, 1, false));
-    private void BedClick(PointerEventData data) => Managers.Scene.LoadScene(Define.Scenes.Dungeon);
+    private void BedClick(PointerEventData data)
+    {
+        if (Managers.GameManager.IsPCPowerOff)
+            Managers.Scene.LoadScene(Define.Scenes.Dungeon);
+
+
+
+    }
 
     private void PCEnter(PointerEventData data) => StartCoroutine(HighLight((int)Pointer.PC_Pointer, 1.1f, true));
     private void PCExit(PointerEventData data) => StartCoroutine(HighLight((int)Pointer.PC_Pointer, 1, false));

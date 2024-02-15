@@ -48,7 +48,7 @@ public class Portal : MonoBehaviour
         DunGoenManager.Instance.PanelFadeOut();
         yield return new WaitForSeconds(1f);
         SoundManager.Instance.ChangeBackGroundMusic(SoundManager.Instance.clip, 0.5f);
-        SceneManager.LoadScene("Main");
+        Managers.Scene.LoadScene(Define.Scenes.Main);
     }
 
 

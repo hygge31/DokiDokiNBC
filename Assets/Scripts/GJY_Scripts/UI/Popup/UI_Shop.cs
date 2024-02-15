@@ -46,6 +46,9 @@ public class UI_Shop : UI_Popup
     {
         base.Init();
 
+        if(Managers.GameManager.day == 4)
+            currentState = State.Boss;
+
         BindText(typeof(Texts));
         BindButton(typeof(Buttons));
         BindInputField(typeof(InputFields));
@@ -56,7 +59,6 @@ public class UI_Shop : UI_Popup
         alertText = GetText((int)Texts.Alert_Text);
 
         GetComponent<UI_InputActionHandler>().OnEscInvoke += ShowAndHideAlertPopup;
-        GetComponent<UI_InputActionHandler>().OnEnterInvoke += FocusInputField;
         GetComponent<UI_InputActionHandler>().OnEnterInvoke += ChangeState;
 
         playerStatManager = Managers.Player;
@@ -65,14 +67,23 @@ public class UI_Shop : UI_Popup
     private void ShowAndHideAlertPopup()
     {
         if (_alertPopup == null)
-            _alertPopup = Managers.UI.ShowPopupUI<UI_ShopAlertPopup>();
+        {
+            switch (currentState)
+            {
+                case State.Boss:
+                    _alertPopup = Managers.UI.ShowPopupUI<UI_ShopAlertPopup>();
+                    break;
+                case State.Ending:
+                    break;
+                default:
+                    _alertPopup = Managers.UI.ShowPopupUI<UI_ShopAlertPopup>();
+                    break;
+            }            
+        }
         else
+        {
             Managers.UI.ClosePopupUI(_alertPopup);
-    }
-
-    private void FocusInputField()
-    {
-
+        }            
     }
 
     // 만든 사람이 봐도 마음에 안드네~~
@@ -129,11 +140,7 @@ public class UI_Shop : UI_Popup
             case State.Status:
                 if (inputCommand == "뒤로")
                 {
-                    alertText.text = "";
-                    commandText.text = MainCommands();
-                    menuText.text = MenuName("메인");
-                    Managers.UI.ClosePopupUI(currentShowMenu);
-                    currentState = State.Main;
+                    BackToMainShop(commandText, menuText);
                 }
                 else
                 {
@@ -148,7 +155,7 @@ public class UI_Shop : UI_Popup
                     if (playerStatManager.upgrade_Atk == 5)
                         break;
 
-                    ApplyUpgrade((int)UI_UpgradePopup.UpgradeTransforms.Atk_Images, inputCommand);                    
+                    ApplyUpgrade((int)UI_UpgradePopup.UpgradeTransforms.Atk_Images, inputCommand);
                 }
                 else if (inputCommand == "2")
                 {
@@ -168,11 +175,7 @@ public class UI_Shop : UI_Popup
                 }
                 else if (inputCommand == "뒤로")
                 {
-                    alertText.text = "";
-                    commandText.text = MainCommands();
-                    menuText.text = MenuName("메인");
-                    Managers.UI.ClosePopupUI(currentShowMenu);
-                    currentState = State.Main;
+                    BackToMainShop(commandText, menuText);
                 }
                 else
                 {
@@ -180,18 +183,10 @@ public class UI_Shop : UI_Popup
                     alertText.color = Color.red;
                 }
                 break;
-            case State.Skin:
-                if (inputCommand == "상태")
+            case State.Skin:                
+                if (inputCommand == "뒤로")
                 {
-                    alertText.text = "";
-                }
-                else if (inputCommand == "강화")
-                {
-                    alertText.text = "";
-                }
-                else if (inputCommand == "코스튬")
-                {
-                    alertText.text = "";
+                    BackToMainShop(commandText, menuText);
                 }
                 else
                 {
@@ -200,15 +195,7 @@ public class UI_Shop : UI_Popup
                 }
                 break;
             case State.Boss:
-                if (inputCommand == "과제")
-                {
-                    alertText.text = "";
-                }
-                else if (inputCommand == "강화")
-                {
-                    alertText.text = "";
-                }
-                else if (inputCommand == "코스튬")
+                if (inputCommand == "과제제출")
                 {
                     alertText.text = "";
                 }
@@ -232,6 +219,15 @@ public class UI_Shop : UI_Popup
         }
 
         input.text = "";
+    }
+
+    private void BackToMainShop(Text command, Text menu)
+    {
+        alertText.text = "";
+        command.text = MainCommands();
+        menu.text = MenuName("메인");
+        Managers.UI.ClosePopupUI(currentShowMenu);
+        currentState = State.Main;
     }
 
     private void ApplyUpgrade(int transform, string input)
