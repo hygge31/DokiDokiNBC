@@ -28,9 +28,7 @@ public class BossMonster : MonoBehaviour
     private float bulletSpeed = 5f;
 
     [SerializeField]
-    public float bossHealth = 1000f; // 보스의 최대 체력
-    private float maxHealth = 1000f;
-    private float healthPercentage;//보스 퍼센테이지
+    private float healthPercentage = 100f;//보스 퍼센테이지
     private bool isDead = false;
 
     private void Awake()
@@ -39,7 +37,6 @@ public class BossMonster : MonoBehaviour
         _animator = GetComponentInChildren<Animator>();
         _rigidbody2D = GetComponent<Rigidbody2D>();
         moveDirection = transform.right;
-        bossHealth = maxHealth;
         _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         nextAttackTime = Time.time;
         nextMoveTime = Time.time;
@@ -47,11 +44,10 @@ public class BossMonster : MonoBehaviour
     }
     private void Start()
     {
-        bossHealth = 1000;//_healthSystem.CurrentHealth;
     }
     void Update()
     {
-        healthPercentage = (bossHealth / maxHealth) * 100f;
+        healthPercentage = (_healthSystem.CurrentHealth / _healthSystem.MaxHealth) * 100f;
         if (!isDead)
         {
             if (healthPercentage <= 0)
