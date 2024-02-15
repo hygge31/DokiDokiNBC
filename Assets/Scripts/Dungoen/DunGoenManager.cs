@@ -40,6 +40,11 @@ public class DunGoenManager : MonoBehaviour
     public Image panelImg;
     Color orgColor;
 
+
+    [Header("Audio")]
+    public AudioClip dungoenBgm;
+    public AudioClip doorAudio;
+
     public event Action OnChangeMinimap;
     public event Action<RoomData> OnMoveToDungoenRoom;
     public event Action OnActivePortal;
@@ -69,7 +74,8 @@ public class DunGoenManager : MonoBehaviour
         }
         else
         {
-            
+            SoundManager.Instance.ChangeBackGroundMusic(dungoenBgm);
+
             Instantiate(minimapCamera);
             Instantiate(minimapUi);
 
@@ -141,6 +147,8 @@ public class DunGoenManager : MonoBehaviour
 
     public void DungoenAllDoorAppear()
     {
+        SoundManager.Instance.PlayClip(doorAudio);
+
         foreach (RoomData room in dungoenRoomDataList)
         {
             room.AppearAllDoor();

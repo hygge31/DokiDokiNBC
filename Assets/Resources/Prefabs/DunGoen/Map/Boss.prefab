@@ -8283,7 +8283,7 @@ Transform:
   - {fileID: 6158187767861721870}
   - {fileID: 6727595534525050128}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!156049354 &8263711021236268005
 Grid:
@@ -8315,6 +8315,7 @@ MonoBehaviour:
   spawnPot: {fileID: 6158187767861721870}
   playerSpawnPot: {fileID: 6727595534525050128}
   fill: {fileID: 6926369277405680139}
+  bossMusic: {fileID: 8300000, guid: 7df569014687046878ed5ff203972df2, type: 3}
 --- !u!1 &7726655608978739050
 GameObject:
   m_ObjectHideFlags: 0

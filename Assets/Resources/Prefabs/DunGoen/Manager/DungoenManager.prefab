@@ -666,6 +666,8 @@ MonoBehaviour:
   cameraHeight: 0
   boss: {fileID: 1490260904452739942, guid: be3abf9eb8cf742c886fd7cb8b7ec529, type: 3}
   panelImg: {fileID: 998919081308855484}
+  dungoenBgm: {fileID: 8300000, guid: bbe6b50bea063420d885e3eda6b2d128, type: 3}
+  doorAudio: {fileID: 8300000, guid: f92990ef494504a4a9e1416f1ecd64fe, type: 3}
 --- !u!114 &8821290842321878402
 MonoBehaviour:
   m_ObjectHideFlags: 0
