@@ -151,7 +151,7 @@ public class RoomData
             }
             else
             {
-                //중앙에 아이템 소환. //todo
+                Managers.Drop.DropWeapon(DunGoenManager.Instance.minimapSpriteList[roomNumber].transform);
             }
 
             clear = true;

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro.EditorUtilities;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DunGoenManager : MonoBehaviour
 {
@@ -32,10 +33,13 @@ public class DunGoenManager : MonoBehaviour
     public float cameraWidth;
     public float cameraHeight;
 
-
     [Header("Boss")]
     public Boss boss;
-    
+
+    [Header("UI")]
+    public Image panelImg;
+    Color orgColor;
+
     public event Action OnChangeMinimap;
     public event Action<RoomData> OnMoveToDungoenRoom;
     public event Action OnActivePortal;
@@ -49,13 +53,14 @@ public class DunGoenManager : MonoBehaviour
 
         cameraWidth = _camera.orthographicSize * _camera.aspect - 1;
         cameraHeight = _camera.orthographicSize -2;
-
+        orgColor = panelImg.color;
 
         Instantiate(playerTransform);
     }
 
     private void Start()
     {
+        StartCoroutine(PanelFadeInCo());
 
         if(Managers.GameManager.day >= 4)
         {
@@ -152,6 +157,8 @@ public class DunGoenManager : MonoBehaviour
 
     public void MoveToDungoen(int curRoomNumber ,int nextRoomNumber)
     {
+        StartCoroutine(PanelFadeOutCo());
+        StartCoroutine(PanelFadeInCo());
         if (!dungoenRoomDataList[nextRoomNumber].clear)
         {
             count++;
@@ -178,7 +185,43 @@ public class DunGoenManager : MonoBehaviour
         dungoenRoomDataList[curDungoenRoomNumber].DieMonsterAddAndClearCheck();
     }
 
+    public void PanelFadeOut()
+    {
+        StartCoroutine(PanelFadeOutCo());
+    }
+    public void PanelFadeIn()
+    {
+        StartCoroutine(PanelFadeInCo());
+    }
 
+
+    IEnumerator PanelFadeInCo()
+    {
+        float percent = 0;
+        Color targetCol = orgColor;
+        targetCol.a = 0;
+        while(percent < 1)
+        {
+            percent += Time.deltaTime;
+
+            panelImg.color = Color.Lerp(orgColor, targetCol, percent);
+            yield return null;
+        }
+    }
+
+    IEnumerator PanelFadeOutCo()
+    {
+        float percent = 0;
+        Color targetCol = orgColor;
+        targetCol.a = 0;
+        while (percent < 1)
+        {
+            percent += Time.deltaTime;
+
+            panelImg.color = Color.Lerp(targetCol, orgColor, percent);
+            yield return null;
+        }
+    }
 
 
 

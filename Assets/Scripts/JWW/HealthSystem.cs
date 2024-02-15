@@ -67,7 +67,6 @@ public class HealthSystem : MonoBehaviour
         {
             CallDeath();
         }
-
         return true;
     }
 
