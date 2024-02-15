@@ -14,6 +14,7 @@ public class BossMonster : MonoBehaviour
     private Rigidbody2D _rigidbody2D;
     private SpriteRenderer _spriteRenderer;
     private Animator _animator;
+    private HealthSystem _healthSystem;
     private Vector2 moveDirection;
 
     public float moveSpeed = 5f;
@@ -34,6 +35,7 @@ public class BossMonster : MonoBehaviour
 
     private void Awake()
     {
+        _healthSystem = GetComponent<HealthSystem>();
         _animator = GetComponentInChildren<Animator>();
         _rigidbody2D = GetComponent<Rigidbody2D>();
         moveDirection = transform.right;
@@ -42,6 +44,10 @@ public class BossMonster : MonoBehaviour
         nextAttackTime = Time.time;
         nextMoveTime = Time.time;
         target = GameObject.FindWithTag("Player").transform;
+    }
+    private void Start()
+    {
+        bossHealth = _healthSystem.CurrentHealth;
     }
     void Update()
     {
