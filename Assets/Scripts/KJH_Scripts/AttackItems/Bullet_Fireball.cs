@@ -8,7 +8,7 @@ public class Bullet_Fireball : Bullet
     [SerializeField] private LayerMask targetLayer;
     private Rigidbody2D rb;
 
-    public Animator animator; // 폭발 애니메이션을 위함
+    private Animator animator; // 폭발 애니메이션을 위함
 
     
     private float aliveTime = 0f;
