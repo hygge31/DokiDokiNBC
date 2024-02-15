@@ -1,56 +1,83 @@
 using UnityEngine;
 using System.Collections;
 using static UnityEngine.GraphicsBuffer;
+using UnityEngine.EventSystems;
+using UnityEngine.InputSystem.Processors;
 
 public class BossMonster : MonoBehaviour
 {
+    private static readonly int die = Animator.StringToHash("Die"); //파라미터를 해시로 변환
+
     public GameObject bulletPrefab;//불릿
     public Transform firePoint;//발사 트랜스폼
     private Transform target;//플레이어의 트랜스폼
+    private Rigidbody2D _rigidbody2D;
+    private SpriteRenderer _spriteRenderer;
+    private Animator _animator;
+    private Vector2 moveDirection;
+
+    public float moveSpeed = 5f;
+    public LayerMask levelLayerMask;
 
     public float attackCooldown = 2f;//쿨다운
     private float nextAttackTime = 0f;//다음 공격 시간
     private float bulletSpeed = 5f;
 
     [SerializeField]
-    public float bossHealth = 100f; // 보스의 최대 체력
-    private float maxHealth = 100f;
+    public float bossHealth = 1000f; // 보스의 최대 체력
+    private float maxHealth = 1000f;
     private float healthPercentage;//보스 퍼센테이지
+    private bool isDead = false;
 
     private void Awake()
     {
+        _animator = GetComponentInChildren<Animator>();
+        _rigidbody2D = GetComponent<Rigidbody2D>();
+        moveDirection = transform.right;
         bossHealth = maxHealth;
+        _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         nextAttackTime = Time.time;
         target = GameObject.FindWithTag("Player").transform;
     }
     void Update()
     {
-        RotateFirePoint();
-        healthPercentage = (bossHealth / 100f) * 100f;
-
-        if (Time.time >= nextAttackTime)
+        healthPercentage = (bossHealth / maxHealth) * 100f;
+        if (!isDead)
         {
-            if (healthPercentage >= 70f)
-            {
-                ExecuteSingleAttack();
-            }
-            else if (healthPercentage >= 40f && healthPercentage < 70f)
-            {
-                attackCooldown = 3f;
-                ExecuteDoubleAttack();
-            }
-            else if (healthPercentage >= 20f && healthPercentage < 40f)
-            {
-                attackCooldown = 5f;
-                ExecuteTripleAttack();
-            }
-            else
-            {
-                attackCooldown = 7f;
-                ExecuteQuadrupleAttack();
-            }
+            if (healthPercentage <= 0)
+                Dead();
 
-            nextAttackTime = Time.time + attackCooldown;
+            if (!isDead)
+            {
+                FlipSprite();
+                RotateFirePoint();
+                transform.right = moveDirection;
+                _rigidbody2D.velocity = moveDirection * moveSpeed;
+
+                if (Time.time >= nextAttackTime)
+                {
+                    if (healthPercentage >= 70f)
+                    {
+                        ExecuteSingleAttack();
+                    }
+                    else if (healthPercentage >= 40f && healthPercentage < 70f)
+                    {
+                        attackCooldown = 3f;
+                        ExecuteDoubleAttack();
+                    }
+                    else if (healthPercentage >= 20f && healthPercentage < 40f)
+                    {
+                        attackCooldown = 5f;
+                        ExecuteTripleAttack();
+                    }
+                    else if (healthPercentage > 0f && healthPercentage < 20f)
+                    {
+                        attackCooldown = 7f;
+                        ExecuteQuadrupleAttack();
+                    }
+                    nextAttackTime = Time.time + attackCooldown;
+                }
+            }
         }
     }
 
@@ -158,5 +185,42 @@ public class BossMonster : MonoBehaviour
     {
         firePoint.localPosition = (target.transform.position- transform.position).normalized; //보스에서 플레이어를 향한 단위 벡터만큼 떨어진 곳
         firePoint.right = (target.transform.position - transform.position).normalized;//발사 위치의 오른쪽을 플레이어 방향으로 설정
+    }
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        // 레벨과 충돌한 경우
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Level"))
+        {
+            // 벽의 법선 벡터를 가져옴
+            Vector3 wallNormal = collision.contacts[0].normal;
+
+            // 입사각과 반사각이 동일하도록 보스의 이동 방향을 조정
+            Vector3 reflectedDirection = Vector2.Reflect(moveDirection, wallNormal);
+            moveDirection = reflectedDirection.normalized;
+        }
+    }
+    public void FlipSprite()
+    {
+        if (transform.right.x < 0)
+            _spriteRenderer.flipY = true;
+        else
+            _spriteRenderer.flipY = false;
+    }
+    private void Dead()
+    {
+        _rigidbody2D.velocity = Vector2.zero;
+        isDead = true;
+        foreach (Collider2D component in transform.GetComponentsInChildren<Collider2D>())
+        {
+            component.enabled = false;
+        }
+        _animator.SetTrigger(die);
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "Player")
+        {
+            
+        }
     }
 }
