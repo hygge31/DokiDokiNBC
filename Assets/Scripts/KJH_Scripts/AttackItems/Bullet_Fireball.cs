@@ -7,6 +7,7 @@ public class Bullet_Fireball : Bullet
     private Rigidbody2D rb;
 
     private Animator animator; // 폭발 애니메이션을 위함
+    private BoxCollider2D boxCollider2D;
 
     
     private float aliveTime = 0f;
@@ -20,6 +21,7 @@ public class Bullet_Fireball : Bullet
     {
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
+        boxCollider2D = GetComponent<BoxCollider2D>();
     }
 
     private void Update()
@@ -48,6 +50,7 @@ public class Bullet_Fireball : Bullet
         rb.velocity = dir * TravelSpeed;
         if (isHit)
         {
+            boxCollider2D.enabled = false;
             rb.velocity = Vector3.zero;
         }
     }
@@ -65,13 +68,16 @@ public class Bullet_Fireball : Bullet
             }
             isHit = true;
             if (isHit)
+            {
                 animator.SetTrigger("Explode");
+            }
         }
     }
 
     public void Clear()
     {
         isHit = false;
+        boxCollider2D.enabled = true;
         aliveTime = 0;
         rb.velocity = Vector3.zero;
         transform.position = new Vector3(100, 0, 0);
