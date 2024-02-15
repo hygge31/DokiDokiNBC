@@ -42,6 +42,7 @@ public class UI_Hud : UI_Scene
         Managers.Player.OnApplyPerkStat += GetPerk;
         Managers.Player.OnHealing += HPImageControl;
         Managers.Player.OnGetDamaged += HPImageControl;
+        Managers.Player.OnWeaponChange += UpdateTexts;
 
         Managers.Attack.OnWeaponSetup += WeaponSetup;
         Managers.Attack.OnChangeWeapon += GetWeapon;
@@ -82,7 +83,7 @@ public class UI_Hud : UI_Scene
 
     private void GetWeapon(Item_SO item)
     {
-        GetImage((int)Images.Weapon_Image).sprite = item.sprite;
+        GetImage((int)Images.Weapon_Image).sprite = item.sprite;        
     }
 
     private void GetPerk(Item_SO item)
@@ -123,11 +124,11 @@ public class UI_Hud : UI_Scene
     private void UpdateTexts()
     {
         GetText((int)Texts.CodePiece_Text); // To Do - 가지고 있는 코드조각 표기
-        GetText((int)Texts.Atk_Text).text = $"{_playerStatManager.Atk}";
-        GetText((int)Texts.FireRate_Text).text = $"{_playerStatManager.FireRate:F2}";
+        GetText((int)Texts.Atk_Text).text = $"{_playerStatManager.A_Atk}";
+        GetText((int)Texts.FireRate_Text).text = $"{_playerStatManager.A_FireRate:F2}";
         GetText((int)Texts.MoveSpeed_Text).text = $"{_playerStatManager.MoveSpeed}";
-        GetText((int)Texts.AddBullet_Text).text = $"{_playerStatManager.AddBullet}";
-        GetText((int)Texts.Pierce_Text).text = $"{_playerStatManager.PierceCount}";
+        GetText((int)Texts.AddBullet_Text).text = $"{_playerStatManager.A_AddBullet}";
+        GetText((int)Texts.Pierce_Text).text = $"{_playerStatManager.A_PierceCount}";
     }
 
     private void HPImageControl(int prevHp, int curHp)

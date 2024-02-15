@@ -11,9 +11,12 @@ public class AttackManager
     private IWeapon currentWeapon;
     private Item_SO currentSO;
 
+    private PlayerStatManager playerStatManager;
+
     public void SetWeapon(Item_SO item) // 무기변경
     {
         Define.Weapons weaponType = item.weaponType;
+        currentSO = item;
 
         switch (weaponType)
         {
@@ -34,7 +37,9 @@ public class AttackManager
     public void Init()
     {
         currentWeapon = new WeaponNormal();
-        currentSO = Resources.Load<Item_SO>("Scriptable/Weapon_Normal"); ;
+        currentSO = Resources.Load<Item_SO>("Scriptable/Weapon_Normal");        
+        playerStatManager = Managers.Player;
+        OnWeaponSetup?.Invoke(currentSO);
     }
 
     public void WeaponSetup()
@@ -44,7 +49,7 @@ public class AttackManager
 
     public void UseWeapon(Vector2 origin, Vector2 dir)
     {
-        currentWeapon.Attack(origin, dir);
+        currentWeapon.Attack(playerStatManager, origin, dir);
     }
 
     public void Clear()

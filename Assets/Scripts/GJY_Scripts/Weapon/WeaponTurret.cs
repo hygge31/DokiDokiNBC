@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class WeaponTurret : IWeapon
 {
-    public void Attack(Vector2 origin, Vector2 dir)
+    public void Attack(PlayerStatManager playerStat, Vector2 origin, Vector2 dir)
     {
         Debug.Log("터렛 생성");
     }

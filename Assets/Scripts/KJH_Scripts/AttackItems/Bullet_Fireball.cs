@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
 
-public class Bullet_Fireball : MonoBehaviour
+public class Bullet_Fireball : Bullet
 {
     [SerializeField] private LayerMask targetLayer;
     private Rigidbody2D rb;
@@ -34,14 +34,16 @@ public class Bullet_Fireball : MonoBehaviour
             Clear();
     }
 
-    public void Setup(Vector2 spawnPos, Vector2 dir, float _atk, float _travelSpeed, float _duration)
+    public override void Setup(Vector3 spawnPos, Vector2 dir, float atk, float travelSpeed, float duration)
     {
+        base.Setup(spawnPos, dir, atk, travelSpeed, duration);
+
         transform.position = spawnPos;
         transform.rotation = PlayerAttackController.Instance.rotation;
         attackDirection = dir;
-        atk = _atk;
-        travelSpeed = _travelSpeed;
-        duration = _duration;
+        this.atk = atk;
+        this.travelSpeed = travelSpeed;
+        this.duration = duration;
     }
 
     private void OnFire(Vector2 dir)
@@ -55,6 +57,7 @@ public class Bullet_Fireball : MonoBehaviour
         if (targetLayer == (targetLayer | (1 << collision.gameObject.layer)))
         {
             //체력감소
+            Debug.Log("맞음");
             HealthSystem healthSystem = collision.GetComponentInParent<HealthSystem>();
             if (healthSystem != null)
             {
@@ -66,6 +69,7 @@ public class Bullet_Fireball : MonoBehaviour
 
     public void Clear()
     {
+        Debug.Log("사라짐");
         aliveTime = 0;
         rb.velocity = Vector3.zero;
         transform.position = new Vector3(100, 0, 0);

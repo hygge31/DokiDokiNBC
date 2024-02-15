@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet_Missile : MonoBehaviour
+public class Bullet_Missile : Bullet
 {
     [SerializeField] LayerMask targetLayer;
     [SerializeField] AnimationCurve curve;
@@ -67,17 +67,19 @@ public class Bullet_Missile : MonoBehaviour
         }
     }
 
-    public void Setup(Vector3 spawnPos, float atk, float speed, float activeTime, int pierceCount = 0)
+    public override void Setup(Vector3 spawnPos, Vector2 dir, float atk, float travelSpeed, float duration)
     {
+        base.Setup(spawnPos, dir, atk, travelSpeed, duration);
+
         currentActive = 0;
 
         transform.rotation = Quaternion.Euler(0, 0, Random.Range(0, 360));
         transform.position = spawnPos + transform.up * 0.5f;
 
         _atk = atk;
-        _speed = speed;
-        _activeTime = activeTime;
-        _pierceCount = pierceCount;        
+        _speed = travelSpeed;
+        _activeTime = duration;
+        //_pierceCount = pierceCount;
 
         StartCoroutine(LockOnTargetRoutine());
     }
