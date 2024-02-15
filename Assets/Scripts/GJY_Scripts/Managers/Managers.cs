@@ -63,4 +63,12 @@ public class Managers : MonoBehaviour
         GameManager.Clear();
         Pool.Clear();
     }
+
+    public static void ResetGame()
+    {
+        Clear();
+        GameManager.ResetGame();        
+        Player.Init();
+        Attack.Init();
+    }
 }

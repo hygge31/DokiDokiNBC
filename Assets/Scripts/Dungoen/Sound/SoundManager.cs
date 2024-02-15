@@ -43,6 +43,12 @@ public class SoundManager : MonoBehaviour
         musicAudioSource.Play();
 
     }
+
+    public void StopAudio()
+    {
+        musicAudioSource.Stop();
+    }
+
     public void PlayClip(AudioClip clip)
     {
         GameObject obj = objectPool.SpawnFromPool("SoundSource");

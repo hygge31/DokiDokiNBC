@@ -24,7 +24,11 @@ public class UI_Title : UI_Scene
         BindButton(typeof(Buttons));
         BindImage(typeof(Images));
 
-        GetButton((int)Buttons.Start_Btn).onClick.AddListener(() => Managers.Scene.LoadScene(Define.Scenes.Main));
+        GetButton((int)Buttons.Start_Btn).onClick.AddListener(() => 
+        { 
+            Managers.Scene.LoadScene(Define.Scenes.Main);
+            SoundManager.Instance.PlayClip(Resources.Load<AudioClip>("Sounds/UI/pop"));
+        });
 
         StartCoroutine(BounceRoutine(Vector3.one, Vector3.one * 0.9f));
     }

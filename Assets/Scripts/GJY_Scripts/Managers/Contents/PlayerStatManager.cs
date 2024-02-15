@@ -54,6 +54,10 @@ public class PlayerStatManager
         FireRate = 1;
         AddBullet = 0;
         PierceCount = 0;
+        upgrade_Atk = 0;
+        upgrade_FireRate = 0;
+        upgrade_MoveSpeed = 0;
+        _perkDict.Clear();
 
         Managers.Attack.OnWeaponSetup += WeaponStatApply;
     }
@@ -131,6 +135,7 @@ public class PlayerStatManager
                 if (codePieces < 50)
                     return false;
 
+                Managers.GameManager.Upgrade(50);
                 Atk += 0.5f;
                 upgrade_Atk++;
                 break;
@@ -138,6 +143,7 @@ public class PlayerStatManager
                 if (codePieces < 25)
                     return false;
 
+                Managers.GameManager.Upgrade(25);
                 FireRate -= 0.1f;
                 upgrade_FireRate++;
                 break;
@@ -145,6 +151,7 @@ public class PlayerStatManager
                 if (codePieces < 100)
                     return false;
 
+                Managers.GameManager.Upgrade(100);
                 MoveSpeed += 0.5f;
                 upgrade_MoveSpeed++;
                 break;
@@ -172,7 +179,6 @@ public class PlayerStatManager
             //To Do - GameOver
             IsDead = true;
             OnDead?.Invoke();
-            Init();
             Debug.Log("캐릭터 사망");
         }
     }
@@ -187,6 +193,6 @@ public class PlayerStatManager
         OnGetDamaged = null;
         OnApplyPerkStat = null;
         OnUpgradeFromShop = null;
-        OnWeaponChange = null;
-    }
+        OnWeaponChange = null;        
+    }    
 }

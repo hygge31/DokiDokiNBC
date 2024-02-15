@@ -46,6 +46,7 @@ public class UI_UpgradePopup : UI_Popup
 
     public Image MakeSubImage(int index)
     {
+        GetText((int)Texts.RemainCode_Text).text = $"남은 코드 조각 : {Managers.GameManager.CodePiece}";
         return Managers.UI.MakeSub<UI_Upgrade>(Get<Transform>(index)).GetComponent<Image>();
     }
 }
