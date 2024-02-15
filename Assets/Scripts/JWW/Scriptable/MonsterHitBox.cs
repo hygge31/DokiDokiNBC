@@ -19,7 +19,6 @@ public class MonsterHitBox : MonoBehaviour
         //AttackSO attackSO = collision.gameObject.GetComponent<AttackSO>();
         //if (attackSO == null)
         //    return;
-        //healthSystem.ChangeHealth(-attackSO.damage);
-        healthSystem.ChangeHealth(-5);//임시
+        //healthSystem.ChangeHealth(-attackSO.damage);        
     }
 }

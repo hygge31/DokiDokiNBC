@@ -12,8 +12,6 @@ public class EnemyDisappear : MonoBehaviour
         {
             component.enabled = false;
         }
-        //DunGoenManager.Instance.DieMonster();
-
         StartCoroutine(DropRoutine());        
     }
 
@@ -29,6 +27,7 @@ public class EnemyDisappear : MonoBehaviour
         Managers.Drop.DropHealthRandom(transform);
         Managers.Drop.DropPerk(transform);
 
+        DunGoenManager.Instance.DieMonster();
         Destroy(transform.parent.gameObject);
     }
 }
