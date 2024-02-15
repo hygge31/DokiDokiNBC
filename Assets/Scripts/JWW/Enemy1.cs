@@ -18,6 +18,9 @@ public class Enemy1 : EnemyController
     public CharacterStatsHandler characterStatsHandler;
     private Collider2D _collider;
     public bool isContect = false;
+
+    public AudioClip attackClip;
+
     protected override void Awake()
     {
         base.Awake();
@@ -29,7 +32,13 @@ public class Enemy1 : EnemyController
     {
         base.Start();
         OnMoveEvent += Move;
+        //OnAttackEvent += AttackSound;
     }
+
+    //private void AttackSound(EnemySO sO)
+    //{
+    //    SoundManager.Instance.PlayClip(attackClip);
+    //}
 
     protected override void FixedUpdate()
     {

@@ -5,21 +5,25 @@ using UnityEngine;
 
 public class EnemyAttack : MonoBehaviour
 {
-    private EnemyController enemyController;
+    private Enemy1 enemyController;
     private Collider2D _collider2D;
     // Start is called before the first frame update
     private void Awake()
     {
-        enemyController = GetComponentInParent<EnemyController>();
+        enemyController = GetComponentInParent<EnemyController>() as Enemy1;
         _collider2D = GetComponent<Collider2D>();
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        
         if (collision.gameObject.tag != "Player")
             return;
         //collision.gameObject.GetComponent<HealthSystem>().ChangeHealth(-enemyController.enemySO.power);
-
         Managers.Player.GetDamaged();
+    }
+    public void PlayAttackSound()
+    {
+        SoundManager.Instance.PlayClip(enemyController?.attackClip);
     }
     public void EndOfAttack()
     {
