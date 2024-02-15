@@ -7,6 +7,9 @@ public class Bullet_Missile : Bullet
     [SerializeField] AnimationCurve curve;
     [SerializeField] LayerMask trackingLayer;
 
+    [SerializeField] AudioClip fireClip;
+    [SerializeField] AudioClip hitClip;
+
     private bool _isLockOn = false;    
 
     private Rigidbody2D _rigid;
@@ -69,7 +72,9 @@ public class Bullet_Missile : Bullet
         currentActive = 0;
 
         transform.rotation = Quaternion.Euler(0, 0, Random.Range(0, 360));
-        transform.position = spawnPos + transform.up * 0.5f;        
+        transform.position = spawnPos + transform.up * 0.5f;
+
+        SoundManager.Instance.PlayClip(fireClip);
 
         StartCoroutine(LockOnTargetRoutine());
     }
@@ -107,6 +112,8 @@ public class Bullet_Missile : Bullet
             {
                 healthSystem.ChangeHealth(-Atk);
             }
+
+            SoundManager.Instance.PlayClip(hitClip);
 
             Clear();
         }        

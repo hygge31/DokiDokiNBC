@@ -193,6 +193,8 @@ MonoBehaviour:
   trackingLayer:
     serializedVersion: 2
     m_Bits: 256
+  fireClip: {fileID: 8300000, guid: 5a320a9c7a186c446a3cd6165a412358, type: 3}
+  hitClip: {fileID: 8300000, guid: 64a33602f949c1a468b2b327f902dabb, type: 3}
 --- !u!114 &8139825951594819313
 MonoBehaviour:
   m_ObjectHideFlags: 0
