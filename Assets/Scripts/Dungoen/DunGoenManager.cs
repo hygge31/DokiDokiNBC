@@ -223,6 +223,14 @@ public class DunGoenManager : MonoBehaviour
         }
     }
 
+    public void CreateItem(Transform pot)
+    {
+        System.Random random = new System.Random();
+        string[] itemNames = Enum.GetNames(typeof(Define.Weapons));
+        Item_SO itemSO = Resources.Load<Item_SO>($"Scriptable/{itemNames[random.Next(1, itemNames.Length)]}");
 
+        Item_Weapon weapon = Managers.RM.Instantiate($"Items/Item_Weapon").GetComponent<Item_Weapon>();
+        weapon.Setup(itemSO, pot);
+    }
 
 }

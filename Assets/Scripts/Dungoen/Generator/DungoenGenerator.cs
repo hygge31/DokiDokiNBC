@@ -106,7 +106,7 @@ public class DungoenGenerator : MonoBehaviour
             Transform contain = DunGoenManager.Instance.container.transform.Find($"Room {roomData.roomNumber}");
 
             //init
-            int maxSpawn = Random.Range(1, 3);
+            int maxSpawn = Random.Range(Managers.GameManager.day,2 + Managers.GameManager.day);
             //
             for (int i = 0; i < maxSpawn; i++)
             {
