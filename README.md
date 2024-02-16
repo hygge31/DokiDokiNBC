@@ -157,7 +157,7 @@ Unity 숙련 주차 팀 과제
 
 <details>
     <summary>코드</summary>
-    <pre>
+    
         <code>
         IEnumerator BossAppearCo()
         {
@@ -183,7 +183,7 @@ Unity 숙련 주차 팀 과제
         fill.fillAmount = 0;
         }
         </code>
-    </pre>
+    
 </details>
 
 </details>
