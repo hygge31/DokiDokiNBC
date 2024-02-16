@@ -118,15 +118,13 @@ Unity 숙련 주차 팀 과제
   <details>
     <summary>코드</summary>
     <h4>TileDraw</h4>
-    <pre>
-      <code>
+   
       void DrawTile(Tilemap tilemap,Vector2Int drawPoint,TileBase tile)
      {
      Vector3Int position = tilemap.WorldToCell((Vector3Int)drawPoint);
      tilemap.SetTile(position, tile);
      }
-      </code>
-    </pre>
+
   </details>
 
 <p>
@@ -157,7 +155,7 @@ Unity 숙련 주차 팀 과제
 
 <details>
     <summary>코드</summary>
-    
+    <H3>Boss</H3>
         
         IEnumerator BossAppearCo()
         {
@@ -187,7 +185,7 @@ Unity 숙련 주차 팀 과제
 </details>
 
 </details>
-
+<hr>
 
 2. **캐릭터 조작** (난이도: ★★☆☆☆)
     
