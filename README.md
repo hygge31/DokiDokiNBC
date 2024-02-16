@@ -53,7 +53,7 @@ Unity 숙련 주차 팀 과제
   <summary>코드</summary>
  
     public List<Vector2Int> RandomCreateRoomPosition(Vector2Int startPoint,int maxRoomCount)
-   {
+    {
     List<Vector2Int> path = new List<Vector2Int>();
 
     Vector2Int curPoint = startPoint;
