@@ -39,7 +39,149 @@ Unity 숙련 주차 팀 과제
 ## 필수 요구
 
 1. **랜덤 던전 생성** (난이도: ★★★☆☆)
-    - 설명
+    <details>
+  <summary>랜덤 던전 생성</summary>
+  <div>
+랜덤한 위치에 절차적으로 생성된 던전 맵을 만들기 위해 던전을 구성하는 방의 위치정보를 먼저 구한뒤에 맵 생성을 진행하였습니다.</br>
+던전 방의 생성 위치의 경우 상하좌우 중 랜덤한 방향으로 생성할 던전 방의 정보에 들어있는 가로 세로의 크기를 사용해 다음 방의 위치를 계산했으며,</br>
+생성된 좌표는 만들어 놓은 리스트에 담아 이미 생성된 좌표인지 확인을 하고 이미 만들어진 좌표라면 해당 좌표에 다시 상하좌우중 한 방향으로 해당 좌표를 다시 계산 하도록 했습니다.</br>
+</div>
+<details>
+  <summary>코드</summary>
+  <div>
+    <pre>
+      <code>
+    public List<Vector2Int> RandomCreateRoomPosition(Vector2Int startPoint,int maxRoomCount)
+   {
+    List<Vector2Int> path = new List<Vector2Int>();
+
+    Vector2Int curPoint = startPoint;
+    // -- Init
+    path.Add(curPoint);
+    RoomData curRoomData = new RoomData(roomDataSOs[Random.Range(0,roomDataSOs.Count)]);
+    curRoomData.SetRoomData(curPoint,0);
+    curRoomData.clear = true;
+    DunGoenManager.Instance.dungoenRoomDataList.Add(curRoomData);
+    // -- Init
+    for (int i = 1; i < maxRoomCount; i++)
+    {
+        curRoomData = new RoomData(roomDataSOs[Random.Range(0, roomDataSOs.Count)]);
+        curPoint += GetCreatePoint(curRoomData);
+
+        while (path.Contains(curPoint))
+        {
+            curPoint += GetCreatePoint(curRoomData);
+        }
+        path.Add(curPoint);
+        curRoomData.SetRoomData(curPoint,i);
+        
+        DunGoenManager.Instance.dungoenRoomDataList.Add(curRoomData);
+    }
+    return path;
+}
+ Vector2Int GetCreatePoint(RoomData roomData)
+ {
+     Vector2Int ranDir = dir[Random.Range(0, dir.Count)];
+     ranDir *= new Vector2Int(roomData.width+offset,roomData.height+offset);
+     return ranDir;
+ }
+      </code>
+    </pre>
+  </div>
+</details>
+
+  위에서 구한 생성할 던전 방의 위치정보를 사용해 타일 맵으로 맵을 그려줍니다.  </br>
+  위치정보를 구할때 방을 구성하는 데이터를 가진 룸 데이터에 생성위치와, 생성번호를 사용해 기본적인 데이터를 초기화 하도록 했습니다.</br>
+  <details>
+    <summary>코드</summary>
+    <h4>RoomData</h4>
+    <pre>
+      <code>
+    public void SetRoomData(Vector2Int createPoint,int roomNumber)
+    {
+     center = createPoint;
+     this.roomNumber = roomNumber;
+     bounds = new BoundsInt(new Vector3Int(center.x - (width / 2), center.y - (height / 2), 0), new Vector3Int(width, height, 0));
+     minCamLimit = new Vector2(center.x - width / 2, center.y - height / 2) + new Vector2(DunGoenManager.Instance.cameraWidth, DunGoenManager.Instance.cameraHeight);
+     maxCamLimit = new Vector2(center.x + width / 2, center.y + height / 2) - new Vector2(DunGoenManager.Instance.cameraWidth, DunGoenManager.Instance.cameraHeight);
+     leftDoorPoint = new Vector2Int(center.x - (width / 2), center.y);
+     rightDoorPoint = new Vector2Int(center.x + (width / 2), center.y);
+     topDoorPoint = new Vector2Int(center.x, center.y + (height / 2));
+     bottomDoorPoint = new Vector2Int(center.x, center.y - (height / 2));
+     }
+      </code>
+    </pre>
+  </details>
+  BoundsInt 의 경우 정수형으로 구성된 경계 상자를 나타내는데 좌표 공간 내에서 경계 상자의 위치와 크기를 쉽게 가져올 수있습니다. </br>
+  그래서 이를 이용해서 타일맵을 그려줄 것입니다.</br>
+  <details>
+    <summary>코드</summary>
+    <h4>TileDraw</h4>
+    <pre>
+      <code>
+      void DrawTile(Tilemap tilemap,Vector2Int drawPoint,TileBase tile)
+     {
+     Vector3Int position = tilemap.WorldToCell((Vector3Int)drawPoint);
+     tilemap.SetTile(position, tile);
+     }
+      </code>
+    </pre>
+
+  </details>
+
+<p>
+  <img src="https://github.com/hygge31/MatchUp/assets/121877159/802657cd-5b4f-4a75-a98c-6d700c8183b8" width="350px" />
+</p>
+
+ 
+<h3>2. 포탈 만들기</h3>
+만들어진 던전 방에서 랜덤으로 하나의 방에만 포탈 생성, 방에있는 몬스터가 모두 죽었을 경우에만 포탈 활성화됩니다.</br>
+포탈을 사용하게 되면 메인 씬으로 이동</br>
+
+<p>
+  <img src="https://github.com/hygge31/MatchUp/assets/121877159/78e07cc6-7797-43e0-9d5f-94ae5e9f96bb" width="350px" />
+</p>
+
+<h3>3. 스폰 만들기</h3>
+스포너 클래스를 만들어 던전 방에 랜덤한 위치에 스포너를 위치시키고 랜덤한 몬스터를 소환.</br>
+해당 방에 존재하는 몬스터가 죽었을때 해당 방에 클리어 조건 카운트.</br>
+클리어 조건을 충족하면 이동가능한 문 등장.</br>
+
+<h3>4. 보스룸 만들기</h3>
+4번째 날일 경우 다음 스테이지에 보스방 등장.</br>
+보스몬스터의 체력을 확인하고 체력이 감소했을경우 보스몬스터의 체력을 보여주는 UI 업데이트</br>
+
+<details>
+  <summary>코드</summary>
+  <h3>Boss</h3>
+  <pre>
+    <code>
+      IEnumerator BossAppearCo()
+      {
+        yield return new WaitForSeconds(1f);
+        BossMonster boss = Instantiate(boosObj, spawnPot.position, Quaternion.identity).GetComponent<BossMonster>();
+        HealthSystem bossHelathSystem = boss.GetComponent<HealthSystem>();
+        float curhealth = bossHelathSystem.CurrentHealth;
+        //float curhealth = boss.bossHealth;
+
+        while (bossHelathSystem.CurrentHealth > 0)
+        {
+            if(bossHelathSystem.CurrentHealth != curhealth)
+            {
+                curhealth = bossHelathSystem.CurrentHealth;
+                fill.fillAmount = curhealth / bossHelathSystem.MaxHealth;
+            }
+
+            yield return new WaitForSeconds(0.1f);
+        }
+        DunGoenManager.Instance.CreatePortal(transform);
+        fill.fillAmount = 0;
+      }
+    </code>
+  </pre>
+</details>
+
+</details>
 
 2. **캐릭터 조작** (난이도: ★★☆☆☆)
     
