@@ -51,8 +51,7 @@ Unity 숙련 주차 팀 과제
 
 <details>
   <summary>코드</summary>
-  <div>
-      <code>
+ 
     public List<Vector2Int> RandomCreateRoomPosition(Vector2Int startPoint,int maxRoomCount)
    {
     List<Vector2Int> path = new List<Vector2Int>();
@@ -87,8 +86,7 @@ Unity 숙련 주차 팀 과제
      ranDir *= new Vector2Int(roomData.width+offset,roomData.height+offset);
      return ranDir;
  }
-      </code>
-  </div>
+
 </details>
 
   위에서 구한 생성할 던전 방의 위치정보를 사용해 타일 맵으로 맵을 그려줍니다.  </br>
@@ -96,8 +94,7 @@ Unity 숙련 주차 팀 과제
   <details>
     <summary>코드</summary>
     <h4>RoomData</h4>
-    <pre>
-      <code>
+   
     public void SetRoomData(Vector2Int createPoint,int roomNumber)
     {
      center = createPoint;
@@ -110,8 +107,7 @@ Unity 숙련 주차 팀 과제
      topDoorPoint = new Vector2Int(center.x, center.y + (height / 2));
      bottomDoorPoint = new Vector2Int(center.x, center.y - (height / 2));
      }
-      </code>
-    </pre>
+    
   </details>
   BoundsInt 의 경우 정수형으로 구성된 경계 상자를 나타내는데 좌표 공간 내에서 경계 상자의 위치와 크기를 쉽게 가져올 수있습니다. </br>
   그래서 이를 이용해서 타일맵을 그려줄 것입니다.</br>
