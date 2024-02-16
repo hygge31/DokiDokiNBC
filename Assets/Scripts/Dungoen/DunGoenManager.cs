@@ -192,7 +192,14 @@ public class DunGoenManager : MonoBehaviour
 
     public void DieMonster()
     {
-        dungoenRoomDataList[curDungoenRoomNumber].DieMonsterAddAndClearCheck();
+       if(Managers.GameManager.day < 4)
+       {
+         dungoenRoomDataList[curDungoenRoomNumber].DieMonsterAddAndClearCheck();
+        }
+        else
+        {
+            Debug.Log("Boss die");
+        }
     }
 
     public void PanelFadeOut()
