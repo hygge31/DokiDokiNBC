@@ -158,7 +158,7 @@ Unity 숙련 주차 팀 과제
 <details>
     <summary>코드</summary>
     
-        <code>
+        
         IEnumerator BossAppearCo()
         {
         yield return new WaitForSeconds(1f);
@@ -182,7 +182,7 @@ Unity 숙련 주차 팀 과제
         DunGoenManager.Instance.CreatePortal(transform);
         fill.fillAmount = 0;
         }
-        </code>
+        
     
 </details>
 
