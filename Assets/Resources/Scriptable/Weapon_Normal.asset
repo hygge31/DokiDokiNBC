@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5915ff2c134241c48a4b41c8a5bd395a, type: 3}
+  m_Name: Weapon_Normal
+  m_EditorClassIdentifier: 
+  sprite: {fileID: 21300000, guid: e3228bc4b8f55e64e81c80a9e00bc710, type: 3}
+  displayName: "\uD30C\uC774\uC5B4 \uBCFC"
+  displayDesc: "\uBC14\uB77C\uBCF4\uB294 \uBC29\uD5A5\uC73C\uB85C \uD30C\uC774\uC5B4
+    \uBCFC\uC744 \uB358\uC9C4\uB2E4"
+  isWeapon: 1
+  isStackable: 0
+  atk: 5
+  fireRate: 1
+  moveSpeed: 0
+  bulletSpeed: 10
+  addBullet: 0
+  pierceCount: 0
+  weaponType: 1
+  duration: 5
