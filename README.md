@@ -52,7 +52,6 @@ Unity 숙련 주차 팀 과제
 <details>
   <summary>코드</summary>
   <div>
-    <pre>
       <code>
     public List<Vector2Int> RandomCreateRoomPosition(Vector2Int startPoint,int maxRoomCount)
    {
@@ -89,7 +88,6 @@ Unity 숙련 주차 팀 과제
      return ranDir;
  }
       </code>
-    </pre>
   </div>
 </details>
 
