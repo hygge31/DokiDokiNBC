@@ -276,7 +276,7 @@ Unity 숙련 주차 팀 과제
     
         + 이벤트 트리거로 충돌 애니메이션 작동과 삭제 처리
           
-        + 관통이 가능하다면 감지한 대상의 HealthSystem을 저장하고 충돌한 대상의 것과 비교하여 투사체 이동중 중복 충돌 방지
+        + 관통이 가능하다면 처음 충돌한 대상의 HealthSystem을 저장하고 이후 충돌한 대상의 것과 비교하여 투사체 이동중 중복 충돌 방지
       
 
 - 플레이어 어택 컨트롤러
@@ -353,7 +353,7 @@ Unity 숙련 주차 팀 과제
         
 7. **퍼마데스 (Permadeath) 시스템** (난이도: ★★☆☆☆)
     
-    - PlayerStatManager 와 AttakManager에서 각각 플레이어의 Perk, Stat 정보 및 장착 무기 정보를 Init 함수를 통해 초기 상태로 돌린다.
+    - PlayerStatManager 와 AttackManager에서 각각 플레이어의 Perk, Stat 정보 및 장착 무기 정보를 Init 함수를 통해 초기 상태로 돌린다.
     - 사망 시 GameManager의 진행도를 의미하는 Day 역시 초기값 1 로 설정하여 MainScene으로 씬 전환하여 퍼마데스 구현.
       
 8. **아티팩트 및 효과** (난이도: ★★☆☆☆)
