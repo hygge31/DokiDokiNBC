@@ -28,6 +28,7 @@ public class HealthSystem : MonoBehaviour
     private void Start()
     {
         CurrentHealth = _statsHandler.CurrentStates.maxHealth;
+        Debug.Log($"{CurrentHealth}");
     }
 
     private void Update()

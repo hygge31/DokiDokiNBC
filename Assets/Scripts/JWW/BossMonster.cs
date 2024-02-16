@@ -47,6 +47,7 @@ public class BossMonster : MonoBehaviour
     }
     private void Start()
     {
+        Debug.Log($"{_healthSystem.CurrentHealth}");
         _healthSystem.OnDeath += Dead;
     }
     void Update()

@@ -32,8 +32,10 @@ public class Boss : MonoBehaviour
     {
         yield return new WaitForSeconds(1f);
         BossMonster boss = Instantiate(boosObj, spawnPot.position, Quaternion.identity).GetComponent<BossMonster>();
+        yield return new WaitForSeconds(0.1f);
         HealthSystem bossHelathSystem = boss.GetComponent<HealthSystem>();
         float curhealth = bossHelathSystem.CurrentHealth;
+        Debug.Log($"{curhealth}");
         //float curhealth = boss.bossHealth;
 
         while (bossHelathSystem.CurrentHealth > 0)

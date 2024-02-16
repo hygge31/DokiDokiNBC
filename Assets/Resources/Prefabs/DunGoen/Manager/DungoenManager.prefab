@@ -637,7 +637,7 @@ Transform:
   - {fileID: 3187013494053753811}
   - {fileID: 5137604753537481249}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7673621758566582235
 MonoBehaviour:
@@ -655,6 +655,7 @@ MonoBehaviour:
   dungoenGenerator: {fileID: 8821290842321878402}
   dungoenRoomDataList: []
   minimapSpriteList: []
+  portalObj: {fileID: 17274583329301492, guid: 8b31fa8de916c42f19ca79236e197b6f, type: 3}
   playerTransform: {fileID: 1144340165990618343, guid: 1accdae4c2559e049b80bd9d968f5556, type: 3}
   curDungoenRoomNumber: 0
   count: 0
