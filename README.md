@@ -158,12 +158,14 @@ Unity 숙련 주차 팀 과제
   <h3>Boss</h3>
   <pre>
     <code>
-      IEnumerator BossAppearCo()
-      {
+          IEnumerator BossAppearCo()
+        {
         yield return new WaitForSeconds(1f);
         BossMonster boss = Instantiate(boosObj, spawnPot.position, Quaternion.identity).GetComponent<BossMonster>();
+        yield return new WaitForSeconds(0.1f);
         HealthSystem bossHelathSystem = boss.GetComponent<HealthSystem>();
         float curhealth = bossHelathSystem.CurrentHealth;
+        Debug.Log($"{curhealth}");
         //float curhealth = boss.bossHealth;
 
         while (bossHelathSystem.CurrentHealth > 0)
@@ -178,7 +180,7 @@ Unity 숙련 주차 팀 과제
         }
         DunGoenManager.Instance.CreatePortal(transform);
         fill.fillAmount = 0;
-      }
+        }
     </code>
   </pre>
 </details>
