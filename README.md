@@ -54,38 +54,40 @@ Unity 숙련 주차 팀 과제
  
     public List<Vector2Int> RandomCreateRoomPosition(Vector2Int startPoint,int maxRoomCount)
     {
-    List<Vector2Int> path = new List<Vector2Int>();
+        List<Vector2Int> path = new List<Vector2Int>();
 
-    Vector2Int curPoint = startPoint;
-    // -- Init
-    path.Add(curPoint);
-    RoomData curRoomData = new RoomData(roomDataSOs[Random.Range(0,roomDataSOs.Count)]);
-    curRoomData.SetRoomData(curPoint,0);
-    curRoomData.clear = true;
-    DunGoenManager.Instance.dungoenRoomDataList.Add(curRoomData);
-    // -- Init
-    for (int i = 1; i < maxRoomCount; i++)
-    {
-        curRoomData = new RoomData(roomDataSOs[Random.Range(0, roomDataSOs.Count)]);
-        curPoint += GetCreatePoint(curRoomData);
-
-        while (path.Contains(curPoint))
-        {
-            curPoint += GetCreatePoint(curRoomData);
-        }
+        Vector2Int curPoint = startPoint;
+        // -- Init
         path.Add(curPoint);
-        curRoomData.SetRoomData(curPoint,i);
-        
+        RoomData curRoomData = new RoomData(roomDataSOs[Random.Range(0,roomDataSOs.Count)]);
+        curRoomData.SetRoomData(curPoint,0);
+        curRoomData.clear = true;
         DunGoenManager.Instance.dungoenRoomDataList.Add(curRoomData);
-    }
-    return path;
-}
- Vector2Int GetCreatePoint(RoomData roomData)
- {
+        // -- Init
+        for (int i = 1; i < maxRoomCount; i++)
+        {
+            curRoomData = new RoomData(roomDataSOs[Random.Range(0, roomDataSOs.Count)]);
+            curPoint += GetCreatePoint(curRoomData);
+
+            while (path.Contains(curPoint))
+            {
+                curPoint += GetCreatePoint(curRoomData);
+            }
+            path.Add(curPoint);
+            curRoomData.SetRoomData(curPoint,i);
+        
+            DunGoenManager.Instance.dungoenRoomDataList.Add(curRoomData);
+        }
+        return path;
+     }
+    
+     Vector2Int GetCreatePoint(RoomData roomData)
+     {
      Vector2Int ranDir = dir[Random.Range(0, dir.Count)];
      ranDir *= new Vector2Int(roomData.width+offset,roomData.height+offset);
      return ranDir;
- }
+     }
+
 
 </details>
 
