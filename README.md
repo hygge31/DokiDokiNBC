@@ -157,37 +157,7 @@ Unity 숙련 주차 팀 과제
 4번째 날일 경우 다음 스테이지에 보스방 등장.</br>
 보스몬스터의 체력을 확인하고 체력이 감소했을경우 보스몬스터의 체력을 보여주는 UI 업데이트</br>
 
-<details>
-  <summary>코드</summary>
-  <h3>Boss</h3>
-  <pre>
-    <code>
-          IEnumerator BossAppearCo()
-        {
-        yield return new WaitForSeconds(1f);
-        BossMonster boss = Instantiate(boosObj, spawnPot.position, Quaternion.identity).GetComponent<BossMonster>();
-        yield return new WaitForSeconds(0.1f);
-        HealthSystem bossHelathSystem = boss.GetComponent<HealthSystem>();
-        float curhealth = bossHelathSystem.CurrentHealth;
-        Debug.Log($"{curhealth}");
-        //float curhealth = boss.bossHealth;
 
-        while (bossHelathSystem.CurrentHealth > 0)
-        {
-            if(bossHelathSystem.CurrentHealth != curhealth)
-            {
-                curhealth = bossHelathSystem.CurrentHealth;
-                fill.fillAmount = curhealth / bossHelathSystem.MaxHealth;
-            }
-
-            yield return new WaitForSeconds(0.1f);
-        }
-        DunGoenManager.Instance.CreatePortal(transform);
-        fill.fillAmount = 0;
-        }
-    </code>
-  </pre>
-</details>
 
 </details>
 
