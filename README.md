@@ -83,9 +83,9 @@ Unity 숙련 주차 팀 과제
     
      Vector2Int GetCreatePoint(RoomData roomData)
      {
-     Vector2Int ranDir = dir[Random.Range(0, dir.Count)];
-     ranDir *= new Vector2Int(roomData.width+offset,roomData.height+offset);
-     return ranDir;
+         Vector2Int ranDir = dir[Random.Range(0, dir.Count)];
+         ranDir *= new Vector2Int(roomData.width+offset,roomData.height+offset);
+         return ranDir;
      }
 
 
@@ -179,6 +179,9 @@ Unity 숙련 주차 팀 과제
         fill.fillAmount = 0;
         }
         
+<p>
+  <img src="https://github.com/hygge31/MatchUp/assets/121877159/1b56e2f4-9866-45ff-984f-2c07012c88dc" width="350px" />
+</p>
     
 </details>
 
