@@ -54,17 +54,16 @@ public class Door : MonoBehaviour
         switch (num) //RTLB
         {
             case 0:
-                outPoint = room.doorPoints[0] + new Vector2Int(-1, 0);
+                outPoint = room.doorPoints[2] + new Vector2Int(1, 0)*2;
                 break;
             case 1:
-                outPoint = room.doorPoints[1] + new Vector2Int(0, -1) * 2;
+                outPoint = room.doorPoints[3] + new Vector2Int(0, 1)*2;
                 break;
             case 2:
-                outPoint = room.doorPoints[2] + new Vector2Int(1, 0) * 2;
+                outPoint = room.doorPoints[0] + new Vector2Int(-1, 0) *2;
                 break;
             case 3:
-                
-                outPoint = room.doorPoints[3] + new Vector2Int(0, 1) * 2;
+                outPoint = room.doorPoints[1] + new Vector2Int(0, -1)*2;
                 break;
 
         }
