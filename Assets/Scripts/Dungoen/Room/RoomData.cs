@@ -27,26 +27,13 @@ public class RoomData
 
 
     [Header("Door")]
-    public Vector2Int leftDoorPoint;
-    public Vector2Int rightDoorPoint;
-    public Vector2Int topDoorPoint;
-    public Vector2Int bottomDoorPoint;
+    //0305 refactoring
+    public GameObject[] doorObjs = new GameObject[4];
+    public Vector2Int[] doorPoints = new Vector2Int[4];
+    public bool[] existDoors = new bool[4];
+    public bool[] existedDoors = new bool[4];
 
-    public GameObject leftDoorObj;
-    public GameObject rightDoorObj;
-    public GameObject topDoorObj;
-    public GameObject bottomDoorObj;
-
-
-    public bool leftDoor;
-    public bool rightDoor;
-    public bool topDoor;
-    public bool bottomDoor;
-
-    public bool leftcDoor;
-    public bool rightcDoor;
-    public bool topcDoor;
-    public bool bottomcDoor;
+    //0305 refactoring
 
     [Header("Room State")]
     public bool clear;
@@ -83,21 +70,22 @@ public class RoomData
         this.roomNumber = roomNumber;
         bounds = new BoundsInt(new Vector3Int(center.x - (width / 2), center.y - (height / 2), 0), new Vector3Int(width, height, 0));
 
-
-
-
         minCamLimit = new Vector2(center.x - width / 2, center.y - height / 2) + new Vector2(DunGoenManager.Instance.cameraWidth, DunGoenManager.Instance.cameraHeight);
         maxCamLimit = new Vector2(center.x + width / 2, center.y + height / 2) - new Vector2(DunGoenManager.Instance.cameraWidth, DunGoenManager.Instance.cameraHeight);
 
+        //0305 refactoring  RTLB
+        doorPoints[0] = new Vector2Int(center.x + (width / 2), center.y);
+        doorPoints[1] = new Vector2Int(center.x, center.y + (height / 2));
+        doorPoints[2] = new Vector2Int(center.x - (width / 2), center.y);
+        doorPoints[3] = new Vector2Int(center.x, center.y - (height / 2));
 
-        leftDoorPoint = new Vector2Int(center.x - (width / 2), center.y);
-        rightDoorPoint = new Vector2Int(center.x + (width / 2), center.y);
-        topDoorPoint = new Vector2Int(center.x, center.y + (height / 2));
-        bottomDoorPoint = new Vector2Int(center.x, center.y - (height / 2));
+        //0305 refactoring
+
+
     }
 
 
-   
+
 
     public void AllDoorOff()
     {
